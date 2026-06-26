@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_cta": "#B0795C",
@@ -7,6 +16,29 @@
     "color_accent": "#F2E6C2",
     "social_instagram": "rarevelvetofficial",
     "social_tiktok": "rarevelvetofficial",
-    "social_facebook": ""
+    "social_facebook": "",
+    "content_for_index": [],
+    "blocks": {
+      "6174324309569838175": {
+        "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
+        "disabled": false,
+        "settings": {}
+      },
+      "1232542678405107163": {
+        "type": "shopify://apps/instafeed/blocks/head-block/c447db20-095d-4a10-9725-b5977662c9d5",
+        "disabled": false,
+        "settings": {}
+      },
+      "11349500561483629931": {
+        "type": "shopify://apps/notify-back-in-stock-preorder/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
+        "disabled": false,
+        "settings": {}
+      },
+      "15779431959803902476": {
+        "type": "shopify://apps/teemdrop-dropshipping/blocks/cart-replacer-global/bc06b585-387a-4e30-b058-9045d37e3f95",
+        "disabled": true,
+        "settings": {}
+      }
+    }
   }
 }
