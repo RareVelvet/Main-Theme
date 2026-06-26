@@ -1,0 +1,29 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": {
+      "type": "rv-announcement",
+      "blocks": {
+        "message_0": {
+          "type": "message",
+          "settings": { "text": "Complimentary shipping over $50" }
+        },
+        "message_1": {
+          "type": "message",
+          "settings": { "text": "Free 30-day returns on every order" }
+        },
+        "message_2": {
+          "type": "message",
+          "settings": { "text": "Earn Rare Velvet points on every purchase" }
+        }
+      },
+      "block_order": ["message_0", "message_1", "message_2"]
+    },
+    "header": {
+      "type": "rv-header",
+      "settings": {}
+    }
+  },
+  "order": ["announcement", "header"]
+}

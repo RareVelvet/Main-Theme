@@ -95,7 +95,8 @@ has a checkbox **"Use an automatic discount instead of a code (recommended)."**
 - **OFF** → legacy behavior (applies the code via `/discount/CODE`).
 
 **Recommendation:** ship with **auto‑discount mode ON** and build the matching Automatic
-discounts. It is materially safer for margin and far less confusing for shoppers.
+discounts. It is materially safer for margin and far less confusing for shoppers. The exact
+Admin config for all four modules is in **[`docs/DISCOUNTS.md`](DISCOUNTS.md)**.
 
 ### The cleanest long‑term option: native Shopify Bundles
 For "buy these specific products together at a set price," Shopify's **Bundles** (Shopify
@@ -142,10 +143,11 @@ risk.** Blank or correct them. (Ideally move the review numbers to Loox/metafiel
 **Functional gaps worth knowing:**
 - **No `customers/*` or `gift_card` JSON templates** — these stay `.liquid` (form pages).
   Editable in code, not in the editor. Standard, but flagged for completeness.
-- **Header/footer aren't section groups.** They're rendered directly in `layout/theme.liquid`.
-  They're still editable as sections, but you can't add *arbitrary* sections into the header/
-  footer regions. Converting to `sections/header-group.json` + `footer-group.json` is a nice
-  future upgrade.
+- **Header/footer are now section groups** (`sections/header-group.json` +
+  `footer-group.json`). The announcement bar, header, footer columns and the global
+  drawers/popups are editable in the theme editor, and you can add/remove sections in those
+  regions. (This also fixed a latent bug: rendered as static `{% section %}` with no stored
+  data, the announcement + footer blocks were rendering empty.)
 - **Self‑hosted fonts.** Google Fonts load remotely (3 theme‑check `RemoteAsset` warnings).
   Fine, but self‑hosting shaves a little CLS/latency and is more privacy‑robust.
 - **Newsletter popup / footer signup** post to Shopify's customer form; if you use Klaviyo,

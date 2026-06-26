@@ -25,14 +25,9 @@
 </head>
 <body id="{{ page_title | handle }}" class="template-{{ request.page_type }}">
   <a href="#MainContent" class="rv-skip-link">Skip to content</a>
-  {%- section 'rv-announcement' -%}
-  {%- section 'rv-header' -%}
+  {%- sections 'header-group' -%}
   <main id="MainContent" tabindex="-1">{{ content_for_layout }}</main>
-  {%- section 'rv-footer' -%}
-  {%- section 'rv-search-drawer' -%}
-  {%- section 'rv-cart-drawer' -%}
-  {%- section 'rv-quickview' -%}
-  {%- section 'rv-welcome-popup' -%}
+  {%- sections 'footer-group' -%}
   <div id="rv-cart-notification" style="display:none;position:fixed;bottom:24px;right:24px;z-index:200;background:var(--rv-char);color:var(--rv-bone);padding:14px 20px;border-radius:3px;font:600 12px/1 var(--rv-sans);letter-spacing:.1em;text-transform:uppercase;">Added to bag ✓</div>
   <script src="{{ 'rv-theme.js' | asset_url }}" defer></script>
   <script src="{{ 'rv-gallery.js' | asset_url }}" defer></script>

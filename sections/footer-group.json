@@ -1,0 +1,41 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "rv-footer",
+      "blocks": {
+        "column_0": {
+          "type": "column",
+          "settings": { "heading": "Shop" }
+        },
+        "column_1": {
+          "type": "column",
+          "settings": { "heading": "Customer Care" }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": { "heading": "Company" }
+        }
+      },
+      "block_order": ["column_0", "column_1", "column_2"]
+    },
+    "search_drawer": {
+      "type": "rv-search-drawer",
+      "settings": {}
+    },
+    "cart_drawer": {
+      "type": "rv-cart-drawer",
+      "settings": {}
+    },
+    "quickview": {
+      "type": "rv-quickview",
+      "settings": {}
+    },
+    "welcome_popup": {
+      "type": "rv-welcome-popup",
+      "settings": {}
+    }
+  },
+  "order": ["footer", "search_drawer", "cart_drawer", "quickview", "welcome_popup"]
+}

@@ -18,7 +18,7 @@ assets/      rv-base.css, rv-product.css, rv-theme.js, rv-gallery.js, rv-cart.js
 config/      settings_schema.json, settings_data.json
 layout/      theme.liquid
 locales/     en.default.json
-sections/    ~70 sections (home, PDP, collection, cart, global UX)
+sections/    ~70 sections + header-group.json / footer-group.json (editable header & footer)
 snippets/    rv-badge, rv-material, rv-loyalty-points, rv-icon-placeholder
 templates/   index.json + product*.json + collection/page/blog/article/search/cart/404.json
              (customers/* and gift_card stay .liquid — form pages, by design)
