@@ -1,8 +1,3 @@
-{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
-{%- assign rvt = product.type | downcase -%}
-{%- assign rv_render = false -%}
-{%- if rvt contains 'beauty' or rvt contains 'skincare' or rvt contains 'serum' or rvt contains 'cleanser' or rvt contains 'lip' or rvt contains 'makeup' or rvt contains 'cosmetic' or rvt contains 'device' or rvt contains 'tool' -%}{%- assign rv_render = true -%}{%- endif -%}
-{%- if rv_render -%}
 
 <section class="rv-pdp-band">
   <div class="rv-pdp-band__inner">
@@ -32,8 +27,6 @@
     </div>
   </div>
 </section>
-
-{%- endif -%}
 {% schema %}{"name":"How to Use","tag":"section","max_blocks":5,"settings":[
 {"type":"image_picker","id":"image","label":"Side image"},
 {"type":"text","id":"eyebrow","label":"Eyebrow","default":"How to use"},

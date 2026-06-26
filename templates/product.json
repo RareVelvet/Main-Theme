@@ -1,118 +1,34 @@
 {
   "sections": {
-    "product_jewelry_hero_0": {
-      "type": "rv-product-jewelry-hero"
-    },
-    "product_main_1": {
+    "product_main_0": {
       "type": "rv-product-main"
     },
-    "product_benefits_2": {
+    "product_benefits_1": {
       "type": "rv-product-benefits"
     },
-    "product_ingredients_3": {
-      "type": "rv-product-ingredients"
-    },
-    "results_strip_4": {
-      "type": "rv-results-strip"
-    },
-    "device_credibility_5": {
-      "type": "rv-device-credibility"
-    },
-    "device_derm_6": {
-      "type": "rv-device-derm"
-    },
-    "product_how_to_use_7": {
-      "type": "rv-product-how-to-use"
-    },
-    "product_device_results_8": {
-      "type": "rv-product-device-results"
-    },
-    "product_spec_row_9": {
-      "type": "rv-product-spec-row"
-    },
-    "product_stack_with_10": {
-      "type": "rv-product-stack-with"
-    },
-    "product_vanity_upsell_11": {
-      "type": "rv-product-vanity-upsell"
-    },
-    "product_complete_set_12": {
-      "type": "rv-product-complete-set"
-    },
-    "product_style_with_13": {
-      "type": "rv-product-style-with"
-    },
-    "product_bundle_included_14": {
-      "type": "rv-product-bundle-included"
-    },
-    "gifting_callout_15": {
+    "gifting_callout_2": {
       "type": "rv-gifting-callout"
     },
-    "product_hallmarks_16": {
-      "type": "rv-product-hallmarks"
-    },
-    "product_layering_editorial_17": {
-      "type": "rv-product-layering-editorial"
-    },
-    "concern_tiles_18": {
-      "type": "rv-concern-tiles"
-    },
-    "device_compare_19": {
-      "type": "rv-device-compare"
-    },
-    "product_fbt_20": {
+    "product_fbt_3": {
       "type": "rv-product-fbt"
     },
-    "product_ugc_strip_21": {
-      "type": "rv-product-ugc-strip"
-    },
-    "ring_size_guide_22": {
-      "type": "rv-ring-size-guide"
-    },
-    "product_reviews_24": {
+    "product_reviews_4": {
       "type": "rv-product-reviews"
     },
-    "product_shop_look_25": {
-      "type": "rv-product-shop-look"
-    },
-    "device_guarantee_26": {
-      "type": "rv-device-guarantee"
-    },
-    "recently_viewed_27": {
+    "recently_viewed_5": {
       "type": "rv-recently-viewed"
     },
-    "product_crosssell_28": {
+    "product_crosssell_6": {
       "type": "rv-product-crosssell"
     }
   },
   "order": [
-    "product_jewelry_hero_0",
-    "product_main_1",
-    "product_benefits_2",
-    "product_ingredients_3",
-    "results_strip_4",
-    "device_credibility_5",
-    "device_derm_6",
-    "product_how_to_use_7",
-    "product_device_results_8",
-    "product_spec_row_9",
-    "product_stack_with_10",
-    "product_vanity_upsell_11",
-    "product_complete_set_12",
-    "product_style_with_13",
-    "product_bundle_included_14",
-    "gifting_callout_15",
-    "product_hallmarks_16",
-    "product_layering_editorial_17",
-    "concern_tiles_18",
-    "device_compare_19",
-    "product_fbt_20",
-    "product_ugc_strip_21",
-    "ring_size_guide_22",
-    "product_reviews_24",
-    "product_shop_look_25",
-    "device_guarantee_26",
-    "recently_viewed_27",
-    "product_crosssell_28"
+    "product_main_0",
+    "product_benefits_1",
+    "gifting_callout_2",
+    "product_fbt_3",
+    "product_reviews_4",
+    "recently_viewed_5",
+    "product_crosssell_6"
   ]
 }
