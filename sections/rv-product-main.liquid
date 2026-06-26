@@ -36,6 +36,8 @@
       {%- if section.settings.eyebrow_override != blank -%}{{ section.settings.eyebrow_override }}{%- else -%}{{ product.type }}{%- endif -%}
     </p>
     <h1 class="rv-pdp-info__title">{{ product.title }}</h1>
+    {%- capture rv_subtitle -%}{%- render 'rv-material', product: product -%}{%- endcapture -%}
+    {%- if rv_subtitle != blank -%}<div class="rv-pdp-info__material">{{ rv_subtitle | strip }}</div>{%- endif -%}
     <a href="#looxReviews" class="rv-pdp-info__rating">
       {%- if product.metafields.loox.num_reviews != blank -%}
         <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
@@ -48,6 +50,8 @@
       <span class="rv-pdp-info__price-main" data-product-price>{{ main_variant.price | money }}</span>
       {%- if main_variant.compare_at_price > main_variant.price -%}
         <span class="rv-pdp-info__price-compare" data-product-compare-price>{{ main_variant.compare_at_price | money }}</span>
+        {%- assign rv_save_pct = main_variant.compare_at_price | minus: main_variant.price | times: 100.0 | divided_by: main_variant.compare_at_price | round -%}
+        <span class="rv-pdp-info__save" data-product-save>Save {{ rv_save_pct }}%</span>
       {%- endif -%}
       {%- if section.settings.price_note != blank -%}
         <span class="rv-pdp-info__price-note">{{ section.settings.price_note }}</span>
@@ -69,12 +73,35 @@
               <span class="rv-pdp-option__aside">{{ section.settings.aside_text }}</span>
             {%- endif -%}
           </div>
-          <div class="rv-pdp-option__values">
+          {%- assign rv_opt = option.name | downcase -%}
+          {%- assign rv_is_swatch = false -%}
+          {%- if rv_opt contains 'color' or rv_opt contains 'colour' or rv_opt contains 'metal' or rv_opt contains 'tone' or rv_opt contains 'finish' or rv_opt contains 'plating' -%}{%- assign rv_is_swatch = true -%}{%- endif -%}
+          <div class="rv-pdp-option__values {% if rv_is_swatch %}rv-pdp-option__values--swatch{% endif %}">
             {%- for value in option.values -%}
-              <button class="rv-variant-btn {% if option.selected_value == value %}is-selected{% endif %}"
-                data-option-btn data-option-index="{{ option.position }}" data-value="{{ value | escape }}">
-                {{ value }}
-              </button>
+              {%- if rv_is_swatch -%}
+                {%- assign vk = value | downcase | strip -%}
+                {%- assign sw = '#C8A96A' -%}
+                {%- if vk contains 'silver' or vk contains 'platinum' or vk contains 'white' or vk contains 'steel' -%}{%- assign sw = '#C9CBCE' -%}
+                {%- elsif vk contains 'rose' or vk contains 'pink' or vk contains 'blush' -%}{%- assign sw = '#E0B6A6' -%}
+                {%- elsif vk contains 'gold' or vk contains 'vermeil' or vk contains 'brass' -%}{%- assign sw = '#C8A96A' -%}
+                {%- elsif vk contains 'black' or vk contains 'onyx' or vk contains 'jet' -%}{%- assign sw = '#2B2A27' -%}
+                {%- elsif vk contains 'pearl' or vk contains 'ivory' or vk contains 'cream' or vk contains 'bone' -%}{%- assign sw = '#F0EADD' -%}
+                {%- elsif vk contains 'green' or vk contains 'emerald' or vk contains 'sage' -%}{%- assign sw = '#9DB5A4' -%}
+                {%- elsif vk contains 'blue' or vk contains 'navy' or vk contains 'sapphire' -%}{%- assign sw = '#5B6B82' -%}
+                {%- elsif vk contains 'clay' or vk contains 'terracotta' or vk contains 'rust' -%}{%- assign sw = '#B0795C' -%}
+                {%- endif -%}
+                <button type="button" class="rv-swatch {% if option.selected_value == value %}is-selected{% endif %}"
+                  data-option-btn data-option-index="{{ option.position }}" data-value="{{ value | escape }}"
+                  title="{{ value | escape }}" aria-label="{{ value | escape }}">
+                  <span class="rv-swatch__dot" style="background:{{ sw }};"></span>
+                  <span class="rv-swatch__label">{{ value }}</span>
+                </button>
+              {%- else -%}
+                <button type="button" class="rv-variant-btn {% if option.selected_value == value %}is-selected{% endif %}"
+                  data-option-btn data-option-index="{{ option.position }}" data-value="{{ value | escape }}">
+                  {{ value }}
+                </button>
+              {%- endif -%}
             {%- endfor -%}
           </div>
         </div>
@@ -139,10 +166,10 @@
           <button type="button" class="rv-pdp-qty__btn" data-qty-inc aria-label="Increase">+</button>
         </div>
         <button type="submit" name="add" class="rv-btn rv-btn--primary rv-pdp-atc" data-atc-btn
-          data-label-avail="Add to bag · {{ main_variant.price | money }}"
+          data-label-avail="Add to bag · {{ main_variant.price | money }} →"
           data-label-sold="Sold out"
           {%- unless product.available %} disabled{%- endunless -%}>
-          {%- if product.available -%}Add to bag · {{ main_variant.price | money }}{%- else -%}Sold out{%- endif -%}
+          {%- if product.available -%}Add to bag · {{ main_variant.price | money }} →{%- else -%}Sold out{%- endif -%}
         </button>
         {%- if section.settings.show_wishlist -%}
           {%- comment -%} Wishlist heart — wired to Notify Me / wishlist app. The app binds to [data-wishlist] / product id. {%- endcomment -%}
@@ -160,6 +187,10 @@
           </button>
           <p class="rv-pdp-bis__note">{{ section.settings.back_in_stock_note }}</p>
         </div>
+      {%- endif -%}
+
+      {%- if section.settings.saved_count != blank -%}
+        <div class="rv-pdp-saved"><span class="rv-pdp-saved__heart">♡</span> {{ section.settings.saved_count }} people have saved this piece</div>
       {%- endif -%}
 
     {%- endform -%}
@@ -239,6 +270,12 @@
       "type": "text",
       "id": "price_note",
       "label": "Price note (e.g. or 4 x $17 with Shop Pay)"
+    },
+    {
+      "type": "text",
+      "id": "saved_count",
+      "label": "Social proof count (e.g. 1,240)",
+      "info": "Shows 'X people have saved this piece' under the button. Leave blank to hide."
     },
     {
       "type": "url",

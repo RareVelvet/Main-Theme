@@ -55,6 +55,11 @@
           if(match.compare_at_price>match.price){compareEl.textContent=formatMoney(match.compare_at_price);compareEl.style.display='';}
           else{compareEl.style.display='none';}
         }
+        var saveEl=document.querySelector('[data-product-save]');
+        if(saveEl){
+          if(match.compare_at_price>match.price){saveEl.textContent='Save '+Math.round((match.compare_at_price-match.price)*100/match.compare_at_price)+'%';saveEl.style.display='';}
+          else{saveEl.style.display='none';}
+        }
         // Update ATC
         var atc=document.querySelector('[data-atc-btn]');
         if(atc){atc.disabled=!match.available;atc.textContent=match.available?atc.dataset.labelAvail:atc.dataset.labelSold;}
