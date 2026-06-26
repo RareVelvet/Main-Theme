@@ -1,0 +1,74 @@
+{%- comment -%}
+  rv-pdp-accordions — Details & Materials + Shipping & Returns, rendered inside the
+  PDP buy-box column (v2 layout). Content auto-fills from product metafields (custom.*)
+  and Theme settings → Product info. Usage: {% render 'rv-pdp-accordions', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign mf_material = product.metafields.custom.material
+  assign mf_size = product.metafields.custom.size
+  assign mf_finish = product.metafields.custom.finish
+  assign has_msf = false
+  if mf_material != blank or mf_size != blank or mf_finish != blank
+    assign has_msf = true
+  endif
+
+  assign d_len = product.metafields.custom.length
+  assign d_width = product.metafields.custom.width
+  assign d_thick = product.metafields.custom.thickness
+  assign d_weight = product.metafields.custom.weight
+  assign d_diam = product.metafields.custom.diameter
+  assign has_dims = false
+  if d_len != blank or d_width != blank or d_thick != blank or d_weight != blank or d_diam != blank
+    assign has_dims = true
+  endif
+
+  assign mat_name = product.metafields.custom.material_name
+  assign mat_desc = product.metafields.custom.material_description
+  if mat_name == blank and mat_desc == blank
+    assign pt = product.type | downcase
+    if pt contains 'jewel' or pt contains 'ring' or pt contains 'necklace' or pt contains 'earring' or pt contains 'bracelet'
+      assign mat_desc = settings.care_default_jewelry
+    elsif pt contains 'beauty' or pt contains 'skincare' or pt contains 'serum' or pt contains 'cleanser' or pt contains 'lip' or pt contains 'makeup' or pt contains 'device'
+      assign mat_desc = settings.care_default_beauty
+    else
+      assign mat_desc = settings.care_default_general
+    endif
+  endif
+-%}
+<div class="rv-pdp-acc-group">
+  <details class="rv-acc" open>
+    <summary class="rv-acc__head">Details &amp; Materials <span class="rv-acc__icon">+</span></summary>
+    <div class="rv-acc__body">
+      {%- if has_msf -%}
+        <ul class="rv-spec-list rv-spec-list--msf">
+          {%- if mf_material != blank -%}<li><span>Material</span><span>{{ mf_material }}</span></li>{%- endif -%}
+          {%- if mf_size != blank -%}<li><span>Size</span><span>{{ mf_size }}</span></li>{%- endif -%}
+          {%- if mf_finish != blank -%}<li><span>Finish</span><span>{{ mf_finish }}</span></li>{%- endif -%}
+        </ul>
+      {%- else -%}
+        {%- if has_dims -%}
+          <div class="rv-acc__subhead">Details</div>
+          <ul class="rv-spec-list">
+            {%- if d_len != blank -%}<li><span>Length</span><span>{{ d_len }}</span></li>{%- endif -%}
+            {%- if d_width != blank -%}<li><span>Width</span><span>{{ d_width }}</span></li>{%- endif -%}
+            {%- if d_thick != blank -%}<li><span>Thickness</span><span>{{ d_thick }}</span></li>{%- endif -%}
+            {%- if d_diam != blank -%}<li><span>Diameter</span><span>{{ d_diam }}</span></li>{%- endif -%}
+            {%- if d_weight != blank -%}<li><span>Weight</span><span>{{ d_weight }}</span></li>{%- endif -%}
+          </ul>
+        {%- endif -%}
+        {%- if mat_name != blank or mat_desc != blank -%}
+          <div class="rv-acc__subhead">Materials</div>
+          {%- if mat_name != blank -%}<div class="rv-mat-name">{{ mat_name }}</div>{%- endif -%}
+          {%- if mat_desc != blank -%}<div class="rv-mat-desc">{{ mat_desc }}</div>{%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </details>
+
+  {%- if settings.shipping_returns != blank -%}
+    <details class="rv-acc">
+      <summary class="rv-acc__head">Shipping &amp; Returns <span class="rv-acc__icon">+</span></summary>
+      <div class="rv-acc__body">{{ settings.shipping_returns }}</div>
+    </details>
+  {%- endif -%}
+</div>

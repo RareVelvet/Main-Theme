@@ -196,6 +196,9 @@
       <div class="rv-pdp-desc__body">{{ product.description }}</div>
     </div>
     {%- endif -%}
+
+    {%- comment -%} Details & Materials + Shipping & Returns, in the buy-box column (v2 layout) {%- endcomment -%}
+    {%- render 'rv-pdp-accordions', product: product -%}
   </div>
 </div>
 

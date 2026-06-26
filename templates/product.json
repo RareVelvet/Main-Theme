@@ -69,9 +69,6 @@
     "ring_size_guide_22": {
       "type": "rv-ring-size-guide"
     },
-    "product_accordions_23": {
-      "type": "rv-product-accordions"
-    },
     "product_reviews_24": {
       "type": "rv-product-reviews"
     },
@@ -112,7 +109,6 @@
     "product_fbt_20",
     "product_ugc_strip_21",
     "ring_size_guide_22",
-    "product_accordions_23",
     "product_reviews_24",
     "product_shop_look_25",
     "device_guarantee_26",
