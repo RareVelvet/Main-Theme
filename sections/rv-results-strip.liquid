@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'beauty' or rvt contains 'skincare' or rvt contains 'serum' or rvt contains 'cleanser' or rvt contains 'lip' or rvt contains 'makeup' or rvt contains 'cosmetic' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 <section style="background:var(--rv-char);padding:44px 0;">
   <div class="rv-container">
@@ -14,6 +19,8 @@
     </div>
   </div>
 </section>
+
+{%- endif -%}
 {% schema %}{"name":"Results Strip","tag":"section","max_blocks":5,"blocks":[{"type":"stat","name":"Stat","settings":[
 {"type":"text","id":"stat","label":"Statistic","default":"12,400+"},
 {"type":"text","id":"label","label":"Label","default":"5-star reviews"},

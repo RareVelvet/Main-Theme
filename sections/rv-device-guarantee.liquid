@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'device' or rvt contains 'tool' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 {%- comment -%} 60-night guarantee band {%- endcomment -%}
 <section style="background:var(--rv-char);">
@@ -10,6 +15,8 @@
     {%- endif -%}
   </div>
 </section>
+
+{%- endif -%}
 {% schema %}{"name":"Device Guarantee","tag":"section","settings":[
 {"type":"text","id":"heading","label":"Heading","default":"Try it for 60 nights, risk-free"},
 {"type":"textarea","id":"body","label":"Body","default":"Use it every night for two months. If your skin isn't visibly happier, send it back for a full refund — keep the serum on us."},

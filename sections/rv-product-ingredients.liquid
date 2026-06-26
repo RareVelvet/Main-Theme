@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'beauty' or rvt contains 'skincare' or rvt contains 'serum' or rvt contains 'cleanser' or rvt contains 'lip' or rvt contains 'makeup' or rvt contains 'cosmetic' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 {%- comment -%} Key ingredients — hero trio + free-from row (skincare) {%- endcomment -%}
 <section class="rv-pdp-band--bone" style="padding:96px 0;">
@@ -45,6 +50,8 @@
 .rv-ff-check{color:var(--rv-sage,#9DB5A4);}
 @media(max-width:768px){.rv-ingredient-grid{grid-template-columns:1fr;}}
 </style>
+
+{%- endif -%}
 {% schema %}{"name":"Key Ingredients","tag":"section","max_blocks":4,"settings":[
 {"type":"text","id":"eyebrow","label":"Eyebrow","default":"What's inside"},
 {"type":"text","id":"heading","label":"Heading","default":"Hero ingredients, nothing it doesn't need"},

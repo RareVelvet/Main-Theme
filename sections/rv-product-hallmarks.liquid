@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'jewel' or rvt contains 'ring' or rvt contains 'necklace' or rvt contains 'earring' or rvt contains 'bracelet' or rvt contains 'jewellery' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 <section style="padding:0 0 32px;background:var(--rv-bone);">
   <div class="rv-container">
@@ -11,6 +16,8 @@
     </div>
   </div>
 </section>
+
+{%- endif -%}
 {% schema %}{"name":"Hallmark Badges","tag":"section","max_blocks":4,"settings":[],"blocks":[{"type":"hallmark","name":"Hallmark","settings":[
 {"type":"text","id":"value","label":"Value / symbol","default":"925"},
 {"type":"text","id":"label","label":"Label","default":"Sterling silver"}

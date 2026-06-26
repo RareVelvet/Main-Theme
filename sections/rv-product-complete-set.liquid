@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'lounge' or rvt contains 'fashion' or rvt contains 'apparel' or rvt contains 'clothing' or rvt contains 'wear' or rvt contains 'coat' or rvt contains 'slipper' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 <section style="padding:40px 0 48px;background:var(--rv-bone);">
   <div class="rv-container">
@@ -141,6 +146,8 @@
 })();
 </script>
 
+
+{%- endif -%}
 {% schema %}{"name":"Complete The Set","tag":"section","settings":[
 {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Complete the set"},
 {"type":"text","id":"heading","label":"Heading","default":"Complete the lounge set"},
