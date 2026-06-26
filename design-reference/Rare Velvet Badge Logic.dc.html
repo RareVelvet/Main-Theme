@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:#E7E5DF;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#2B2A27;-webkit-font-smoothing:antialiased}
+  :root{--bone:#F4F1EA;--paper:#FBF9F4;--line:#DAD4CB;--char:#2B2A27;--soft:#56524C;--grey:#6E6A64;--butter:#F2E6C2;--clay:#B0795C;--star:#C2A24E;--soldout:#B8B2A8;--serif:'Cormorant Garamond',Georgia,serif}
+  image-slot{display:block}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .imgwrap{position:relative}
+  .badgebar{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:6px;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;z-index:2}
+  .badge{font:700 8px/1 'Hanken Grotesk',sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:4px 7px;border-radius:999px;white-space:nowrap;backdrop-filter:blur(4px)}
+  .b-clay{background:rgba(251,249,244,.85);color:var(--clay);border:1px solid var(--clay)}
+  .b-butter{background:rgba(242,230,194,.9);color:var(--char)}
+  .b-dark{background:rgba(43,42,39,.88);color:var(--butter)}
+  .b-low{background:rgba(176,121,92,.9);color:#FBF9F4}
+  .b-sold{background:var(--soldout);color:#FBF9F4}
+  .chip{font:600 10px/1 'Hanken Grotesk',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft)}
+  .note{padding:0 14px 14px;font:400 11px/1.4 'Hanken Grotesk',sans-serif;color:var(--grey);font-style:italic}
+  .body{padding:14px}
+</style>
+</helmet>
+
+<div style="max-width:1080px;margin:0 auto;padding:48px 48px 90px;">
+  <div style="font:600 11px/1 'Hanken Grotesk',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8B8680;margin-bottom:6px;">Automatic badge logic</div>
+  <div style="font:400 13px/1.5 'Hanken Grotesk',sans-serif;color:#8B8680;margin-bottom:14px;max-width:680px;">No manual tagging. Up to <strong>two</strong> badges show, picked in priority order. Low stock sits to the right and wraps under if the left tag is long. Sold out overrides everything.</div>
+
+  <!-- priority legend -->
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;align-items:center;">
+    <span style="font:600 11px/1 'Hanken Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--char);">Priority:</span>
+    <span class="chip" style="background:var(--char);color:var(--butter);border-color:var(--char);">1 · Limited Edition</span>
+    <span style="color:var(--grey);">→</span>
+    <span class="chip" style="background:var(--butter);color:var(--char);border-color:var(--butter);">2 · Best Seller</span>
+    <span style="color:var(--grey);">→</span>
+    <span class="chip" style="background:var(--paper);color:var(--clay);border-color:var(--clay);">3 · Low Stock</span>
+    <span style="color:var(--grey);">→</span>
+    <span class="chip" style="background:var(--clay);color:#FBF9F4;border-color:var(--clay);">4 · New In</span>
+    <span style="color:var(--grey);">·</span>
+    <span class="chip" style="background:var(--soldout);color:#FBF9F4;border-color:var(--soldout);">Sold out overrides</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
+    <!-- Limited Edition + Best Seller -->
+    <div class="card">
+      <div class="imgwrap"><image-slot id="bl-1" shape="rect" placeholder="Product" style="width:100%;aspect-ratio:4/5;"></image-slot>
+        <div class="badgebar"><span class="badge b-dark">Limited Edition</span><span class="badge b-butter">Best Seller</span></div>
+      </div>
+      <div class="body"><div style="font:500 14px/1.2 'Hanken Grotesk',sans-serif;color:var(--char);">Dome Ring</div><div style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--grey);">18k Gold Vermeil</div><div style="font:600 13px/1 'Hanken Grotesk',sans-serif;color:var(--char);margin-top:4px;">$58</div></div>
+      <div class="note">In both collections → top 2 by priority</div>
+    </div>
+    <!-- Best Seller + Low stock -->
+    <div class="card">
+      <div class="imgwrap"><image-slot id="bl-2" shape="rect" placeholder="Product" style="width:100%;aspect-ratio:4/5;"></image-slot>
+        <div class="badgebar"><span class="badge b-butter">Best Seller</span><span class="badge b-low">Low stock</span></div>
+      </div>
+      <div class="body"><div style="font:500 14px/1.2 'Hanken Grotesk',sans-serif;color:var(--char);">Velvet Glow Serum</div><div style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--grey);">Skincare</div><div style="font:600 13px/1 'Hanken Grotesk',sans-serif;color:var(--char);margin-top:4px;">$42</div></div>
+      <div class="note">Best Seller (left) + Low stock (right)</div>
+    </div>
+    <!-- New In + Low stock (long left wraps) -->
+    <div class="card">
+      <div class="imgwrap"><image-slot id="bl-3" shape="rect" placeholder="Product" style="width:100%;aspect-ratio:4/5;"></image-slot>
+        <div class="badgebar"><span class="badge b-clay">New In</span><span class="badge b-low">Low stock</span></div>
+      </div>
+      <div class="body"><div style="font:500 14px/1.2 'Hanken Grotesk',sans-serif;color:var(--char);">Travel Case</div><div style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--grey);">Quilted velvet</div><div style="font:600 13px/1 'Hanken Grotesk',sans-serif;color:var(--char);margin-top:4px;">$36</div></div>
+      <div class="note">New In + only 9 left</div>
+    </div>
+    <!-- Sold out (alone) -->
+    <div class="card">
+      <div class="imgwrap"><image-slot id="bl-4" shape="rect" placeholder="Product" style="width:100%;aspect-ratio:4/5;"></image-slot>
+        <div class="badgebar"><span class="badge b-sold">Sold out</span></div>
+      </div>
+      <div class="body"><div style="font:500 14px/1.2 'Hanken Grotesk',sans-serif;color:var(--char);">Petite Jewelry Box</div><div style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--grey);">Velvet · Brass</div><div style="font:600 13px/1 'Hanken Grotesk',sans-serif;color:var(--char);margin-top:4px;">$58</div></div>
+      <div class="note">0 stock → Sold out alone</div>
+    </div>
+  </div>
+
+  <div style="margin-top:48px;display:flex;gap:40px;align-items:flex-start;">
+    <div>
+      <div style="font:600 11px/1 'Hanken Grotesk',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">Mobile</div>
+      <div style="width:300px;background:var(--bone);border-radius:38px;overflow:hidden;box-shadow:0 0 0 9px #2B2A27,0 0 0 11px #1A1917,0 30px 70px -22px rgba(43,42,39,.5);position:relative;">
+        <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:100px;height:28px;background:#2B2A27;border-radius:0 0 16px 16px;z-index:20;"></div>
+        <div style="height:44px;background:var(--char);"></div>
+        <div style="padding:14px;background:var(--bone);">
+          <div style="font-family:var(--serif);font-size:18px;font-weight:500;color:var(--char);margin-bottom:12px;text-align:center;">Best sellers</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div class="card"><div class="imgwrap"><image-slot id="bm-1" shape="rect" placeholder="Product" style="width:100%;aspect-ratio:4/5;"></image-slot><div class="badgebar"><span class="badge b-dark">Limited Edition</span><span class="badge b-butter">Best Seller</span></div></div><div class="body" style="padding:10px;"><div style="font:500 12px/1.2 'Hanken Grotesk',sans-serif;color:var(--char);">Dome Ring</div><div style="font-family:var(--serif);font-style:italic;font-size:12px;color:var(--grey);">18k Gold Vermeil</div><div style="font:600 12px/1 'Hanken Grotesk',sans-serif;color:var(--char);margin-top:3px;">$58</div></div></div>
+            <div class="card"><div class="imgwrap"><image-slot id="bm-2" shape="rect" placeholder="Product" style="width:100%;aspect-ratio:4/5;"></image-slot><div class="badgebar"><span class="badge b-butter">Best Seller</span><span class="badge b-low">Low stock</span></div></div><div class="body" style="padding:10px;"><div style="font:500 12px/1.2 'Hanken Grotesk',sans-serif;color:var(--char);">Glow Serum</div><div style="font-family:var(--serif);font-style:italic;font-size:12px;color:var(--grey);">Skincare</div><div style="font:600 12px/1 'Hanken Grotesk',sans-serif;color:var(--char);margin-top:3px;">$42</div></div></div>
+            <div class="card"><div class="imgwrap"><image-slot id="bm-3" shape="rect" placeholder="Product" style="width:100%;aspect-ratio:4/5;"></image-slot><div class="badgebar"><span class="badge b-clay">New In</span><span class="badge b-low">Low stock</span></div></div><div class="body" style="padding:10px;"><div style="font:500 12px/1.2 'Hanken Grotesk',sans-serif;color:var(--char);">Travel Case</div><div style="font-family:var(--serif);font-style:italic;font-size:12px;color:var(--grey);">Quilted velvet</div><div style="font:600 12px/1 'Hanken Grotesk',sans-serif;color:var(--char);margin-top:3px;">$36</div></div></div>
+            <div class="card"><div class="imgwrap"><image-slot id="bm-4" shape="rect" placeholder="Product" style="width:100%;aspect-ratio:4/5;"></image-slot><div class="badgebar"><span class="badge b-sold">Sold out</span></div></div><div class="body" style="padding:10px;"><div style="font:500 12px/1.2 'Hanken Grotesk',sans-serif;color:var(--char);">Jewelry Box</div><div style="font-family:var(--serif);font-style:italic;font-size:12px;color:var(--grey);">Velvet · Brass</div><div style="font:600 12px/1 'Hanken Grotesk',sans-serif;color:var(--char);margin-top:3px;">$58</div></div></div>
+          </div>
+        </div>
+        <div style="height:24px;background:var(--bone);display:flex;align-items:center;justify-content:center;"><div style="width:100px;height:4px;border-radius:999px;background:var(--char);opacity:.18;"></div></div>
+      </div>
+    </div>
+    <div style="flex:1;max-width:360px;font:400 13px/1.6 'Hanken Grotesk',sans-serif;color:var(--soft);padding-top:34px;">On mobile the same two-badge logic applies — badges scale down and still wrap if the left tag is long, keeping the product image the hero.</div>
+  </div>
+
+  <div style="margin-top:32px;font:400 13px/1.6 'Hanken Grotesk',sans-serif;color:var(--soft);border-top:1px solid var(--line);padding-top:18px;max-width:700px;">
+    Set up once: create <strong>“New In”</strong>, <strong>“Best Sellers”</strong> and <strong>“Limited Edition”</strong> collections. <strong>Low stock</strong> triggers automatically when inventory is under 15. Badges flow on/off as products move between collections and stock changes — applied identically on homepage, collections and every PDP.
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

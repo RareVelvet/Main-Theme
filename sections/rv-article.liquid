@@ -1,0 +1,36 @@
+
+<section style="padding:56px 0 100px;">
+  <div class="rv-container" style="max-width:760px;">
+    <p style="font:400 12px/1 var(--rv-sans);letter-spacing:.08em;color:var(--rv-grey-2);margin:0 0 6px;">
+      <a href="{{ blog.url }}" style="color:inherit;border-bottom:1px solid var(--rv-line);">{{ blog.title }}</a>
+      <span style="opacity:.5;margin:0 6px;">/</span>
+      {{ article.published_at | date: '%B %d, %Y' }}
+    </p>
+    <h1 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,4.5vw,52px);color:var(--rv-char);margin:12px 0 28px;line-height:1.04;">{{ article.title }}</h1>
+    {%- if article.image -%}
+      {{ article.image | image_url: width: 1200 | image_tag: loading: 'eager', style: 'width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;display:block;margin-bottom:40px;', alt: article.image.alt }}
+    {%- endif -%}
+    <div class="rv-page-content" style="font:400 17px/1.8 var(--rv-sans);color:var(--rv-soft);">
+      {{ article.content }}
+    </div>
+    {%- if article.tags.size > 0 -%}
+      <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--rv-line);display:flex;flex-wrap:wrap;gap:8px;">
+        {%- for tag in article.tags -%}
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}" style="font:500 11px/1 var(--rv-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rv-char);border:1px solid var(--rv-line);border-radius:999px;padding:7px 14px;">{{ tag }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    <div style="margin-top:40px;"><a href="{{ blog.url }}" style="font:500 12px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-char);border-bottom:1px solid var(--rv-char);padding-bottom:3px;">← Back to {{ blog.title }}</a></div>
+  </div>
+</section>
+<style>
+.rv-page-content h2{font-family:var(--rv-serif);font-weight:500;font-size:clamp(22px,3vw,34px);color:var(--rv-char);margin:40px 0 16px;line-height:1.1;}
+.rv-page-content h3{font-family:var(--rv-serif);font-weight:500;font-size:clamp(18px,2.4vw,26px);color:var(--rv-char);margin:32px 0 12px;}
+.rv-page-content p{margin:0 0 22px;}
+.rv-page-content a{color:var(--rv-clay);border-bottom:1px solid currentColor;}
+.rv-page-content ul,.rv-page-content ol{padding-left:24px;margin:0 0 22px;}
+.rv-page-content li{margin-bottom:10px;}
+.rv-page-content img{max-width:100%;border-radius:3px;margin:28px 0;}
+.rv-page-content blockquote{border-left:3px solid var(--rv-butter-2);padding:16px 24px;margin:28px 0;background:var(--rv-bone-2);font-family:var(--rv-serif);font-size:22px;font-style:italic;color:var(--rv-char);}
+</style>
+{% schema %}{"name":"Article","tag":"section","settings":[],"presets":[{"name":"Article"}]}{% endschema %}

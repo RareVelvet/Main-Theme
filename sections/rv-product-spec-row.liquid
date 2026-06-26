@@ -1,0 +1,20 @@
+
+<section class="rv-pdp-section">
+  <p style="text-align:center;font:600 12px/1 var(--rv-sans);letter-spacing:.26em;text-transform:uppercase;color:var(--rv-grey-2);margin-bottom:34px;">{{ section.settings.heading }}</p>
+  <div class="rv-grid-4">
+    {%- for block in section.blocks -%}
+      <div class="rv-pdp-spec-card" {{ block.shopify_attributes }}>
+        <div class="rv-pdp-spec-icon"><span style="border-radius:{{ block.settings.icon_shape }};"></span></div>
+        <div class="rv-pdp-spec-title">{{ block.settings.title }}</div>
+        <div class="rv-pdp-spec-desc">{{ block.settings.description }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}{"name":"Spec Row","tag":"section","max_blocks":4,"settings":[
+{"type":"text","id":"heading","label":"Row heading","default":"Powered by clean, proven actives"}
+],"blocks":[{"type":"spec","name":"Spec item","settings":[
+{"type":"text","id":"title","label":"Title","default":"Hyaluronic Acid"},
+{"type":"text","id":"description","label":"Description","default":"Multi-weight, deep hydration"},
+{"type":"select","id":"icon_shape","label":"Icon shape","options":[{"value":"999px","label":"Circle"},{"value":"3px","label":"Square"},{"value":"50% 50% 50% 0","label":"Teardrop"}],"default":"999px"}
+]}],"presets":[{"name":"Spec Row","blocks":[{"type":"spec","settings":{"title":"Spec 1"}},{"type":"spec","settings":{"title":"Spec 2"}},{"type":"spec","settings":{"title":"Spec 3"}},{"type":"spec","settings":{"title":"Spec 4"}}]}]}{% endschema %}

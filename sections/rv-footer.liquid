@@ -1,0 +1,168 @@
+
+<footer class="rv-footer rv-footer--om" role="contentinfo">
+  <!-- top: brand + link columns -->
+  <div class="rv-footer-om__cols">
+    <div class="rv-footer-om__brand">
+      <div class="rv-footer-om__logo">{{ shop.name }}</div>
+      <p class="rv-footer-om__desc">{{ section.settings.brand_desc }}</p>
+      <div class="rv-footer-om__social">
+        {%- if settings.social_instagram != blank -%}
+          <a href="https://instagram.com/{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.social_tiktok != blank -%}
+          <a href="https://tiktok.com/@{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3a5.4 5.4 0 0 0 4.5 4.5v3a8.3 8.3 0 0 1-4.5-1.4v6.6a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v3.2a3 3 0 1 0 2.1 2.9V3h3.2z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.social_pinterest != blank -%}
+          <a href="{{ settings.social_pinterest }}" target="_blank" rel="noopener" aria-label="Pinterest">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.5 2 4 5.66 4 8.74c0 1.86.7 3.52 2.22 4.14.25.1.47 0 .54-.27l.22-.86c.07-.27.04-.37-.16-.6-.43-.5-.7-1.16-.7-2.08 0-2.68 2-5.08 5.22-5.08 2.85 0 4.41 1.74 4.41 4.06 0 3.06-1.35 5.64-3.36 5.64-1.11 0-1.94-.92-1.67-2.04.32-1.35.93-2.8.93-3.77 0-.87-.47-1.6-1.43-1.6-1.13 0-2.05 1.18-2.05 2.75 0 1 .34 1.68.34 1.68l-1.36 5.76c-.27 1.15-.09 2.57.02 3.32.05.32.4.4.6.14 1.07-1.5 1.5-3.05 1.84-4.38.12-.46.66-2.6.66-2.6.35.67 1.38 1.26 2.47 1.26 3.25 0 5.46-2.97 5.46-6.94C20.08 4.93 17.4 2 12.04 2z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.social_youtube != blank -%}
+          <a href="{{ settings.social_youtube }}" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.83.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.83-.43a2.5 2.5 0 0 0 1.77-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.5v-7l6 3.5z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.social_facebook != blank -%}
+          <a href="{{ settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.5c0-.8.3-1.5 1.6-1.5H17V.4C16.7.3 15.7.2 14.6.2 12.2.2 10.6 1.6 10.6 4.3V6H8v3h2.6v9H14V9z"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- for block in section.blocks -%}
+      <div class="rv-footer-om__col" {{ block.shopify_attributes }}>
+        <div class="rv-footer-om__col-head">{{ block.settings.heading }}</div>
+        {%- if block.settings.menu != blank -%}
+          {%- for link in linklists[block.settings.menu].links -%}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+    {%- assign policy_links = linklists[section.settings.policy_menu].links -%}
+    {%- assign has_policy = false -%}
+    {%- if policy_links.size > 0 -%}
+      {%- assign has_policy = true -%}
+    {%- else -%}
+      {%- for policy in shop.policies -%}{%- if policy != blank -%}{%- assign has_policy = true -%}{%- endif -%}{%- endfor -%}
+    {%- endif -%}
+    {%- if has_policy and section.settings.show_policies -%}
+      <div class="rv-footer-om__col">
+        <div class="rv-footer-om__col-head">{{ section.settings.policy_heading }}</div>
+        {%- if policy_links.size > 0 -%}
+          {%- for link in policy_links -%}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for policy in shop.policies -%}
+            {%- if policy != blank -%}
+              <a href="{{ policy.url }}">{{ policy.title }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- bottom bar -->
+  <div class="rv-footer-om__bottom">
+    <span class="rv-footer-om__copy">© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+    <div class="rv-footer-om__pays">
+      {%- for type in shop.enabled_payment_types -%}
+        <span>{{ type | payment_type_svg_tag: scale: 1 }}</span>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if section.settings.show_rewards -%}
+  <!-- Loyalty Rewards band (LoyaltyLion) -->
+  <div class="rv-footer-om__rewards">
+    <div class="rv-footer-om__rewards-lead">
+      <span class="rv-footer-om__rewards-star">★</span>
+      <div>
+        <div class="rv-footer-om__rewards-eyebrow">{{ section.settings.rewards_eyebrow }}</div>
+        <div class="rv-footer-om__rewards-title">{{ section.settings.rewards_title }}</div>
+      </div>
+    </div>
+    <div class="rv-footer-om__rewards-steps">
+      <div><div class="rv-footer-om__rewards-step-h">Join</div><div class="rv-footer-om__rewards-step-p">{{ section.settings.rewards_join }}</div></div>
+      <div><div class="rv-footer-om__rewards-step-h">Earn</div><div class="rv-footer-om__rewards-step-p">{{ section.settings.rewards_earn }}</div></div>
+      <div><div class="rv-footer-om__rewards-step-h">Redeem</div><div class="rv-footer-om__rewards-step-p">{{ section.settings.rewards_redeem }}</div></div>
+    </div>
+    <a href="{{ section.settings.rewards_url }}" class="rv-footer-om__rewards-btn">{{ section.settings.rewards_cta }}</a>
+  </div>
+  {%- endif -%}
+
+  <!-- giant wordmark — anchored to baseline, clipped (Odd Muse signature) -->
+  {%- if section.settings.show_wordmark -%}
+  <div class="rv-footer-om__wordmark-wrap">
+    <div class="rv-footer-om__wordmark">{{ shop.name }}</div>
+  </div>
+  {%- endif -%}
+</footer>
+
+<style>
+.rv-footer--om{background:var(--rv-deep);color:var(--rv-bone);}
+.rv-footer-om__cols{max-width:1320px;margin:0 auto;padding:72px 32px 56px;display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:44px;}
+.rv-footer-om__logo{font-family:var(--rv-serif);font-weight:500;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#FBF9F4;margin-bottom:18px;}
+.rv-footer-om__desc{font:400 14px/1.7 var(--rv-sans);color:var(--rv-deep-soft);max-width:300px;margin:0 0 26px;}
+.rv-footer-om__social{display:flex;gap:12px;}
+.rv-footer-om__social a{width:40px;height:40px;border:1px solid var(--rv-deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;transition:border-color .25s,color .25s,background .25s;}
+.rv-footer-om__social a:hover{border-color:var(--rv-butter);color:var(--rv-deep);background:var(--rv-butter);}
+.rv-footer-om__col-head{font:600 11px/1 var(--rv-sans);letter-spacing:.2em;text-transform:uppercase;color:var(--rv-butter);margin-bottom:20px;}
+.rv-footer-om__col a{display:block;width:fit-content;font:400 13px/1 var(--rv-sans);color:var(--rv-deep-soft);margin-bottom:15px;transition:color .2s;}
+.rv-footer-om__col a:hover{color:#FBF9F4;}
+.rv-footer-om__bottom{border-top:1px solid var(--rv-deep-line);max-width:1320px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.rv-footer-om__copy{font:400 12px/1 var(--rv-sans);color:rgba(244,241,234,.5);letter-spacing:.04em;}
+.rv-footer-om__pays{display:flex;gap:8px;align-items:center;}
+.rv-footer-om__pays span{display:inline-flex;}
+.rv-footer-om__pays svg{height:24px;width:auto;opacity:.7;}
+.rv-footer-om__wordmark-wrap{overflow:hidden;padding:0 24px;max-height:.74em;display:flex;justify-content:center;}
+.rv-footer-om__wordmark{font-family:var(--rv-serif);font-weight:500;font-size:clamp(72px,17vw,280px);line-height:1;letter-spacing:.01em;color:#FBF9F4;text-transform:uppercase;white-space:nowrap;transform:translateY(-.04em);}
+.rv-footer-om__rewards{border-top:1px solid var(--rv-deep-line);max-width:1320px;margin:0 auto;padding:32px;display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center;}
+.rv-footer-om__rewards-lead{display:flex;align-items:center;gap:14px;}
+.rv-footer-om__rewards-star{width:42px;height:42px;border-radius:999px;background:var(--rv-butter);color:var(--rv-char);display:flex;align-items:center;justify-content:center;font-size:16px;flex:none;}
+.rv-footer-om__rewards-eyebrow{font:600 11px/1 var(--rv-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--rv-butter);margin-bottom:5px;}
+.rv-footer-om__rewards-title{font-family:var(--rv-serif);font-size:22px;color:#FBF9F4;font-weight:500;}
+.rv-footer-om__rewards-steps{display:flex;gap:28px;flex-wrap:wrap;}
+.rv-footer-om__rewards-step-h{font-family:var(--rv-serif);font-size:20px;color:var(--rv-butter);font-weight:500;}
+.rv-footer-om__rewards-step-p{font:400 12px/1.4 var(--rv-sans);color:var(--rv-deep-soft);max-width:150px;}
+.rv-footer-om__rewards-btn{background:var(--rv-butter);color:var(--rv-char);border:none;cursor:pointer;font:600 12px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;padding:15px 26px;border-radius:2px;white-space:nowrap;text-decoration:none;}
+@media(max-width:900px){.rv-footer-om__rewards{grid-template-columns:1fr;gap:20px;}}
+@media(max-width:1024px){.rv-footer-om__cols{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){
+  .rv-footer-om__cols{grid-template-columns:1fr 1fr;gap:28px;padding:48px 18px 36px;}
+  .rv-footer-om__bottom{padding:18px;flex-direction:column;align-items:flex-start;}
+  .rv-footer-om__wordmark-wrap{max-height:.78em;}
+}
+@media(max-width:480px){.rv-footer-om__cols{grid-template-columns:1fr 1fr;}}
+</style>
+
+{% schema %}{"name":"Footer","tag":"section","max_blocks":5,"settings":[
+{"type":"textarea","id":"brand_desc","label":"Brand tagline","default":"Beauty. Organization. Everyday Luxury. Curated essentials for your daily rituals."},
+{"type":"checkbox","id":"show_wordmark","label":"Show giant wordmark","default":true},
+{"type":"header","content":"Loyalty Rewards (LoyaltyLion)"},
+{"type":"checkbox","id":"show_rewards","label":"Show rewards band","default":true},
+{"type":"text","id":"rewards_eyebrow","label":"Eyebrow","default":"Rare Velvet Rewards"},
+{"type":"text","id":"rewards_title","label":"Title","default":"Earn points on every order"},
+{"type":"text","id":"rewards_join","label":"Join text","default":"Free to join — 100 points to start"},
+{"type":"text","id":"rewards_earn","label":"Earn text","default":"1 point per $1 + bonus days"},
+{"type":"text","id":"rewards_redeem","label":"Redeem text","default":"Points off, gifts & early access"},
+{"type":"text","id":"rewards_cta","label":"Button label","default":"Join Rewards →"},
+{"type":"url","id":"rewards_url","label":"Rewards page link"},
+{"type":"checkbox","id":"show_policies","label":"Show policies column","default":true},
+{"type":"text","id":"policy_heading","label":"Policies column heading","default":"Policies"},
+{"type":"link_list","id":"policy_menu","label":"Policies menu","info":"Link to your own policy/pages. If empty, your Shopify policy pages (Settings → Policies) are listed automatically."},
+{"type":"header","content":"Social links"},
+{"type":"paragraph","content":"Social URLs are set in Theme settings → Social media."}
+],"blocks":[{"type":"column","name":"Footer column","settings":[
+{"type":"text","id":"heading","label":"Column heading","default":"Shop"},
+{"type":"link_list","id":"menu","label":"Menu"}
+]}],"presets":[{"name":"Footer","blocks":[
+{"type":"column","settings":{"heading":"Customer Care"}},
+{"type":"column","settings":{"heading":"Company"}}
+]}]}{% endschema %}

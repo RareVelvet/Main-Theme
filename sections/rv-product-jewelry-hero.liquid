@@ -1,0 +1,31 @@
+
+<section class="rv-pdp-jewelry-hero" style="position:relative;width:100%;overflow:hidden;">
+  {%- if section.settings.hero_image != blank -%}
+    {{ section.settings.hero_image | image_url: width: 2400 | image_tag:
+        loading: 'eager', fetchpriority: 'high',
+        style: 'width:100%;height:{{ section.settings.hero_height }}px;object-fit:cover;display:block;',
+        alt: section.settings.hero_image.alt }}
+  {%- else -%}
+    <div style="width:100%;height:{{ section.settings.hero_height }}px;background:var(--rv-bone-2);display:flex;align-items:center;justify-content:center;">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
+  {%- endif -%}
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(43,42,39,0) 55%,rgba(43,42,39,.55));pointer-events:none;"></div>
+  {%- if section.settings.show_video_play -%}
+    <button aria-label="Play video" style="position:absolute;bottom:32px;right:40px;background:rgba(251,249,244,.9);backdrop-filter:blur(6px);border:1px solid var(--rv-line);border-radius:999px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--rv-char);font-size:16px;padding-left:3px;">▶</button>
+    <span style="position:absolute;bottom:20px;right:104px;font:500 10px/1 var(--rv-sans);letter-spacing:.1em;text-transform:uppercase;color:rgba(251,249,244,.8);">{{ section.settings.video_label }}</span>
+  {%- endif -%}
+  <div style="position:absolute;bottom:32px;left:40px;background:rgba(251,249,244,.96);backdrop-filter:blur(8px);border:1px solid var(--rv-line);border-radius:3px;padding:18px 24px;max-width:320px;">
+    {%- if section.settings.eyebrow != blank -%}
+      <div style="font:600 10px/1 var(--rv-sans);letter-spacing:.18em;text-transform:uppercase;color:var(--rv-clay);margin-bottom:8px;">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    <div style="font-family:var(--rv-serif);font-size:22px;color:var(--rv-char);font-weight:500;margin-bottom:4px;">{{ product.title }}</div>
+    <div style="font:400 12px/1 var(--rv-sans);color:var(--rv-grey);">{{ section.settings.material_line | default: product.metafields.details.material }}</div>
+  </div>
+</section>
+{% schema %}{"name":"Jewelry Hero Image","tag":"section","settings":[
+{"type":"image_picker","id":"hero_image","label":"Hero lifestyle image"},
+{"type":"range","id":"hero_height","label":"Height (px)","min":400,"max":800,"step":20,"default":560},
+{"type":"text","id":"eyebrow","label":"Eyebrow badge","default":"New arrival"},
+{"type":"text","id":"material_line","label":"Material subtitle (leave blank to use product metafield)"},
+{"type":"checkbox","id":"show_video_play","label":"Show video play button","default":true},
+{"type":"text","id":"video_label","label":"Video play label","default":"Watch it move"}
+],"presets":[{"name":"Jewelry Hero Image"}]}{% endschema %}

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#E7E5DF;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#2B2A27}
+image-slot{display:block}
+:root{
+  --bone:#F4F1EA;--bone-2:#ECE7DD;--paper:#FBF9F4;
+  --line:#DAD4CB;--char:#2B2A27;--soft:#56524C;--grey:#6E6A64;
+  --deep:#3B3833;--deep-soft:#B8B2A8;--deep-line:rgba(244,241,234,.16);
+  --butter:#F2E6C2;--butter-2:#E2CB92;
+  --clay:#B0795C;--clay-2:#9A6446;--star:#C2A24E;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Hanken Grotesk',system-ui,sans-serif;
+}
+.stars{color:var(--star);letter-spacing:2px;}
+.trust-item{display:flex;align-items:center;gap:6px;font:400 11px/1 var(--sans);color:var(--grey);}
+.trust-dot{width:5px;height:5px;background:var(--butter-2);border-radius:999px;flex:none;}
+.rv-zoom-frame{position:relative;overflow:hidden;border-radius:4px;cursor:zoom-in;}
+.rv-zoom-frame image-slot{display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-origin:center;}
+.rv-zoom-frame:hover image-slot{transform:scale(1.6);}
+.clay-btn{background:var(--clay);color:var(--paper);border:none;cursor:pointer;transition:background .2s;}
+.clay-btn:hover{background:var(--clay-2);}
+.qa-btn{background:var(--paper);color:var(--char);border:1px solid var(--char);cursor:pointer;transition:background .2s,color .2s;}
+.qa-btn:hover{background:var(--char);color:var(--paper);}
+.phone{width:390px;flex:none;position:relative;background:var(--bone);border-radius:44px;overflow:hidden;box-shadow:0 0 0 10px #2B2A27,0 0 0 12px #1A1917,0 32px 80px -20px rgba(43,42,39,.5);}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:32px;background:#2B2A27;border-radius:0 0 20px 20px;z-index:10;}
+.phone-status{height:48px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 8px;font:600 13px/1 var(--sans);}
+.phone-scroll{overflow-y:auto;max-height:760px;scrollbar-width:none;}
+.phone-scroll::-webkit-scrollbar{display:none}
+.phone-home{height:26px;display:flex;align-items:center;justify-content:center;}
+.set-strip{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.set-strip::-webkit-scrollbar{display:none}
+.acc{border-top:1px solid var(--line);}
+.acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:16px 0;font:600 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--char);}
+.acc summary::-webkit-details-marker{display:none}
+.acc[open] .acc-icon{transform:rotate(45deg);}
+.acc-icon{transition:transform .2s;font-size:18px;font-weight:300;color:var(--grey);}
+</style>
+</helmet>
+
+<div style="min-width:100%;min-height:100vh;background:#E7E5DF;padding:40px 48px 100px;width:max-content;">
+
+  <div style="font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#8B8680;margin-bottom:8px;">Rare Velvet · Jewelry Boxes PDP — desktop + mobile</div>
+  <div style="font:400 13px/1 var(--sans);color:#8B8680;margin-bottom:36px;">Desktop (left) · Mobile preview (right) · "Complete the Set" auto-pulls from the Jewelry Boxes collection · Drop your own images onto any placeholder</div>
+
+  <div style="display:flex;gap:48px;align-items:flex-start;">
+
+    <!-- ══════════ DESKTOP PDP ══════════ -->
+    <div data-screen-label="Jewelry Boxes PDP — Desktop" style="flex:none;width:1280px;background:var(--bone);border-radius:4px;overflow:hidden;box-shadow:0 2px 40px -16px rgba(43,42,39,.25);">
+
+      <div style="background:var(--deep);color:var(--bone);text-align:center;padding:10px;font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;">Complimentary shipping over $50 · Lifetime warranty on jewelry boxes</div>
+
+      <div style="background:var(--bone);border-bottom:1px solid var(--line);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;">
+        <nav style="display:flex;gap:24px;font:500 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);">
+          <span>Beauty</span><span>Jewelry</span><span style="color:var(--char);border-bottom:1px solid var(--char);padding-bottom:3px;">Jewelry Boxes</span><span>Bundles</span>
+        </nav>
+        <div style="font-family:var(--serif);font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:var(--char);font-weight:500;">Rare Velvet</div>
+        <div style="display:flex;gap:18px;font:500 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);">
+          <span>Search</span><span>Account</span><span>Bag (2)</span>
+        </div>
+      </div>
+
+      <div style="padding:18px 40px 0;font:400 12px/1 var(--sans);color:var(--grey);">Home / Jewelry Boxes / Petite Velvet Jewelry Box</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:start;">
+
+        <div style="padding:24px 24px 40px 40px;">
+          <div class="rv-zoom-frame" style="margin-bottom:10px;">
+            <image-slot id="dx-g1" shape="rect" placeholder="Lead — styled velvet box on vanity, soft daylight" style="width:100%;aspect-ratio:4/5;"></image-slot>
+            <span style="position:absolute;top:14px;left:14px;background:var(--paper);font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--char);padding:7px 12px;border-radius:999px;pointer-events:none;">Bestseller</span>
+            <span style="position:absolute;bottom:14px;right:14px;background:rgba(251,249,244,.92);backdrop-filter:blur(4px);font:500 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--char);padding:8px 12px;border-radius:999px;pointer-events:none;">⌕ Hover to zoom</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div class="rv-zoom-frame"><image-slot id="dx-g2" shape="rect" placeholder="Open box — velvet interior" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+            <div class="rv-zoom-frame"><image-slot id="dx-g3" shape="rect" placeholder="Gold-Brushed handle macro" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+            <div class="rv-zoom-frame"><image-slot id="dx-g4" shape="rect" placeholder="Filled with jewelry" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+            <div class="rv-zoom-frame"><image-slot id="dx-g5" shape="rect" placeholder="Gift packaging" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+          </div>
+        </div>
+
+        <div style="padding:24px 40px 40px 36px;position:sticky;top:0;">
+          <div style="font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">The Jewelry Boxes Edit · Bestseller</div>
+          <h1 style="font-family:var(--serif);font-weight:500;font-size:46px;line-height:1.04;letter-spacing:-.01em;color:var(--char);margin:0 0 14px;">Petite Velvet Jewelry Box</h1>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;"><span class="stars" style="font-size:14px;">★★★★★</span><span style="font:400 13px/1 var(--sans);color:var(--grey);">4.9 · 986 reviews</span></div>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:8px;"><span style="font:600 26px/1 var(--sans);color:var(--char);">$58</span><span style="font:400 13px/1 var(--sans);color:var(--grey);">Lifetime warranty</span></div>
+          <div style="font:400 13px/1.4 var(--sans);color:var(--clay);margin-bottom:22px;">Earn 58 Rare Velvet points with this purchase</div>
+          <p style="font:400 15px/1.7 var(--sans);color:var(--soft);margin:0 0 24px;">A velvet-lined keepsake box with a Gold-Brushed handle and a soft-close lid. Compartments and a ring roll keep fine jewelry organized, tangle-free and beautiful to display.</p>
+
+          <div style="margin-bottom:22px;">
+            <div style="font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--char);margin-bottom:12px;">Colour · <span style="color:var(--grey);font-weight:400;">Sage</span></div>
+            <div style="display:flex;gap:10px;">
+              <span title="Sage" style="width:28px;height:28px;border-radius:999px;background:#A7AE97;border:2px solid var(--char);cursor:pointer;"></span>
+              <span title="Blush" style="width:28px;height:28px;border-radius:999px;background:#E9D9D2;border:2px solid transparent;cursor:pointer;"></span>
+              <span title="Charcoal" style="width:28px;height:28px;border-radius:999px;background:#46433E;border:2px solid transparent;cursor:pointer;"></span>
+              <span title="Bone" style="width:28px;height:28px;border-radius:999px;background:#E4DECF;border:2px solid transparent;cursor:pointer;"></span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;border:1px solid var(--char);border-radius:2px;">
+              <span style="padding:0 14px;font:400 18px/1 var(--sans);color:var(--char);cursor:pointer;">−</span>
+              <span style="padding:14px 6px;font:500 14px/1 var(--sans);min-width:24px;text-align:center;">1</span>
+              <span style="padding:0 14px;font:400 18px/1 var(--sans);color:var(--char);cursor:pointer;">+</span>
+            </div>
+            <button class="clay-btn" style="flex:1;font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:16px;border-radius:2px;">Add to bag · $58</button>
+          </div>
+          <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:22px;margin-top:14px;">
+            <span class="trust-item"><span class="trust-dot"></span>Ships in 24h</span>
+            <span class="trust-item"><span class="trust-dot"></span>Lifetime warranty</span>
+            <span class="trust-item"><span class="trust-dot"></span>Gift wrap available</span>
+          </div>
+
+          <div style="background:var(--bone-2);border:1px solid var(--line);border-radius:3px;padding:14px 18px;margin-bottom:20px;">
+            <div style="font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--char);margin-bottom:5px;">Arrives gift-ready</div>
+            <div style="font:400 12px/1.5 var(--sans);color:var(--soft);">Wrapped in signature packaging — ready to give, beautiful to keep.</div>
+          </div>
+
+          <div style="margin-bottom:22px;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:4px;">
+              <div style="display:flex;align-items:center;gap:10px;"><div style="font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--clay);">Complete the set</div><span style="font:600 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--clay);background:var(--butter);border-radius:999px;padding:5px 10px;">Save 10% as a set</span></div>
+              <span style="font:500 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);">Scroll →</span>
+            </div>
+            <div style="font:400 12px/1.5 var(--sans);color:var(--grey);margin-bottom:12px;">From the Jewelry Boxes collection</div>
+            <div class="set-strip">
+              <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="dx-s1" shape="rect" placeholder="Ring dish" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:10px;"><div style="font:500 12px/1.25 var(--sans);color:var(--char);margin-bottom:3px;">Velvet Ring Dish</div><div style="font:400 11px/1 var(--sans);color:var(--grey);margin-bottom:9px;">$24</div><button class="qa-btn" style="width:100%;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="dx-s2" shape="rect" placeholder="Travel roll" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:10px;"><div style="font:500 12px/1.25 var(--sans);color:var(--char);margin-bottom:3px;">Travel Jewelry Roll</div><div style="font:400 11px/1 var(--sans);color:var(--grey);margin-bottom:9px;">$36</div><button class="qa-btn" style="width:100%;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="dx-s3" shape="rect" placeholder="Large box" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:10px;"><div style="font:500 12px/1.25 var(--sans);color:var(--char);margin-bottom:3px;">Grand Velvet Box</div><div style="font:400 11px/1 var(--sans);color:var(--grey);margin-bottom:9px;">$92</div><button class="qa-btn" style="width:100%;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="dx-s4" shape="rect" placeholder="Glass tray" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:10px;"><div style="font:500 12px/1.25 var(--sans);color:var(--char);margin-bottom:3px;">Glass Vanity Tray</div><div style="font:400 11px/1 var(--sans);color:var(--grey);margin-bottom:9px;">$48</div><button class="qa-btn" style="width:100%;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px;border-radius:2px;">Quick add +</button></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADD TO YOUR COLLECTION — scrollable, linked to Jewelry collection + offer -->
+          <div style="margin-bottom:22px;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+              <div>
+                <div style="font:600 10px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:6px;">Fill it with</div>
+                <div style="font:600 13px/1 var(--sans);letter-spacing:.04em;color:var(--char);">Add to your collection</div>
+              </div>
+              <span style="font:500 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);">Scroll →</span>
+            </div>
+            <div class="set-strip">
+              <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="dx-c1" shape="rect" placeholder="Pendant necklace" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:10px;"><div style="font:500 12px/1.25 var(--sans);color:var(--char);margin-bottom:2px;">Petite Pendant Necklace</div><div style="font:italic 400 12px/1 var(--serif);color:var(--grey);margin-bottom:6px;">18k Gold Vermeil</div><div style="font:400 11px/1 var(--sans);color:var(--grey);margin-bottom:9px;">$72</div><button class="qa-btn" style="width:100%;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="dx-c2" shape="rect" placeholder="Huggie hoops" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:10px;"><div style="font:500 12px/1.25 var(--sans);color:var(--char);margin-bottom:2px;">Everyday Huggie Hoops</div><div style="font:italic 400 12px/1 var(--serif);color:var(--grey);margin-bottom:6px;">18k Gold Vermeil</div><div style="font:400 11px/1 var(--sans);color:var(--grey);margin-bottom:9px;">$58</div><button class="qa-btn" style="width:100%;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="dx-c3" shape="rect" placeholder="Tennis bracelet" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:10px;"><div style="font:500 12px/1.25 var(--sans);color:var(--char);margin-bottom:2px;">Fine Tennis Bracelet</div><div style="font:italic 400 12px/1 var(--serif);color:var(--grey);margin-bottom:6px;">Sterling Silver</div><div style="font:400 11px/1 var(--sans);color:var(--grey);margin-bottom:9px;">$88</div><button class="qa-btn" style="width:100%;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="dx-c4" shape="rect" placeholder="Signet ring" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:10px;"><div style="font:500 12px/1.25 var(--sans);color:var(--char);margin-bottom:2px;">Classic Signet Ring</div><div style="font:italic 400 12px/1 var(--serif);color:var(--grey);margin-bottom:6px;">18k Gold Vermeil</div><div style="font:400 11px/1 var(--sans);color:var(--grey);margin-bottom:9px;">$64</div><button class="qa-btn" style="width:100%;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px;border-radius:2px;">Quick add +</button></div>
+              </div>
+            </div>
+          </div>
+
+          <details class="acc" open><summary>Details &amp; Materials <span class="acc-icon">+</span></summary>
+            <div style="padding-bottom:16px;font:400 13px/1.7 var(--sans);color:var(--soft);">
+              <div style="font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;">Material</div>
+              <div style="margin-bottom:12px;">Leather on outer box with luxury velvet front decor</div>
+              <div style="font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;">Size</div>
+              <div style="margin-bottom:12px;">13" L × 8" W × 4.7" H / 33cm L × 20cm W × 12cm H</div>
+              <div style="font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;">Finish</div>
+              <div>18K Gold Brushed Handle and Supportive Stand</div>
+            </div>
+          </details>
+          <details class="acc"><summary>Shipping &amp; Returns <span class="acc-icon">+</span></summary>
+            <div style="padding-bottom:16px;font:400 13px/1.7 var(--sans);color:var(--soft);">Ships within 24h. Enjoy easy 30-day returns on unworn items in their original packaging. Final-sale items are non-returnable. Lifetime warranty on jewelry boxes.</div>
+          </details>
+        </div>
+      </div>
+
+      <section style="padding:56px 40px;border-bottom:1px solid var(--line);">
+        <div style="text-align:center;margin-bottom:36px;"><h2 style="font-family:var(--serif);font-weight:500;font-size:34px;color:var(--char);margin:0;">Considered craftsmanship, built to last</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;">
+          <div style="text-align:center;"><div style="font-family:var(--serif);font-size:30px;color:var(--clay);margin-bottom:8px;">✦</div><div style="font:600 13px/1.3 var(--sans);color:var(--char);margin-bottom:6px;">Velvet-Lined Interior</div><div style="font:400 12px/1.55 var(--sans);color:var(--grey);">Plush, scratch-safe lining cradles fine jewelry and keeps chains tangle-free.</div></div>
+          <div style="text-align:center;"><div style="font-family:var(--serif);font-size:30px;color:var(--clay);margin-bottom:8px;">❖</div><div style="font:600 13px/1.3 var(--sans);color:var(--char);margin-bottom:6px;">Gold-Brushed Handle</div><div style="font:400 12px/1.55 var(--sans);color:var(--grey);">Solid, tarnish-resistant hardware on a smooth, soft-close hinge.</div></div>
+          <div style="text-align:center;"><div style="font-family:var(--serif);font-size:30px;color:var(--clay);margin-bottom:8px;">◗</div><div style="font:600 13px/1.3 var(--sans);color:var(--char);margin-bottom:6px;">Gift-Worthy by Design</div><div style="font:400 12px/1.55 var(--sans);color:var(--grey);">Arrives in signature packaging — ready to give, beautiful to keep.</div></div>
+          <div style="text-align:center;"><div style="font-family:var(--serif);font-size:30px;color:var(--clay);margin-bottom:8px;">∞</div><div style="font:600 13px/1.3 var(--sans);color:var(--char);margin-bottom:6px;">Lifetime Warranty</div><div style="font:400 12px/1.55 var(--sans);color:var(--grey);">Made to be kept — covered for years to come.</div></div>
+        </div>
+      </section>
+
+      <!-- REVIEWS WIDGET (mirrors Jewelry PDP v2 — embeds Loox) -->
+      <div id="reviews" style="padding:56px 40px;border-top:1px solid var(--line);">
+        <div style="font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Reviews</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin:0 0 28px;">
+          <h2 style="font-family:var(--serif);font-weight:500;font-size:32px;color:var(--char);margin:0;">What customers say</h2>
+          <span style="font:500 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Powered by Loox ◆</span>
+        </div>
+
+        <!-- summary row -->
+        <div style="display:grid;grid-template-columns:240px 1fr auto;gap:40px;align-items:center;padding:24px 0 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:32px;">
+          <div style="text-align:center;">
+            <div style="font-family:var(--serif);font-size:52px;line-height:1;color:var(--char);font-weight:500;margin-bottom:6px;">4.9</div>
+            <div style="color:var(--star);letter-spacing:2px;font-size:15px;margin-bottom:6px;">★★★★★</div>
+            <div style="font:400 12px/1 var(--sans);color:var(--soft);">Based on 986 reviews</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font:400 11px/1 var(--sans);color:var(--soft);width:30px;">5★</span><div style="flex:1;height:6px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:92%;height:100%;background:var(--star);"></div></div><span style="font:400 11px/1 var(--sans);color:var(--soft);width:34px;text-align:right;">907</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font:400 11px/1 var(--sans);color:var(--soft);width:30px;">4★</span><div style="flex:1;height:6px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:6%;height:100%;background:var(--star);"></div></div><span style="font:400 11px/1 var(--sans);color:var(--soft);width:34px;text-align:right;">59</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font:400 11px/1 var(--sans);color:var(--soft);width:30px;">3★</span><div style="flex:1;height:6px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:1%;height:100%;background:var(--star);"></div></div><span style="font:400 11px/1 var(--sans);color:var(--soft);width:34px;text-align:right;">14</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font:400 11px/1 var(--sans);color:var(--soft);width:30px;">2★</span><div style="flex:1;height:6px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:1%;height:100%;background:var(--star);"></div></div><span style="font:400 11px/1 var(--sans);color:var(--soft);width:34px;text-align:right;">4</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font:400 11px/1 var(--sans);color:var(--soft);width:30px;">1★</span><div style="flex:1;height:6px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:1%;height:100%;background:var(--star);"></div></div><span style="font:400 11px/1 var(--sans);color:var(--soft);width:34px;text-align:right;">2</span></div>
+          </div>
+          <button style="background:var(--char);color:var(--bone);border:none;cursor:pointer;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px 24px;border-radius:2px;white-space:nowrap;">Write a review</button>
+        </div>
+
+        <!-- photo reviews prioritised -->
+        <div style="display:flex;gap:10px;margin-bottom:28px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
+          <image-slot id="bx-rvw-p1" shape="rounded" radius="3" placeholder="Photo review" style="width:96px;height:96px;flex:none;"></image-slot>
+          <image-slot id="bx-rvw-p2" shape="rounded" radius="3" placeholder="Photo review" style="width:96px;height:96px;flex:none;"></image-slot>
+          <image-slot id="bx-rvw-p3" shape="rounded" radius="3" placeholder="Photo review" style="width:96px;height:96px;flex:none;"></image-slot>
+          <image-slot id="bx-rvw-p4" shape="rounded" radius="3" placeholder="Photo review" style="width:96px;height:96px;flex:none;"></image-slot>
+          <image-slot id="bx-rvw-p5" shape="rounded" radius="3" placeholder="Photo review" style="width:96px;height:96px;flex:none;"></image-slot>
+          <image-slot id="bx-rvw-p6" shape="rounded" radius="3" placeholder="Photo review" style="width:96px;height:96px;flex:none;"></image-slot>
+        </div>
+
+        <!-- individual reviews -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div style="border:1px solid var(--line);border-radius:3px;padding:22px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="color:var(--star);letter-spacing:1px;font-size:12px;">★★★★★</span><span style="font:400 11px/1 var(--sans);color:var(--soft);">2 weeks ago</span></div>
+            <div style="display:flex;gap:14px;margin-bottom:12px;"><image-slot id="bx-rvw-1" shape="rounded" radius="2" placeholder="Review photo" style="width:72px;height:72px;flex:none;"></image-slot><p style="font:400 14px/1.6 var(--sans);color:var(--soft);margin:0;">"The velvet interior is gorgeous and it arrived beautifully wrapped. Holds everything without tangling — a forever piece."</p></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font:600 12px/1 var(--sans);color:var(--char);">Priya N.</span><span style="font:500 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:4px 7px;border-radius:999px;">Verified</span></div>
+          </div>
+          <div style="border:1px solid var(--line);border-radius:3px;padding:22px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="color:var(--star);letter-spacing:1px;font-size:12px;">★★★★★</span><span style="font:400 11px/1 var(--sans);color:var(--soft);">1 month ago</span></div>
+            <div style="display:flex;gap:14px;margin-bottom:12px;"><image-slot id="bx-rvw-2" shape="rounded" radius="2" placeholder="Review photo" style="width:72px;height:72px;flex:none;"></image-slot><p style="font:400 14px/1.6 var(--sans);color:var(--soft);margin:0;">"Bought it as a gift and kept one for myself. The Gold-Brushed handle feels so premium and the lid closes softly."</p></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font:600 12px/1 var(--sans);color:var(--char);">Elena R.</span><span style="font:500 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:4px 7px;border-radius:999px;">Verified</span></div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:28px;"><button style="background:transparent;color:var(--char);border:1px solid var(--char);cursor:pointer;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:14px 28px;border-radius:2px;">Read all 986 reviews</button></div>
+      </div>
+
+      <!-- FOOTER (from Jewelry PDP v2 — approved homepage version) with Loyalty Rewards -->
+      <footer style="background:var(--deep);color:var(--bone);">
+        <!-- top: brand + link columns -->
+        <div style="max-width:1320px;margin:0 auto;padding:64px 40px 52px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;">
+          <div>
+            <div style="font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#FBF9F4;margin-bottom:18px;">Rare Velvet</div>
+            <p style="font:400 14px/1.7 var(--sans);color:var(--deep-soft);max-width:300px;margin:0 0 26px;">Beauty. Organization. Everyday Luxury. Curated essentials for your daily rituals.</p>
+            <div style="display:flex;gap:12px;">
+              <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+              <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3a5.4 5.4 0 0 0 4.5 4.5v3a8.3 8.3 0 0 1-4.5-1.4v6.6a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v3.2a3 3 0 1 0 2.1 2.9V3h3.2z"/></svg></a>
+              <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.5 2 4 5.66 4 8.74c0 1.86.7 3.52 2.22 4.14.25.1.47 0 .54-.27l.22-.86c.07-.27.04-.37-.16-.6-.43-.5-.7-1.16-.7-2.08 0-2.68 2-5.08 5.22-5.08 2.85 0 4.41 1.74 4.41 4.06 0 3.06-1.35 5.64-3.36 5.64-1.11 0-1.94-.92-1.67-2.04.32-1.35.93-2.8.93-3.77 0-.87-.47-1.6-1.43-1.6-1.13 0-2.05 1.18-2.05 2.75 0 1 .34 1.68.34 1.68l-1.36 5.76c-.27 1.15-.09 2.57.02 3.32.05.32.4.4.6.14 1.07-1.5 1.5-3.05 1.84-4.38.12-.46.66-2.6.66-2.6.35.67 1.38 1.26 2.47 1.26 3.25 0 5.46-2.97 5.46-6.94C20.08 4.93 17.4 2 12.04 2z"/></svg></a>
+              <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.83.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.83-.43a2.5 2.5 0 0 0 1.77-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.5v-7l6 3.5z"/></svg></a>
+            </div>
+          </div>
+          <div>
+            <div style="font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--butter);margin-bottom:20px;">Customer Care</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:15px;">Contact</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:15px;">Shipping</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:15px;">Returns</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);">FAQ</div>
+          </div>
+          <div>
+            <div style="font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--butter);margin-bottom:20px;">Company</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:15px;">Our Story</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:15px;">Journal</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);">Affiliates</div>
+          </div>
+          <div>
+            <div style="font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--butter);margin-bottom:20px;">Policies</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:15px;">Privacy Policy</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:15px;">Refund Policy</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:15px;">Terms of Service</div>
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);">Shipping Policy</div>
+          </div>
+        </div>
+        <!-- bottom bar -->
+        <div style="border-top:1px solid var(--deep-line);">
+          <div style="max-width:1320px;margin:0 auto;padding:22px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+            <span style="font:400 12px/1 var(--sans);color:rgba(244,241,234,.5);letter-spacing:.04em;">© 2026 Rare Velvet. All rights reserved.</span>
+            <div style="display:flex;gap:8px;">
+              <span style="font:600 9px/1 var(--sans);letter-spacing:.08em;color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 8px;">VISA</span>
+              <span style="font:600 9px/1 var(--sans);letter-spacing:.08em;color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 8px;">AMEX</span>
+              <span style="font:600 9px/1 var(--sans);letter-spacing:.08em;color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 8px;">PAYPAL</span>
+              <span style="font:600 9px/1 var(--sans);letter-spacing:.08em;color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 8px;">SHOP PAY</span>
+            </div>
+          </div>
+        </div>
+        <!-- Loyalty Rewards band -->
+        <div style="border-top:1px solid var(--deep-line);padding:34px 40px;display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="width:42px;height:42px;border-radius:999px;background:var(--butter);color:var(--char);display:flex;align-items:center;justify-content:center;font:700 16px/1 var(--sans);">★</span>
+            <div>
+              <div style="font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--butter);margin-bottom:5px;">Rare Velvet Rewards</div>
+              <div style="font-family:var(--serif);font-size:22px;color:#FBF9F4;font-weight:500;">Earn points on every order</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:28px;flex-wrap:wrap;">
+            <div><div style="font-family:var(--serif);font-size:20px;color:var(--butter);font-weight:500;">Join</div><div style="font:400 12px/1.4 var(--sans);color:var(--deep-soft);max-width:140px;">Free to join — 100 points to start</div></div>
+            <div><div style="font-family:var(--serif);font-size:20px;color:var(--butter);font-weight:500;">Earn</div><div style="font:400 12px/1.4 var(--sans);color:var(--deep-soft);max-width:140px;">1 point per $1 + bonus days</div></div>
+            <div><div style="font-family:var(--serif);font-size:20px;color:var(--butter);font-weight:500;">Redeem</div><div style="font:400 12px/1.4 var(--sans);color:var(--deep-soft);max-width:150px;">Points off, gifts & early access</div></div>
+          </div>
+          <button style="background:var(--butter);color:var(--char);border:none;cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px 26px;border-radius:2px;white-space:nowrap;">Join Rewards →</button>
+        </div>
+        <!-- giant wordmark — anchored to baseline, clipped (Odd Muse signature) -->
+        <div style="overflow:hidden;padding:0 24px;max-height:0.74em;display:flex;justify-content:center;">
+          <div style="font-family:var(--serif);font-weight:500;font-size:clamp(72px,15vw,240px);line-height:1;letter-spacing:.01em;color:#FBF9F4;text-transform:uppercase;white-space:nowrap;transform:translateY(-0.04em);">Rare Velvet</div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ══════════ MOBILE PREVIEW ══════════ -->
+    <div data-screen-label="Jewelry Boxes PDP — Mobile" class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-status"><span>9:41</span><span>RARE VELVET</span><span>5G ▮</span></div>
+      <div class="phone-scroll">
+
+        <div style="position:relative;">
+          <image-slot id="mx-g1" shape="rect" placeholder="Lead — styled velvet box" style="width:100%;aspect-ratio:4/5;"></image-slot>
+          <span style="position:absolute;top:14px;left:14px;background:var(--paper);font:600 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--char);padding:6px 10px;border-radius:999px;">Bestseller</span>
+          <div style="position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center;"><span style="width:20px;height:6px;border-radius:999px;background:var(--char);"></span><span style="width:6px;height:6px;border-radius:999px;background:var(--line);"></span><span style="width:6px;height:6px;border-radius:999px;background:var(--line);"></span><span style="width:6px;height:6px;border-radius:999px;background:var(--line);"></span></div>
+        </div>
+
+        <div style="padding:20px 18px 0;">
+          <div style="font:600 10px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:10px;">The Jewelry Boxes Edit · Bestseller</div>
+          <h1 style="font-family:var(--serif);font-weight:500;font-size:32px;line-height:1.05;color:var(--char);margin:0 0 10px;">Petite Velvet Jewelry Box</h1>
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:14px;"><span class="stars" style="font-size:12px;">★★★★★</span><span style="font:400 12px/1 var(--sans);color:var(--grey);">4.9 · 986</span></div>
+          <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;"><span style="font:600 22px/1 var(--sans);color:var(--char);">$58</span><span style="font:400 12px/1 var(--sans);color:var(--grey);">Lifetime warranty</span></div>
+          <div style="font:400 12px/1.4 var(--sans);color:var(--clay);margin-bottom:18px;">Earn 58 Rare Velvet points</div>
+          <p style="font:400 14px/1.65 var(--sans);color:var(--soft);margin:0 0 20px;">Velvet-lined keepsake box with a Gold-Brushed handle and a soft-close lid. Keeps fine jewelry organized and tangle-free.</p>
+
+          <div style="font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--char);margin-bottom:10px;">Colour · <span style="color:var(--grey);font-weight:400;">Sage</span></div>
+          <div style="display:flex;gap:9px;margin-bottom:20px;">
+            <span style="width:26px;height:26px;border-radius:999px;background:#A7AE97;border:2px solid var(--char);"></span>
+            <span style="width:26px;height:26px;border-radius:999px;background:#E9D9D2;border:2px solid transparent;"></span>
+            <span style="width:26px;height:26px;border-radius:999px;background:#46433E;border:2px solid transparent;"></span>
+            <span style="width:26px;height:26px;border-radius:999px;background:#E4DECF;border:2px solid transparent;"></span>
+          </div>
+
+          <div style="background:var(--bone-2);border:1px solid var(--line);border-radius:3px;padding:12px 14px;margin-bottom:18px;"><div style="font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--char);margin-bottom:4px;">Arrives gift-ready</div><div style="font:400 11px/1.5 var(--sans);color:var(--soft);">Signature packaging — ready to give.</div></div>
+
+          <div style="margin-bottom:18px;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3px;"><div style="display:flex;align-items:center;gap:8px;"><div style="font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--char);">Complete the set</div><span style="font:600 8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--clay);background:var(--butter);border-radius:999px;padding:4px 8px;">Save 10%</span></div><span style="font:500 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);">Scroll →</span></div>
+            <div style="font:400 11px/1.4 var(--sans);color:var(--grey);margin-bottom:10px;">From the Jewelry Boxes collection</div>
+            <div class="set-strip">
+              <div style="flex:none;width:130px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="mx-s1" shape="rect" placeholder="Ring dish" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:9px;"><div style="font:500 11px/1.25 var(--sans);color:var(--char);margin-bottom:3px;">Velvet Ring Dish</div><div style="font:400 10px/1 var(--sans);color:var(--grey);margin-bottom:8px;">$24</div><button class="qa-btn" style="width:100%;font:600 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:8px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:130px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="mx-s2" shape="rect" placeholder="Travel roll" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:9px;"><div style="font:500 11px/1.25 var(--sans);color:var(--char);margin-bottom:3px;">Travel Jewelry Roll</div><div style="font:400 10px/1 var(--sans);color:var(--grey);margin-bottom:8px;">$36</div><button class="qa-btn" style="width:100%;font:600 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:8px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:130px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="mx-s3" shape="rect" placeholder="Large box" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:9px;"><div style="font:500 11px/1.25 var(--sans);color:var(--char);margin-bottom:3px;">Grand Velvet Box</div><div style="font:400 10px/1 var(--sans);color:var(--grey);margin-bottom:8px;">$92</div><button class="qa-btn" style="width:100%;font:600 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:8px;border-radius:2px;">Quick add +</button></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADD TO YOUR COLLECTION mobile -->
+          <div style="margin-bottom:18px;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;"><div style="font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--char);">Add to your collection</div><span style="font:500 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);">Scroll →</span></div>
+            <div class="set-strip">
+              <div style="flex:none;width:130px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="mx-c1" shape="rect" placeholder="Pendant necklace" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:9px;"><div style="font:500 11px/1.25 var(--sans);color:var(--char);margin-bottom:2px;">Petite Pendant</div><div style="font:italic 400 11px/1 var(--serif);color:var(--grey);margin-bottom:6px;">18k Gold Vermeil</div><div style="font:400 10px/1 var(--sans);color:var(--grey);margin-bottom:8px;">$72</div><button class="qa-btn" style="width:100%;font:600 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:8px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:130px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="mx-c2" shape="rect" placeholder="Huggie hoops" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:9px;"><div style="font:500 11px/1.25 var(--sans);color:var(--char);margin-bottom:2px;">Huggie Hoops</div><div style="font:italic 400 11px/1 var(--serif);color:var(--grey);margin-bottom:6px;">18k Gold Vermeil</div><div style="font:400 10px/1 var(--sans);color:var(--grey);margin-bottom:8px;">$58</div><button class="qa-btn" style="width:100%;font:600 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:8px;border-radius:2px;">Quick add +</button></div>
+              </div>
+              <div style="flex:none;width:130px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+                <div style="aspect-ratio:1/1;background:var(--bone-2);"><image-slot id="mx-c3" shape="rect" placeholder="Tennis bracelet" style="width:100%;height:100%;"></image-slot></div>
+                <div style="padding:9px;"><div style="font:500 11px/1.25 var(--sans);color:var(--char);margin-bottom:2px;">Tennis Bracelet</div><div style="font:italic 400 11px/1 var(--serif);color:var(--grey);margin-bottom:6px;">Sterling Silver</div><div style="font:400 10px/1 var(--sans);color:var(--grey);margin-bottom:8px;">$88</div><button class="qa-btn" style="width:100%;font:600 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:8px;border-radius:2px;">Quick add +</button></div>
+              </div>
+            </div>
+          </div>
+
+          <details class="acc" open><summary>Details &amp; Materials <span class="acc-icon">+</span></summary><div style="padding-bottom:14px;font:400 12px/1.65 var(--sans);color:var(--soft);"><div style="font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:5px;">Material</div><div style="margin-bottom:10px;">Leather on outer box with luxury velvet front decor</div><div style="font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:5px;">Size</div><div style="margin-bottom:10px;">13" L × 8" W × 4.7" H / 33cm L × 20cm W × 12cm H</div><div style="font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:5px;">Finish</div><div>18K Gold Brushed Handle and Supportive Stand</div></div></details>
+          <details class="acc"><summary>Shipping &amp; Returns <span class="acc-icon">+</span></summary><div style="padding-bottom:14px;font:400 12px/1.65 var(--sans);color:var(--soft);">Ships within 24h. Enjoy easy 30-day returns on unworn items in their original packaging. Final-sale items are non-returnable. Lifetime warranty on jewelry boxes.</div></details>
+        </div>
+
+        <section id="reviews" style="padding:28px 18px;">
+          <div style="font:600 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Reviews</div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;"><h2 style="font-family:var(--serif);font-weight:500;font-size:24px;color:var(--char);margin:0;">What customers say</h2><span style="font:500 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Loox ◆</span></div>
+          <!-- summary -->
+          <div style="display:flex;align-items:center;gap:18px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px;">
+            <div style="text-align:center;flex:none;"><div style="font-family:var(--serif);font-size:40px;line-height:1;color:var(--char);font-weight:500;">4.9</div><div style="color:var(--star);letter-spacing:1px;font-size:12px;">★★★★★</div></div>
+            <div style="flex:1;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><span style="font:400 10px/1 var(--sans);color:var(--soft);width:22px;">5★</span><div style="flex:1;height:5px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:92%;height:100%;background:var(--star);"></div></div></div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><span style="font:400 10px/1 var(--sans);color:var(--soft);width:22px;">4★</span><div style="flex:1;height:5px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:6%;height:100%;background:var(--star);"></div></div></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span style="font:400 10px/1 var(--sans);color:var(--soft);width:22px;">3★</span><div style="flex:1;height:5px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:2%;height:100%;background:var(--star);"></div></div></div>
+              <div style="font:400 10px/1 var(--sans);color:var(--soft);margin-top:8px;">Based on 986 reviews</div>
+            </div>
+          </div>
+          <!-- photo strip -->
+          <div style="display:flex;gap:8px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
+            <image-slot id="mbx-rvw-p1" shape="rounded" radius="3" placeholder="Photo" style="width:74px;height:74px;flex:none;"></image-slot>
+            <image-slot id="mbx-rvw-p2" shape="rounded" radius="3" placeholder="Photo" style="width:74px;height:74px;flex:none;"></image-slot>
+            <image-slot id="mbx-rvw-p3" shape="rounded" radius="3" placeholder="Photo" style="width:74px;height:74px;flex:none;"></image-slot>
+            <image-slot id="mbx-rvw-p4" shape="rounded" radius="3" placeholder="Photo" style="width:74px;height:74px;flex:none;"></image-slot>
+          </div>
+          <div style="background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:18px;margin-bottom:12px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span class="stars" style="font-size:11px;">★★★★★</span><span style="font:400 10px/1 var(--sans);color:var(--soft);">2 weeks ago</span></div><div style="display:flex;gap:12px;margin-bottom:10px;"><image-slot id="mbx-rvw-1" shape="rounded" radius="2" placeholder="Photo" style="width:60px;height:60px;flex:none;"></image-slot><p style="font:400 13px/1.6 var(--sans);color:var(--soft);margin:0;">"The velvet interior is gorgeous and it arrived beautifully wrapped. Holds everything without tangling."</p></div><div style="display:flex;align-items:center;gap:7px;"><span style="font:600 11px/1 var(--sans);color:var(--char);">Priya N.</span><span style="font:500 8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:3px 6px;border-radius:999px;">Verified</span></div></div>
+          <div style="background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:18px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span class="stars" style="font-size:11px;">★★★★★</span><span style="font:400 10px/1 var(--sans);color:var(--soft);">1 month ago</span></div><div style="display:flex;gap:12px;margin-bottom:10px;"><image-slot id="mbx-rvw-2" shape="rounded" radius="2" placeholder="Photo" style="width:60px;height:60px;flex:none;"></image-slot><p style="font:400 13px/1.6 var(--sans);color:var(--soft);margin:0;">"Bought it as a gift and kept one for myself. The Gold-Brushed handle feels so premium."</p></div><div style="display:flex;align-items:center;gap:7px;"><span style="font:600 11px/1 var(--sans);color:var(--char);">Elena R.</span><span style="font:500 8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:3px 6px;border-radius:999px;">Verified</span></div></div>
+          <div style="text-align:center;margin-top:18px;"><button style="background:transparent;color:var(--char);border:1px solid var(--char);cursor:pointer;font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:12px 22px;border-radius:2px;">Read all 986 reviews</button></div>
+        </section>
+
+        <footer style="background:var(--deep);padding:28px 18px;text-align:center;">
+          <div style="font-family:var(--serif);font-size:34px;letter-spacing:.06em;text-transform:uppercase;color:#FBF9F4;margin-bottom:14px;">Rare Velvet</div>
+          <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;"><span style="font:600 8px/1 var(--sans);color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 7px;">VISA</span><span style="font:600 8px/1 var(--sans);color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 7px;">AMEX</span><span style="font:600 8px/1 var(--sans);color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 7px;">PAYPAL</span><span style="font:600 8px/1 var(--sans);color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 7px;">SHOP PAY</span></div>
+          <div style="font:400 10px/1 var(--sans);color:rgba(244,241,234,.4);">© 2026 Rare Velvet</div>
+        </footer>
+
+        <div class="phone-home"><div style="width:120px;height:4px;border-radius:999px;background:var(--char);opacity:.18;"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

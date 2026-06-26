@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "collection_header_0": {
+      "type": "rv-collection-header"
+    },
+    "collection_grid_1": {
+      "type": "rv-collection-grid"
+    }
+  },
+  "order": [
+    "collection_header_0",
+    "collection_grid_1"
+  ]
+}

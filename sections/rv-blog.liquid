@@ -1,0 +1,31 @@
+
+<section style="padding:56px 0 88px;">
+  <div class="rv-container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="rv-heading">{{ blog.title }}</h1>
+    </div>
+    <div class="rv-grid-3">
+      {%- for article in blog.articles -%}
+        <article>
+          <a href="{{ article.url }}">
+            {%- if article.image -%}
+              {{ article.image | image_url: width: 700 | image_tag: loading: 'lazy', style: 'width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:3px;display:block;', alt: article.image.alt }}
+            {%- else -%}
+              <div class="rv-placeholder-img" style="aspect-ratio:3/2;border-radius:3px;">{{ 'image' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+          </a>
+          <div style="padding:18px 0 0;">
+            <p style="font:400 11px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-grey-2);margin:0 0 10px;">{{ article.published_at | date: '%B %d, %Y' }}</p>
+            <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:22px;color:var(--rv-char);margin:0 0 10px;line-height:1.1;"><a href="{{ article.url }}" style="color:inherit;">{{ article.title }}</a></h2>
+            <p style="font:400 14px/1.6 var(--rv-sans);color:var(--rv-soft);margin:0 0 14px;">{{ article.excerpt_or_content | strip_html | truncate: 110 }}</p>
+            <a href="{{ article.url }}" style="font:500 12px/1 var(--rv-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rv-char);border-bottom:1px solid var(--rv-butter-2);padding-bottom:2px;">Read more →</a>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Blog Posts","tag":"section","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Journal"}
+],"presets":[{"name":"Blog Posts"}]}{% endschema %}

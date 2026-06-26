@@ -1,0 +1,43 @@
+
+<section class="rv-section">
+  <div class="rv-container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="rv-heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p style="font:400 16px/1.6 var(--rv-sans);color:var(--rv-soft);max-width:480px;margin:14px auto 0;">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}
+          style="display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border:1px solid var(--rv-line);border-radius:999px;background:var(--rv-paper);text-decoration:none;transition:all .2s;font:500 13px/1 var(--rv-sans);color:var(--rv-char);letter-spacing:.04em;"
+          onmouseover="this.style.background='var(--rv-butter)';this.style.borderColor='var(--rv-butter-2)';"
+          onmouseout="this.style.background='var(--rv-paper)';this.style.borderColor='var(--rv-line)';">
+          {%- if block.settings.icon != blank -%}
+            {{ block.settings.icon | image_url: width: 48 | image_tag: loading: 'lazy', style: 'width:24px;height:24px;object-fit:contain;flex:none;', alt: block.settings.label }}
+          {%- endif -%}
+          {{ block.settings.label }}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Shop by Concern","tag":"section","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Find your edit"},
+{"type":"text","id":"heading","label":"Heading","default":"What's your skin concern?"},
+{"type":"text","id":"subheading","label":"Subheading (optional)"}
+],"max_blocks":10,"blocks":[{"type":"concern","name":"Concern pill","settings":[
+{"type":"text","id":"label","label":"Label","default":"Anti-Ageing"},
+{"type":"image_picker","id":"icon","label":"Icon (optional)"},
+{"type":"url","id":"link","label":"Link"}
+]}],"presets":[{"name":"Shop by Concern","blocks":[
+{"type":"concern","settings":{"label":"Anti-Ageing"}},
+{"type":"concern","settings":{"label":"Brightening"}},
+{"type":"concern","settings":{"label":"Deep Hydration"}},
+{"type":"concern","settings":{"label":"Sensitive Skin"}},
+{"type":"concern","settings":{"label":"Organization"}},
+{"type":"concern","settings":{"label":"Gifting"}},
+{"type":"concern","settings":{"label":"Travel Essentials"}},
+{"type":"concern","settings":{"label":"Bestsellers"}}
+]}]}{% endschema %}

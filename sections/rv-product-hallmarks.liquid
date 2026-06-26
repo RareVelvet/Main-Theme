@@ -1,0 +1,22 @@
+
+<section style="padding:0 0 32px;background:var(--rv-bone);">
+  <div class="rv-container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      {%- for block in section.blocks -%}
+        <div style="background:var(--rv-bone-2);border:1px solid var(--rv-line);border-radius:3px;padding:16px 12px;text-align:center;" {{ block.shopify_attributes }}>
+          <div style="font-family:var(--rv-serif);font-size:22px;color:var(--rv-char);font-weight:500;margin-bottom:5px;">{{ block.settings.value }}</div>
+          <div style="font:600 9px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-grey);">{{ block.settings.label }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Hallmark Badges","tag":"section","max_blocks":4,"settings":[],"blocks":[{"type":"hallmark","name":"Hallmark","settings":[
+{"type":"text","id":"value","label":"Value / symbol","default":"925"},
+{"type":"text","id":"label","label":"Label","default":"Sterling silver"}
+]}],"presets":[{"name":"Hallmark Badges","blocks":[
+{"type":"hallmark","settings":{"value":"925","label":"Sterling silver"}},
+{"type":"hallmark","settings":{"value":"18ct","label":"Gold vermeil"}},
+{"type":"hallmark","settings":{"value":"2.5μ","label":"Micron thick"}},
+{"type":"hallmark","settings":{"value":"∞","label":"Lifetime warranty"}}
+]}]}{% endschema %}

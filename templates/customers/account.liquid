@@ -1,0 +1,16 @@
+
+<div style="max-width:900px;margin:60px auto;padding:0 24px;">
+  <h1 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:500;color:#2B2A27;margin:0 0 8px;">Hello, {{ customer.first_name }}</h1>
+  <a href="{{ routes.account_logout_url }}" style="font:400 12px/1 sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6E6A64;border-bottom:1px solid #DAD4CB;">Sign out</a>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;color:#2B2A27;margin:40px 0 20px;">Order history</h2>
+  {%- if customer.orders.size > 0 -%}
+    {%- for order in customer.orders -%}
+      <div style="border:1px solid #DAD4CB;border-radius:3px;padding:18px 20px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+        <div><div style="font:600 13px/1 sans-serif;color:#2B2A27;margin-bottom:5px;">{{ order.name }}</div><div style="font:400 12px/1 sans-serif;color:#6E6A64;">{{ order.created_at | date: '%B %d, %Y' }} · {{ order.financial_status_label }}</div></div>
+        <div style="text-align:right;"><div style="font:600 15px/1 sans-serif;color:#2B2A27;margin-bottom:5px;">{{ order.total_price | money }}</div><a href="{{ order.customer_url }}" style="font:400 11px/1 sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#B0795C;border-bottom:1px solid #B0795C;">View order</a></div>
+      </div>
+    {%- endfor -%}
+  {%- else -%}
+    <p style="font:400 15px/1.6 sans-serif;color:#56524C;">You haven't placed any orders yet. <a href="{{ routes.root_url }}" style="color:#2B2A27;border-bottom:1px solid #DAD4CB;">Start shopping →</a></p>
+  {%- endif -%}
+</div>

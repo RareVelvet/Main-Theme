@@ -1,0 +1,53 @@
+
+{%- comment -%} Rotating testimonial band — slim social-proof strip {%- endcomment -%}
+{%- assign t_count = section.blocks.size -%}
+<section class="rv-tband" data-rv-tband style="background:{{ section.settings.bg }};border-top:1px solid var(--rv-grey-soft);border-bottom:1px solid var(--rv-grey-soft);">
+  <div class="rv-tband__inner">
+    <span class="rv-tband__stars">★★★★★</span>
+    <div class="rv-tband__track">
+      {%- if t_count > 0 -%}
+        {%- for block in section.blocks -%}
+          <p class="rv-tband__quote{% if forloop.first %} is-active{% endif %}" data-rv-tband-slide {{ block.shopify_attributes }}>{{ block.settings.quote }}</p>
+        {%- endfor -%}
+      {%- else -%}
+        <p class="rv-tband__quote is-active" data-rv-tband-slide>"Absolutely obsessed — every piece feels like a little luxury on my vanity."</p>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.anchor != blank -%}
+      <span class="rv-tband__anchor">{{ section.settings.anchor }}</span>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+.rv-tband__inner{max-width:1320px;margin:0 auto;padding:30px 32px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;text-align:center;min-height:30px;}
+.rv-tband__stars{color:var(--rv-star);letter-spacing:2px;font-size:15px;flex:none;}
+.rv-tband__track{position:relative;}
+.rv-tband__quote{display:none;font-family:var(--rv-serif);font-style:italic;font-size:clamp(18px,2vw,24px);line-height:1.3;color:var(--rv-char);margin:0;max-width:660px;}
+.rv-tband__quote.is-active{display:block;animation:rvtband .5s ease;}
+@keyframes rvtband{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.rv-tband__anchor{font:600 11px/1.5 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-grey-2);flex:none;border-left:1px solid var(--rv-grey-soft);padding-left:20px;}
+@media(max-width:640px){.rv-tband__anchor{border-left:none;padding-left:0;}}
+</style>
+
+<script>
+(function(){
+  var band=document.querySelector('[data-rv-tband]');
+  if(!band)return;
+  var slides=band.querySelectorAll('[data-rv-tband-slide]');
+  if(slides.length<2)return;
+  var i=0;var delay={{ section.settings.rotate_seconds | default: 4 | times: 1000 }};
+  setInterval(function(){slides[i].classList.remove('is-active');i=(i+1)%slides.length;slides[i].classList.add('is-active');},delay);
+})();
+</script>
+{% schema %}{"name":"Testimonial Band","tag":"section","max_blocks":8,"settings":[
+{"type":"text","id":"anchor","label":"Anchor text (right side)","default":"12,400+ reviews"},
+{"type":"range","id":"rotate_seconds","label":"Rotate every (seconds)","min":2,"max":10,"step":1,"default":4},
+{"type":"color","id":"bg","label":"Background","default":"#FBF9F4"}
+],"blocks":[{"type":"quote","name":"Quote","settings":[
+{"type":"text","id":"quote","label":"Quote","default":"\"Absolutely obsessed — every piece feels like a little luxury.\""}
+]}],"presets":[{"name":"Testimonial Band","blocks":[
+{"type":"quote","settings":{"quote":"\"Absolutely obsessed — every piece feels like a little luxury on my vanity.\""}},
+{"type":"quote","settings":{"quote":"\"My skin has never looked this dewy. The first thing I reach for every morning.\""}},
+{"type":"quote","settings":{"quote":"\"Beautifully made and beautifully packaged. It feels far more expensive than it is.\""}}
+]}]}{% endschema %}

@@ -1,0 +1,14 @@
+
+<div class="rv-section--bone-2" style="padding:0;">
+  <div class="rv-container">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 0;flex-wrap:wrap;gap:14px;">
+      {%- for block in section.blocks -%}
+        <div style="display:flex;align-items:center;gap:11px;font:500 12px/1 var(--rv-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rv-char);" {{ block.shopify_attributes }}>
+          <span style="width:9px;height:9px;background:var(--rv-butter);border:1px solid var(--rv-butter-2);transform:rotate(45deg);display:inline-block;flex:none;"></span>
+          {{ block.settings.text }}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{% schema %}{"name":"Trust Bar","tag":"section","max_blocks":5,"blocks":[{"type":"item","name":"Trust item","settings":[{"type":"text","id":"text","label":"Text","default":"Free shipping over $50"}]}],"presets":[{"name":"Trust Bar","blocks":[{"type":"item","settings":{"text":"Free shipping over $50"}},{"type":"item","settings":{"text":"Secure checkout"}},{"type":"item","settings":{"text":"Easy 30-day returns"}},{"type":"item","settings":{"text":"Lifetime warranty on jewelry boxes"}}]}]}{% endschema %}

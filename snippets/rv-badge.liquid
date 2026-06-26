@@ -1,0 +1,63 @@
+{%- comment -%}
+  rv-badge — automatic product status badge. Homepage, collection pages, all PDPs.
+  Up to TWO badges shown, in this priority:  Limited Edition > Best Seller > Low Stock > New In  (Sale = fallback)
+  Sold out (inventory = 0) overrides everything and shows alone.
+  Sources: collection membership + inventory. No manual tagging required.
+{%- endcomment -%}
+{%- liquid
+  assign bx = extra_class | default: ''
+  assign bov = override | default: ''
+  assign bthreshold = low_stock | default: 15
+  assign bnew = false
+  assign bbest = false
+  assign blimited = false
+  for c in product.collections
+    assign ch = c.handle
+    if ch == 'new-in' or ch == 'new-arrivals' or ch == 'new'
+      assign bnew = true
+    endif
+    if ch == 'best-sellers' or ch == 'bestsellers' or ch == 'bestseller'
+      assign bbest = true
+    endif
+    if ch == 'limited-edition' or ch == 'limited'
+      assign blimited = true
+    endif
+  endfor
+  if product.tags contains 'new'
+    assign bnew = true
+  endif
+  if product.tags contains 'best seller' or product.tags contains 'bestseller'
+    assign bbest = true
+  endif
+  if product.tags contains 'limited edition' or product.tags contains 'limited'
+    assign blimited = true
+  endif
+  assign bv = product.selected_or_first_available_variant
+  assign blow = false
+  if product.available and bv.inventory_management != blank and bv.inventory_quantity > 0 and bv.inventory_quantity <= bthreshold
+    assign blow = true
+  endif
+  assign bsale = false
+  if product.compare_at_price > product.price
+    assign bsale = true
+  endif
+  assign bany = false
+  if product.available == false or bov != blank or blimited or bbest or blow or bnew or bsale
+    assign bany = true
+  endif
+-%}
+{%- if bany -%}
+<div class="rv-badges {{ bx }}">
+  {%- if product.available == false -%}
+    <span class="rv-badge rv-badge--soldout">Sold out</span>
+  {%- else -%}
+    {%- assign shown = 0 -%}
+    {%- if bov != blank -%}<span class="rv-badge rv-badge--butter">{{ bov }}</span>{%- assign shown = shown | plus: 1 -%}{%- endif -%}
+    {%- if blimited and shown < 2 -%}<span class="rv-badge rv-badge--dark">Limited Edition</span>{%- assign shown = shown | plus: 1 -%}{%- endif -%}
+    {%- if bbest and shown < 2 -%}<span class="rv-badge rv-badge--butter">Best Seller</span>{%- assign shown = shown | plus: 1 -%}{%- endif -%}
+    {%- if blow and shown < 2 -%}<span class="rv-badge rv-badge--lowstock">Low stock</span>{%- assign shown = shown | plus: 1 -%}{%- endif -%}
+    {%- if bnew and shown < 2 -%}<span class="rv-badge rv-badge--clay">New In</span>{%- assign shown = shown | plus: 1 -%}{%- endif -%}
+    {%- if shown == 0 and bsale -%}<span class="rv-badge rv-badge--sale">Sale</span>{%- endif -%}
+  {%- endif -%}
+</div>
+{%- endif -%}

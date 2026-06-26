@@ -1,0 +1,146 @@
+
+{%- comment -%} Predictive search drawer — opens from header search {%- endcomment -%}
+<div class="rv-search" data-rv-search aria-hidden="true">
+  <div class="rv-search__scrim" data-rv-search-close></div>
+  <div class="rv-search__panel" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="rv-search__bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rv-grey-2);flex:none;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" class="rv-search__input" data-rv-search-input placeholder="Search beauty, jewelry, boxes…" autocomplete="off" aria-label="Search">
+      <button class="rv-search__close" data-rv-search-close aria-label="Close search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="rv-search__results" data-rv-search-results>
+      <div class="rv-search__empty" data-rv-search-empty>
+        <div class="rv-search__hint-label">Popular searches</div>
+        <div class="rv-search__chips">
+          {%- assign chips = section.settings.popular_terms | default: 'Stacking rings, Jewelry box, Glow serum, Travel case, Gift sets' | split: ',' -%}
+          {%- for chip in chips -%}
+            <button type="button" class="rv-search__chip" data-rv-search-chip>{{ chip | strip }}</button>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.rv-search{position:fixed;inset:0;z-index:300;visibility:hidden;}
+.rv-search.is-open{visibility:visible;}
+.rv-search__scrim{position:absolute;inset:0;background:rgba(43,42,39,.32);opacity:0;transition:opacity .3s ease;}
+.rv-search.is-open .rv-search__scrim{opacity:1;}
+.rv-search__panel{position:absolute;top:0;left:0;right:0;background:var(--rv-bone);transform:translateY(-100%);transition:transform .36s cubic-bezier(.2,.7,.2,1);max-height:85vh;display:flex;flex-direction:column;box-shadow:0 24px 60px -24px rgba(43,42,39,.4);}
+.rv-search.is-open .rv-search__panel{transform:translateY(0);}
+.rv-search__bar{display:flex;align-items:center;gap:14px;padding:22px 32px;border-bottom:1px solid var(--rv-line);max-width:900px;margin:0 auto;width:100%;}
+.rv-search__input{flex:1;border:none;outline:none;background:transparent;font:400 22px/1.2 var(--rv-serif);color:var(--rv-char);font-family:var(--rv-serif);}
+.rv-search__input::placeholder{color:var(--rv-grey-2);}
+.rv-search__close{background:none;border:none;cursor:pointer;color:var(--rv-char);flex:none;display:flex;}
+.rv-search__results{overflow-y:auto;max-width:900px;margin:0 auto;width:100%;padding:24px 32px 36px;}
+.rv-search__hint-label{font:600 11px/1 var(--rv-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--rv-grey-2);margin-bottom:16px;}
+.rv-search__chips{display:flex;flex-wrap:wrap;gap:10px;}
+.rv-search__chip{background:var(--rv-paper);border:1px solid var(--rv-line);border-radius:999px;padding:9px 16px;font:400 13px/1 var(--rv-sans);color:var(--rv-char);cursor:pointer;transition:background .15s,border-color .15s;}
+.rv-search__chip:hover{background:var(--rv-char);color:var(--rv-bone);border-color:var(--rv-char);}
+.rv-search__section-label{font:600 11px/1 var(--rv-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--rv-grey-2);margin:8px 0 14px;}
+.rv-search__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:28px;}
+.rv-search__product{text-decoration:none;display:block;}
+.rv-search__product-img{aspect-ratio:4/5;border-radius:3px;overflow:hidden;background:var(--rv-bone-2);margin-bottom:10px;}
+.rv-search__product-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.rv-search__product-title{font:500 13px/1.3 var(--rv-sans);color:var(--rv-char);margin-bottom:3px;}
+.rv-search__product-price{font:600 12px/1 var(--rv-sans);color:var(--rv-char);}
+.rv-search__suggestions{display:flex;flex-direction:column;gap:2px;margin-bottom:24px;}
+.rv-search__suggestion{display:flex;align-items:center;gap:10px;padding:10px 0;font:400 15px/1.2 var(--rv-sans);color:var(--rv-char);text-decoration:none;border-bottom:1px solid var(--rv-line);}
+.rv-search__suggestion svg{color:var(--rv-grey-2);flex:none;}
+.rv-search__viewall{display:inline-block;margin-top:8px;font:600 12px/1 var(--rv-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rv-char);border-bottom:1px solid var(--rv-butter-2);padding-bottom:3px;text-decoration:none;}
+.rv-search__noresults{font:400 15px/1.5 var(--rv-sans);color:var(--rv-soft);padding:20px 0;}
+@media(max-width:768px){
+  .rv-search__bar{padding:16px 18px;}
+  .rv-search__input{font-size:18px;}
+  .rv-search__results{padding:18px 18px 28px;}
+  .rv-search__grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+}
+</style>
+
+<script>
+(function(){
+  var root=document.querySelector('[data-rv-search]');
+  if(!root)return;
+  var input=root.querySelector('[data-rv-search-input]');
+  var results=root.querySelector('[data-rv-search-results]');
+  var empty=root.querySelector('[data-rv-search-empty]');
+  var emptyHTML=empty?empty.outerHTML:'';
+  var lastQuery='',timer=null;
+
+  function open(){root.classList.add('is-open');root.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(function(){input.focus();},120);}
+  function close(){root.classList.remove('is-open');root.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+
+  // open triggers — any header search link
+  document.querySelectorAll('[aria-label="Search"], [href$="/search"], [data-rv-search-open]').forEach(function(el){
+    if(el.closest('[data-rv-search]'))return;
+    el.addEventListener('click',function(e){e.preventDefault();open();});
+  });
+  root.querySelectorAll('[data-rv-search-close]').forEach(function(el){el.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&root.classList.contains('is-open'))close();});
+
+  root.querySelectorAll('[data-rv-search-chip]').forEach(function(c){
+    c.addEventListener('click',function(){input.value=c.textContent.trim();doSearch(input.value);});
+  });
+
+  function money(cents){
+    try{return '$'+(cents/100).toFixed(2).replace(/\.00$/,'');}catch(e){return '';}
+  }
+
+  function render(data,q){
+    var products=(data.resources&&data.resources.results&&data.resources.results.products)||[];
+    var queries=(data.resources&&data.resources.results&&data.resources.results.queries)||[];
+    if(!products.length&&!queries.length){
+      results.innerHTML='<div class="rv-search__noresults">No matches for “'+q+'”. Try a different term.</div>';
+      return;
+    }
+    var html='';
+    if(queries.length){
+      html+='<div class="rv-search__section-label">Suggestions</div><div class="rv-search__suggestions">';
+      queries.slice(0,4).forEach(function(s){
+        html+='<a class="rv-search__suggestion" href="/search?q='+encodeURIComponent(s.text)+'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>'+s.styled_text.replace(/<\/?[^>]+>/g,function(m){return m.indexOf('strong')>-1?m:'';})+'</a>';
+      });
+      html+='</div>';
+    }
+    if(products.length){
+      html+='<div class="rv-search__section-label">Products</div><div class="rv-search__grid">';
+      products.slice(0,8).forEach(function(p){
+        var img=p.featured_image&&p.featured_image.url?p.featured_image.url:(p.image||'');
+        html+='<a class="rv-search__product" href="'+p.url+'">'
+          +'<div class="rv-search__product-img">'+(img?'<img src="'+img+'" alt="" loading="lazy">':'')+'</div>'
+          +'<div class="rv-search__product-title">'+p.title+'</div>'
+          +'<div class="rv-search__product-price">'+(p.price?money(p.price):'')+'</div></a>';
+      });
+      html+='</div>';
+      html+='<a class="rv-search__viewall" href="/search?q='+encodeURIComponent(q)+'">View all results for “'+q+'” →</a>';
+    }
+    results.innerHTML=html;
+  }
+
+  function doSearch(q){
+    q=(q||'').trim();
+    if(q.length<2){results.innerHTML=emptyHTML;bindChips();return;}
+    var url='/search/suggest.json?q='+encodeURIComponent(q)+'&resources[type]=product,query&resources[limit]=8&resources[options][unavailable_products]=last';
+    fetch(url).then(function(r){return r.json();}).then(function(d){render(d,q);}).catch(function(){});
+  }
+  function bindChips(){
+    results.querySelectorAll('[data-rv-search-chip]').forEach(function(c){
+      c.addEventListener('click',function(){input.value=c.textContent.trim();doSearch(input.value);});
+    });
+  }
+
+  input.addEventListener('input',function(){
+    var q=input.value;
+    if(q===lastQuery)return;lastQuery=q;
+    clearTimeout(timer);timer=setTimeout(function(){doSearch(q);},220);
+  });
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){var q=input.value.trim();if(q)window.location='/search?q='+encodeURIComponent(q);}
+  });
+})();
+</script>
+{% schema %}{"name":"Search Drawer","tag":"div","settings":[
+{"type":"text","id":"popular_terms","label":"Popular search chips (comma-separated)","default":"Stacking rings, Jewelry box, Glow serum, Travel case, Gift sets"}
+]}{% endschema %}

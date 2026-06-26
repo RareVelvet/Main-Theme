@@ -1,0 +1,39 @@
+
+<section style="padding:48px 0 56px;background:var(--rv-bone);">
+  <div class="rv-container">
+    <div style="margin-bottom:20px;">
+      <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="rv-heading" style="margin-bottom:4px;">{{ section.settings.heading }}</h2>
+      <p style="font-family:var(--rv-serif);font-style:italic;font-size:17px;color:var(--rv-grey);">{{ section.settings.subheading }}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 600 | image_tag:
+                loading: 'lazy',
+                style: 'width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:3px;display:block;margin-bottom:12px;',
+                alt: block.settings.label }}
+          {%- else -%}
+            <div style="width:100%;aspect-ratio:3/4;background:var(--rv-bone-2);border-radius:3px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;">{{ 'product-1' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+          <div style="font:600 10px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-char);margin-bottom:4px;">{{ block.settings.label }}</div>
+          <div style="font:400 12px/1.5 var(--rv-sans);color:var(--rv-grey);">{{ block.settings.desc }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Layering Editorial","tag":"section","max_blocks":3,"settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Three ways to wear it"},
+{"type":"text","id":"heading","label":"Heading","default":"Find your look"},
+{"type":"text","id":"subheading","label":"Italic subheading","default":"Wear alone. Layer three. Go all in."}
+],"blocks":[{"type":"look","name":"Look","settings":[
+{"type":"image_picker","id":"image","label":"Look image"},
+{"type":"text","id":"label","label":"Look name","default":"Minimal"},
+{"type":"text","id":"desc","label":"Description","default":"Wear solo on the index finger"}
+]}],"presets":[{"name":"Layering Editorial","blocks":[
+{"type":"look","settings":{"label":"Minimal","desc":"Wear solo on the index finger"}},
+{"type":"look","settings":{"label":"Everyday","desc":"Stack with dome + twist bands"}},
+{"type":"look","settings":{"label":"Maximalist","desc":"Full hand — mix metals freely"}}
+]}]}{% endschema %}

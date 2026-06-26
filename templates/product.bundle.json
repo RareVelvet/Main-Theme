@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "product_main_0": {
+      "type": "rv-product-main"
+    },
+    "product_bundle_included_1": {
+      "type": "rv-product-bundle-included"
+    },
+    "product_benefits_2": {
+      "type": "rv-product-benefits"
+    },
+    "gifting_callout_3": {
+      "type": "rv-gifting-callout"
+    },
+    "product_ugc_strip_4": {
+      "type": "rv-product-ugc-strip"
+    },
+    "product_accordions_5": {
+      "type": "rv-product-accordions"
+    },
+    "product_reviews_6": {
+      "type": "rv-product-reviews"
+    },
+    "recently_viewed_7": {
+      "type": "rv-recently-viewed"
+    },
+    "product_crosssell_8": {
+      "type": "rv-product-crosssell"
+    }
+  },
+  "order": [
+    "product_main_0",
+    "product_bundle_included_1",
+    "product_benefits_2",
+    "gifting_callout_3",
+    "product_ugc_strip_4",
+    "product_accordions_5",
+    "product_reviews_6",
+    "recently_viewed_7",
+    "product_crosssell_8"
+  ]
+}

@@ -1,0 +1,43 @@
+
+<section class="rv-section">
+  <div class="rv-container">
+    <div class="rv-section-head">
+      <div>
+        <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="rv-heading">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.all_url != blank -%}<a href="{{ section.settings.all_url }}" class="rv-view-all">Shop all →</a>{%- endif -%}
+    </div>
+    {%- assign na = collections[section.settings.collection] | default: collections['new-arrivals'] -%}
+    <div class="rv-na-rail">
+      {%- for product in na.products limit: section.settings.count -%}
+        <div class="rv-card" data-card>
+          <div class="rv-card__img">
+            <a href="{{ product.url }}">
+              {%- if product.featured_image -%}{{ product.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', class: 'rv-card__img-primary', alt: product.title }}{%- else -%}<div class="rv-placeholder-img" style="aspect-ratio:4/5;">{{ 'product-1' | placeholder_svg_tag }}</div>{%- endif -%}
+            </a>
+            {% render 'rv-badge', product: product, extra_class: 'rv-card__badge' %}
+          </div>
+          <div class="rv-card__body">
+            <a href="{{ product.url }}" class="rv-card__name">{{ product.title }}</a>
+            {% render 'rv-material', product: product %}
+            <p class="rv-card__price">{{ product.price | money }}</p>
+          </div>
+        </div>
+      {%- else -%}
+        <p style="font:400 13px/1.5 var(--rv-sans);color:var(--rv-grey-2);">Pick a collection (or create one with handle “new-arrivals”) to populate this.</p>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<style>
+.rv-na-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+@media(max-width:768px){.rv-na-rail{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px;}.rv-na-rail::-webkit-scrollbar{display:none}.rv-na-rail .rv-card{flex:none;width:62vw;scroll-snap-align:start;}}
+</style>
+{% schema %}{"name":"New Arrivals","tag":"section","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Just landed"},
+{"type":"text","id":"heading","label":"Heading","default":"New arrivals"},
+{"type":"collection","id":"collection","label":"Collection (or create one with handle 'new-arrivals', sorted newest first)"},
+{"type":"range","id":"count","label":"Products","min":2,"max":8,"step":1,"default":4},
+{"type":"url","id":"all_url","label":"View all link"}
+],"presets":[{"name":"New Arrivals"}]}{% endschema %}

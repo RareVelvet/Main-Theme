@@ -1,0 +1,84 @@
+
+<section class="rv-section">
+  <div class="rv-container">
+    <div class="rv-about-grid">
+      <div class="rv-about-media">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rv-about-main', alt: section.settings.heading }}
+        {%- else -%}
+          <div class="rv-about-main rv-placeholder-img">{{ 'image' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+        {%- if section.settings.inset_image != blank -%}
+          {{ section.settings.inset_image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'rv-about-inset', alt: '' }}
+        {%- else -%}
+          <div class="rv-about-inset rv-placeholder-img">{{ 'image' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      </div>
+      <div class="rv-about-copy">
+        <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="rv-heading" style="margin-bottom:24px;">{{ section.settings.heading }}</h2>
+        <div class="rv-about-body">{{ section.settings.body }}</div>
+        {%- if section.settings.signature != blank -%}
+          <div class="rv-about-sig">{{ section.settings.signature }}</div>
+        {%- endif -%}
+        {%- if section.settings.sign_off != blank -%}
+          <div class="rv-about-signoff">{{ section.settings.sign_off }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if false -%}
+<section class="rv-section--deep" style="margin-top:64px;">
+  <div class="rv-container" style="padding:56px 32px;">
+    <div class="rv-about-values">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          <div class="rv-about-value__num">{{ block.settings.number }}</div>
+          <div class="rv-about-value__title">{{ block.settings.title }}</div>
+          <p class="rv-about-value__desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<style>
+.rv-about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;}
+.rv-about-media{position:relative;}
+.rv-about-main{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;display:block;}
+.rv-about-inset{width:200px;aspect-ratio:1/1;object-fit:cover;position:absolute;bottom:-30px;right:-30px;border:8px solid var(--rv-bone);border-radius:3px;box-shadow:0 24px 50px -22px rgba(43,42,39,.4);}
+.rv-about-body{font:400 16px/1.7 var(--rv-sans);color:var(--rv-soft);margin-bottom:30px;}
+.rv-about-body p{margin:0 0 18px;}
+.rv-about-sig{font-family:var(--rv-serif);font-style:italic;font-size:26px;color:var(--rv-char);margin-bottom:6px;}
+.rv-about-signoff{font:600 12px/1 var(--rv-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--rv-grey-2);}
+.rv-about-values{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;}
+.rv-about-value__num{font-family:var(--rv-serif);font-size:40px;color:var(--rv-butter);font-weight:500;margin-bottom:12px;}
+.rv-about-value__title{font-family:var(--rv-serif);font-size:24px;color:var(--rv-bone);font-weight:500;margin-bottom:10px;}
+.rv-about-value__desc{font:400 14px/1.65 var(--rv-sans);color:var(--rv-deep-soft);margin:0;}
+@media(max-width:768px){
+  .rv-about-grid{grid-template-columns:1fr;gap:48px;}
+  .rv-about-inset{width:130px;right:16px;bottom:-20px;border-width:6px;}
+  .rv-about-values{grid-template-columns:1fr;gap:32px;}
+}
+</style>
+
+{% schema %}{"name":"About Us","tag":"section","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Our Story"},
+{"type":"text","id":"heading","label":"Heading","default":"Beauty that feels like a small, daily luxury"},
+{"type":"richtext","id":"body","label":"Body","default":"<p>Rare Velvet began with a simple belief: the things we use every day should feel considered. We curate beauty, skincare and elegant essentials — chosen by our editors for how they look, feel and last.</p><p>Every piece is here to turn an ordinary routine into a ritual worth slowing down for.</p>"},
+{"type":"text","id":"signature","label":"Signature (italic)","default":"With love,"},
+{"type":"text","id":"sign_off","label":"Sign-off","default":"The Rare Velvet Team"},
+{"type":"image_picker","id":"image","label":"Main image"},
+{"type":"image_picker","id":"inset_image","label":"Inset image"}
+],"blocks":[{"type":"value","name":"Value","settings":[
+{"type":"text","id":"number","label":"Number","default":"01"},
+{"type":"text","id":"title","label":"Title","default":"Curated by editors"},
+{"type":"textarea","id":"description","label":"Description","default":"Every product is hand-selected for quality, feel and longevity — never mass-listed."}
+]}],"max_blocks":3,"presets":[{"name":"About Us","blocks":[
+{"type":"value","settings":{"number":"01","title":"Curated by editors","description":"Every product is hand-selected for quality, feel and longevity — never mass-listed."}},
+{"type":"value","settings":{"number":"02","title":"Made to be kept","description":"From velvet-lined boxes to refillable rituals, we design for years, not seasons."}},
+{"type":"value","settings":{"number":"03","title":"Considered in every detail","description":"Signature packaging, carbon-neutral delivery and a lifetime warranty on jewelry boxes."}}
+]}]}{% endschema %}

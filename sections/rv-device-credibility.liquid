@@ -1,0 +1,22 @@
+
+{%- comment -%} Device credibility strip — 4 stats on deep band {%- endcomment -%}
+<section style="background:var(--rv-deep);">
+  <div class="rv-container" style="padding:40px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;">
+    {%- for block in section.blocks -%}
+      <div style="text-align:center;" {{ block.shopify_attributes }}>
+        <div style="font-family:var(--rv-serif);font-size:38px;color:var(--rv-butter);font-weight:500;line-height:1;margin-bottom:8px;">{{ block.settings.stat }}</div>
+        <div style="font:400 13px/1.5 var(--rv-sans);color:var(--rv-deep-soft);max-width:200px;margin:0 auto;">{{ block.settings.label }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+<style>@media(max-width:640px){section .rv-container[style*="repeat(4"]{grid-template-columns:1fr 1fr!important;}}</style>
+{% schema %}{"name":"Device Credibility","tag":"section","max_blocks":4,"blocks":[{"type":"stat","name":"Stat","settings":[
+{"type":"text","id":"stat","label":"Stat","default":"FDA"},
+{"type":"text","id":"label","label":"Label","default":"Cleared Class II device"}
+]}],"presets":[{"name":"Device Credibility","blocks":[
+{"type":"stat","settings":{"stat":"FDA","label":"Cleared Class II device"}},
+{"type":"stat","settings":{"stat":"93%","label":"saw firmer skin in 8 weeks"}},
+{"type":"stat","settings":{"stat":"38k+","label":"devices sold"}},
+{"type":"stat","settings":{"stat":"4.9★","label":"from 2,847 verified reviews"}}
+]}]}{% endschema %}

@@ -1,0 +1,89 @@
+
+<section class="rv-pdp-section" style="border-top:1px solid var(--rv-line);padding-top:60px;margin-bottom:80px;">
+  <div class="rv-section-head">
+    <div>
+      <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="rv-heading">{{ section.settings.heading }}</h2>
+    </div>
+    {%- if section.settings.all_url != blank -%}
+      <a href="{{ section.settings.all_url }}" class="rv-view-all">Shop the collection →</a>
+    {%- endif -%}
+  </div>
+  {%- if section.settings.collection != blank -%}
+    {%- assign cs_col = collections[section.settings.collection] -%}
+  {%- elsif product.collections.size > 0 -%}
+    {%- assign cs_col = product.collections.first -%}
+  {%- else -%}
+    {%- assign cs_col = collections.all -%}
+  {%- endif -%}
+  <div class="rv-crosssell-scroll">
+    {%- assign shown = 0 -%}
+    {%- assign seen = '' -%}
+    {%- for p in cs_col.products limit: 12 -%}
+      {%- unless p.id == product.id or shown >= section.settings.count -%}
+        {%- assign shown = shown | plus: 1 -%}
+        {%- assign seen = seen | append: ',' | append: p.id -%}
+        <div class="rv-card">
+          <div class="rv-card__img">
+            <a href="{{ p.url }}">
+              {%- if p.featured_image -%}
+                {{ p.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: p.title }}
+              {%- else -%}
+                <div class="rv-placeholder-img" style="aspect-ratio:4/5;">{{ 'product-1' | placeholder_svg_tag }}</div>
+              {%- endif -%}
+            </a>
+            {% render 'rv-badge', product: p, extra_class: 'rv-card__badge' %}
+          </div>
+          <div class="rv-card__body">
+            <div class="rv-card__meta"><span class="rv-stars" style="font-size:12px;">★★★★★</span></div>
+            <a href="{{ p.url }}" class="rv-card__name">{{ p.title }}</a>
+            {% render 'rv-material', product: p %}
+            <p class="rv-card__price">{{ p.price | money }}</p>
+          </div>
+        </div>
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- comment -%} Fill remaining slots from Bestsellers {%- endcomment -%}
+    {%- if shown < section.settings.count and section.settings.fill_collection != blank -%}
+      {%- assign fill_col = collections[section.settings.fill_collection] -%}
+      {%- for p in fill_col.products limit: 12 -%}
+        {%- unless p.id == product.id or shown >= section.settings.count or seen contains p.id -%}
+          {%- assign shown = shown | plus: 1 -%}
+          <div class="rv-card">
+            <div class="rv-card__img">
+              <a href="{{ p.url }}">
+                {%- if p.featured_image -%}
+                  {{ p.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: p.title }}
+                {%- else -%}
+                  <div class="rv-placeholder-img" style="aspect-ratio:4/5;">{{ 'product-1' | placeholder_svg_tag }}</div>
+                {%- endif -%}
+              </a>
+              {% render 'rv-badge', product: p, extra_class: 'rv-card__badge' %}
+            </div>
+            <div class="rv-card__body">
+              <div class="rv-card__meta"><span class="rv-stars" style="font-size:12px;">★★★★★</span></div>
+              <a href="{{ p.url }}" class="rv-card__name">{{ p.title }}</a>
+              {% render 'rv-material', product: p %}
+              <p class="rv-card__price">{{ p.price | money }}</p>
+            </div>
+          </div>
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+<style>
+.rv-crosssell-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:6px;}
+.rv-crosssell-scroll::-webkit-scrollbar{display:none}
+.rv-crosssell-scroll .rv-card{flex:none;width:clamp(220px,24%,280px);scroll-snap-align:start;}
+@media(max-width:768px){.rv-crosssell-scroll .rv-card{width:62vw;}}
+@media(max-width:480px){.rv-crosssell-scroll .rv-card{width:74vw;}}
+</style>
+{% schema %}{"name":"You May Also Like","tag":"section","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"From the same collection"},
+{"type":"text","id":"heading","label":"Heading","default":"You may also like"},
+{"type":"collection","id":"collection","label":"Collection (leave blank to auto-use this product's collection)"},
+{"type":"collection","id":"fill_collection","label":"Fill remaining slots from (e.g. Bestsellers)"},
+{"type":"range","id":"count","label":"Products to show","min":2,"max":8,"step":1,"default":4},
+{"type":"url","id":"all_url","label":"View collection link"}
+],"presets":[{"name":"You May Also Like"}]}{% endschema %}

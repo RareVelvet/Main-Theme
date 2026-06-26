@@ -1,0 +1,134 @@
+
+<section class="rv-section">
+  <div class="rv-container">
+    <div class="rv-section-head">
+      <div>
+        <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="rv-heading">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.all_url != blank -%}
+        <a href="{{ section.settings.all_url }}" class="rv-view-all">Shop all →</a>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.collection != blank -%}
+      {%- assign grid_col = collections[section.settings.collection] -%}
+    {%- else -%}
+      {%- assign grid_col = collections.all -%}
+    {%- endif -%}
+    <div class="rv-grid-4">
+      {%- for product in grid_col.products limit: section.settings.count -%}
+        <div class="rv-card" data-card>
+          <div class="rv-card__img">
+            <a href="{{ product.url }}">
+              {%- if product.featured_image -%}
+                {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.featured_image.alt, class: 'rv-card__img-primary' }}
+              {%- else -%}
+                <div class="rv-placeholder-img" style="aspect-ratio:4/5;">{{ 'product-1' | placeholder_svg_tag }}</div>
+              {%- endif -%}
+              {%- if product.images[1] != blank -%}
+                {{ product.images[1] | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title, class: 'rv-card__img-hover' }}
+              {%- endif -%}
+            </a>
+            {% render 'rv-badge', product: product, extra_class: 'rv-card__badge' %}
+            {%- if product.available -%}
+              {%- assign first_v = product.first_available_variant -%}
+              {%- if product.has_only_default_variant -%}
+                <button class="rv-card__qa-trigger" data-qa-add data-variant-id="{{ first_v.id }}" type="button">
+                  <span class="rv-card__qa-label">Quick Add</span><span class="rv-card__qa-plus">+</span>
+                </button>
+              {%- else -%}
+                <button class="rv-card__qa-trigger" data-qa-toggle type="button">
+                  <span class="rv-card__qa-label">Quick Add</span><span class="rv-card__qa-plus">+</span>
+                </button>
+                <div class="rv-card__qa-panel" data-qa-panel>
+                  <div class="rv-card__qa-panel-head">
+                    <span>{{ product.options.first | default: 'Select' }}</span>
+                    <button class="rv-card__qa-close" data-qa-close type="button" aria-label="Close">×</button>
+                  </div>
+                  <div class="rv-card__qa-options">
+                    {%- for variant in product.variants -%}
+                      <button type="button" class="rv-card__qa-opt{% unless variant.available %} is-soldout{% endunless %}" data-qa-add data-variant-id="{{ variant.id }}"{% unless variant.available %} disabled aria-disabled="true"{% endunless %}>{{ variant.title }}</button>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- else -%}
+              <button class="rv-card__qa-trigger is-soldout" disabled type="button"><span class="rv-card__qa-label">Sold out</span></button>
+            {%- endif -%}
+          </div>
+          <div class="rv-card__body">
+            <div class="rv-card__meta">
+              <span class="rv-stars" style="font-size:12px;">★★★★★</span>
+              {%- if product.metafields.reviews.rating_count != blank -%}
+                <span class="rv-card__review-count">({{ product.metafields.reviews.rating_count }})</span>
+              {%- endif -%}
+            </div>
+            <a href="{{ product.url }}" class="rv-card__name">{{ product.title }}</a>
+            {% render 'rv-material', product: product %}
+            <p class="rv-card__price">
+              {{ product.price | money }}
+              {%- if product.compare_at_price > product.price -%}
+                <span style="text-decoration:line-through;color:var(--rv-grey-2);margin-left:6px;">{{ product.compare_at_price | money }}</span>
+              {%- endif -%}
+            </p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+.rv-card{position:relative;}
+.rv-card__img{position:relative;overflow:hidden;}
+.rv-card__img-primary,.rv-card__img-hover{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:opacity .5s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
+.rv-card__img-hover{position:absolute;inset:0;opacity:0;}
+.rv-card:hover .rv-card__img-hover{opacity:1;}
+.rv-card:hover .rv-card__img-primary{transform:scale(1.03);}
+.rv-card__qa-trigger{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--rv-paper);color:var(--rv-char);border:1px solid var(--rv-char);border-radius:2px;cursor:pointer;font:600 11px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;padding:13px;opacity:0;transform:translateY(8px);transition:opacity .28s,transform .28s cubic-bezier(.2,.7,.2,1),background .2s,color .2s;pointer-events:none;}
+.rv-card:hover .rv-card__qa-trigger,.rv-card__qa-trigger:focus-visible{opacity:1;transform:none;pointer-events:auto;}
+.rv-card__qa-trigger:hover{background:var(--rv-char);color:var(--rv-bone);}
+.rv-card__qa-trigger.is-soldout{background:rgba(251,249,244,.85);color:var(--rv-grey-2);border-color:var(--rv-line);cursor:not-allowed;opacity:1;transform:none;pointer-events:auto;}
+.rv-card__qa-plus{font-size:14px;line-height:1;font-weight:400;}
+.rv-card__qa-panel{position:absolute;left:12px;right:12px;bottom:12px;background:var(--rv-paper);border:1px solid var(--rv-char);border-radius:2px;padding:10px;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .28s,transform .28s cubic-bezier(.2,.7,.2,1);z-index:3;}
+.rv-card__qa-panel.is-open{opacity:1;transform:none;pointer-events:auto;}
+.rv-card__qa-panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 2px;}
+.rv-card__qa-panel-head span{font:600 10px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-grey-2);}
+.rv-card__qa-close{background:none;border:none;cursor:pointer;font-size:18px;line-height:1;color:var(--rv-char);padding:0 2px;}
+.rv-card__qa-options{display:flex;flex-wrap:wrap;gap:6px;}
+.rv-card__qa-opt{flex:1 1 auto;min-width:44px;background:var(--rv-bone);color:var(--rv-char);border:1px solid var(--rv-line);border-radius:2px;cursor:pointer;font:500 12px/1 var(--rv-sans);padding:11px 8px;transition:background .15s,border-color .15s,color .15s;}
+.rv-card__qa-opt:hover{background:var(--rv-char);color:var(--rv-bone);border-color:var(--rv-char);}
+.rv-card__qa-opt.is-soldout{color:var(--rv-grey-2);text-decoration:line-through;cursor:not-allowed;opacity:.5;}
+@media(hover:none){.rv-card__qa-trigger{opacity:1;transform:none;pointer-events:auto;}}
+</style>
+
+<script>
+if(!window.__rvQuickAdd){
+  window.__rvQuickAdd = true;
+  (function(){
+    function closeAll(except){document.querySelectorAll('.rv-card__qa-panel.is-open').forEach(function(p){if(p!==except)p.classList.remove('is-open');});}
+    document.addEventListener('click',function(e){
+      var t=e.target.closest('[data-qa-toggle]');
+      if(t){e.preventDefault();var p=t.parentElement.querySelector('[data-qa-panel]');if(p){closeAll(p);p.classList.toggle('is-open');}return;}
+      var c=e.target.closest('[data-qa-close]');
+      if(c){e.preventDefault();var pp=c.closest('[data-qa-panel]');if(pp)pp.classList.remove('is-open');return;}
+      var a=e.target.closest('[data-qa-add]');
+      if(a&&!a.disabled){e.preventDefault();var id=a.getAttribute('data-variant-id');if(!id)return;var orig=a.innerHTML;a.innerHTML='<span class="rv-card__qa-label">Adding…</span>';a.disabled=true;
+        fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,quantity:1})}).then(function(r){
+          if(r.ok){a.innerHTML='<span class="rv-card__qa-label">✓ Added</span>';fetch('/cart.js').then(function(c){return c.json();}).then(function(cart){var b=document.querySelector('[data-cart-count]');if(b)b.textContent=cart.item_count;document.dispatchEvent(new CustomEvent('rv:cart:updated',{detail:cart}));});setTimeout(function(){a.innerHTML=orig;a.disabled=false;var pa=a.closest('[data-qa-panel]');if(pa)pa.classList.remove('is-open');},1400);}
+          else{a.innerHTML=orig;a.disabled=false;}
+        }).catch(function(){a.innerHTML=orig;a.disabled=false;});return;}
+      if(!e.target.closest('[data-qa-panel]'))closeAll(null);
+    });
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll(null);});
+  })();
+}
+</script>
+
+{% schema %}{"name":"Product Grid","tag":"section","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Loved by thousands"},
+{"type":"text","id":"heading","label":"Heading","default":"Best sellers"},
+{"type":"collection","id":"collection","label":"Collection (leave blank to show all products)"},
+{"type":"range","id":"count","label":"Products to show","min":2,"max":8,"step":1,"default":4},
+{"type":"url","id":"all_url","label":"View all link"}
+],"presets":[{"name":"Product Grid"}]}{% endschema %}

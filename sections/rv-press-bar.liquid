@@ -1,0 +1,18 @@
+
+<div style="padding:22px 0;border-bottom:1px solid var(--rv-line);">
+  <div class="rv-container" style="text-align:center;">
+    <p style="font:600 9px/1 var(--rv-sans);letter-spacing:.2em;text-transform:uppercase;color:var(--rv-grey-2);margin:0 0 12px;">{{ section.settings.eyebrow }}</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          {%- if block.settings.logo != blank -%}
+            {{ block.settings.logo | image_url: width: 120 | image_tag: loading: 'lazy', style: 'height:22px;width:auto;filter:grayscale(1);opacity:.55;', alt: block.settings.name }}
+          {%- else -%}
+            <span style="font-family:var(--rv-serif);font-size:15px;letter-spacing:.1em;color:var(--rv-grey-2);">{{ block.settings.name }}</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{% schema %}{"name":"Press Bar","tag":"section","settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"As seen in"}],"max_blocks":6,"blocks":[{"type":"outlet","name":"Press outlet","settings":[{"type":"text","id":"name","label":"Publication name","default":"VOGUE"},{"type":"image_picker","id":"logo","label":"Logo image (optional — uses name if blank)"}]}],"presets":[{"name":"Press Bar","blocks":[{"type":"outlet","settings":{"name":"VOGUE"}},{"type":"outlet","settings":{"name":"ALLURE"}},{"type":"outlet","settings":{"name":"ELLE"}},{"type":"outlet","settings":{"name":"BAZAAR"}}]}]}{% endschema %}

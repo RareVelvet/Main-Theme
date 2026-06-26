@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:#F4F1EA;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#2B2A27}
+  :root{
+    --bone:#F4F1EA;--bone-2:#ECE7DD;--paper:#FBF9F4;--line:#DAD4CB;
+    --char:#2B2A27;--soft:#56524C;--grey-2:#6E6A64;--deep:#3B3833;--deep-soft:#B8B2A8;
+    --butter:#F2E6C2;--butter-2:#E2CB92;--clay:#B0795C;--star:#C2A24E;
+    --serif:'Cormorant Garamond',Georgia,serif;
+  }
+  image-slot{display:block}
+  .upsell-strip{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;padding-bottom:4px;}
+  .upsell-strip::-webkit-scrollbar{display:none}
+  .cart-layout{display:grid;grid-template-columns:1fr 350px;gap:44px;align-items:start;}
+  .cart-summary{position:sticky;top:24px;}
+  @media(max-width:760px){
+    .cart-layout{grid-template-columns:1fr;gap:0;}
+    .cart-summary{position:static;margin-top:8px;border-radius:0!important;border-left:none!important;border-right:none!important;}
+    .upsell-strip > div{width:140px!important;}
+  }
+</style>
+</helmet>
+
+<div style="max-width:1100px;margin:0 auto;padding:40px 32px 90px;">
+  <div style="font:600 11px/1 'Hanken Grotesk',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8B8680;margin-bottom:18px;">Cart page · Odd Muse style + upsells</div>
+
+  <!-- ── FREE SHIPPING BAR (full width, prominent) ── -->
+  <div style="background:var(--deep);border-radius:4px;padding:18px 24px;margin-bottom:28px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:11px;flex-wrap:wrap;">
+      <span style="font:500 13px/1.4 'Hanken Grotesk',sans-serif;color:#FBF9F4;">You're <strong style="color:var(--butter);">$8.00</strong> away from <strong>free shipping</strong></span>
+      <span style="font:600 10px/1 'Hanken Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--deep-soft);">$42 / $50</span>
+    </div>
+    <div style="height:5px;background:rgba(244,241,234,.15);border-radius:999px;overflow:hidden;"><div style="height:100%;width:84%;background:var(--butter);border-radius:999px;"></div></div>
+  </div>
+
+  <h1 style="font-family:var(--serif);font-weight:500;font-size:clamp(30px,4vw,46px);color:var(--char);margin:0 0 4px;">Your bag</h1>
+  <p style="font:400 13px/1 'Hanken Grotesk',sans-serif;color:var(--soft);margin:0 0 28px;">2 items</p>
+
+  <div class="cart-layout">
+
+    <!-- LEFT: items + upsell -->
+    <div>
+      <!-- item 1 -->
+      <div style="display:flex;gap:18px;padding:22px 0;border-top:1px solid var(--line);">
+        <image-slot id="cart-1" shape="rounded" radius="3" placeholder="Serum" style="width:96px;height:116px;flex:none;border:1px solid var(--line);"></image-slot>
+        <div style="flex:1;">
+          <div style="display:flex;justify-content:space-between;gap:12px;">
+            <div>
+              <div style="font:500 15px/1.3 'Hanken Grotesk',sans-serif;color:var(--char);margin-bottom:4px;">Velvet Glow Serum</div>
+              <div style="font:400 12px/1 'Hanken Grotesk',sans-serif;color:var(--grey-2);margin-bottom:12px;">30ml</div>
+            </div>
+            <span style="font:600 15px/1 'Hanken Grotesk',sans-serif;color:var(--char);">$42.00</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="display:flex;align-items:center;border:1px solid var(--line);border-radius:2px;height:36px;">
+              <button style="padding:0 13px;cursor:pointer;font-size:15px;color:var(--soft);background:none;border:none;">−</button>
+              <span style="font:400 13px/1 'Hanken Grotesk',sans-serif;min-width:26px;text-align:center;">1</span>
+              <button style="padding:0 13px;cursor:pointer;font-size:15px;color:var(--soft);background:none;border:none;">+</button>
+            </div>
+            <button style="font:400 12px/1 'Hanken Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-2);background:none;border:none;cursor:pointer;border-bottom:1px solid var(--line);padding:0 0 2px;">Remove</button>
+          </div>
+        </div>
+      </div>
+      <!-- item 2 -->
+      <div style="display:flex;gap:18px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+        <image-slot id="cart-2" shape="rounded" radius="3" placeholder="Lip oil" style="width:96px;height:116px;flex:none;border:1px solid var(--line);"></image-slot>
+        <div style="flex:1;">
+          <div style="display:flex;justify-content:space-between;gap:12px;">
+            <div>
+              <div style="font:500 15px/1.3 'Hanken Grotesk',sans-serif;color:var(--char);margin-bottom:4px;">Daily Lip Oil</div>
+              <div style="font:400 12px/1 'Hanken Grotesk',sans-serif;color:var(--grey-2);margin-bottom:12px;">Rose</div>
+            </div>
+            <span style="font:600 15px/1 'Hanken Grotesk',sans-serif;color:var(--char);">$24.00</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="display:flex;align-items:center;border:1px solid var(--line);border-radius:2px;height:36px;">
+              <button style="padding:0 13px;cursor:pointer;font-size:15px;color:var(--soft);background:none;border:none;">−</button>
+              <span style="font:400 13px/1 'Hanken Grotesk',sans-serif;min-width:26px;text-align:center;">1</span>
+              <button style="padding:0 13px;cursor:pointer;font-size:15px;color:var(--soft);background:none;border:none;">+</button>
+            </div>
+            <button style="font:400 12px/1 'Hanken Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-2);background:none;border:none;cursor:pointer;border-bottom:1px solid var(--line);padding:0 0 2px;">Remove</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPLETE YOUR ORDER — upsell carousel -->
+      <div style="margin-top:32px;">
+        <div style="font:600 11px/1 'Hanken Grotesk',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--grey-2);margin-bottom:5px;">You might also like</div>
+        <h2 style="font-family:var(--serif);font-weight:500;font-size:24px;color:var(--char);margin:0 0 18px;">Complete your order</h2>
+        <div class="upsell-strip">
+          <sc-for list="{{ upsells }}" as="u" hint-placeholder-count="3">
+            <div style="flex:none;width:150px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;">
+              <image-slot id="{{ u.slot }}" shape="rect" placeholder="{{ u.ph }}" style="width:100%;aspect-ratio:1/1;"></image-slot>
+              <div style="padding:12px;">
+                <div style="font:500 12px/1.3 'Hanken Grotesk',sans-serif;color:var(--char);margin-bottom:4px;">{{ u.name }}</div>
+                <div style="font:400 12px/1 'Hanken Grotesk',sans-serif;color:var(--grey-2);margin-bottom:10px;">{{ u.price }}</div>
+                <button style="width:100%;background:var(--char);color:var(--bone);border:none;cursor:pointer;font:600 10px/1 'Hanken Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:10px;border-radius:2px;">Add +</button>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: summary -->
+    <div class="cart-summary" style="background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:26px;">
+      <h2 style="font-family:var(--serif);font-weight:500;font-size:21px;color:var(--char);margin:0 0 18px;">Order summary</h2>
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;"><span style="font:400 13px/1 'Hanken Grotesk',sans-serif;color:var(--soft);">Subtotal</span><span style="font:500 13px/1 'Hanken Grotesk',sans-serif;color:var(--char);">$66.00</span></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;"><span style="font:400 13px/1 'Hanken Grotesk',sans-serif;color:var(--clay);">Shipping</span><span style="font:500 13px/1 'Hanken Grotesk',sans-serif;color:var(--clay);">Calculated at checkout</span></div>
+      <div style="border-top:1px solid var(--line);margin:16px 0;padding-top:16px;display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font:600 14px/1 'Hanken Grotesk',sans-serif;color:var(--char);">Total</span>
+        <span style="font-family:var(--serif);font-size:26px;color:var(--char);font-weight:500;">$66.00</span>
+      </div>
+      <!-- discount code -->
+      <div style="display:flex;gap:8px;margin:16px 0;">
+        <input placeholder="Discount code" style="flex:1;background:var(--bone);border:1px solid var(--line);border-radius:2px;padding:12px 14px;font:400 13px/1 'Hanken Grotesk',sans-serif;color:var(--char);outline:none;">
+        <button style="background:none;border:1px solid var(--char);border-radius:2px;cursor:pointer;font:600 11px/1 'Hanken Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:0 16px;color:var(--char);">Apply</button>
+      </div>
+      <button style="width:100%;background:var(--clay);color:#FBF9F4;border:none;cursor:pointer;font:600 13px/1 'Hanken Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;height:54px;border-radius:2px;margin-bottom:14px;">Checkout →</button>
+      <!-- reassurance icons -->
+      <div style="display:flex;flex-direction:column;gap:11px;padding-top:16px;border-top:1px solid var(--line);">
+        <sc-for list="{{ reassure }}" as="r" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:10px;font:400 12px/1.4 'Hanken Grotesk',sans-serif;color:var(--soft);">
+            <span style="width:24px;height:24px;border-radius:999px;background:var(--butter);display:flex;align-items:center;justify-content:center;color:var(--char);font-size:11px;flex:none;">{{ r.icon }}</span>
+            {{ r.text }}
+          </div>
+        </sc-for>
+      </div>
+      <!-- payment icons -->
+      <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:16px;">
+        <sc-for list="{{ pays }}" as="pay" hint-placeholder-count="5">
+          <span style="font:600 8px/1 'Hanken Grotesk',sans-serif;letter-spacing:.06em;color:var(--grey-2);border:1px solid var(--line);border-radius:2px;padding:4px 6px;">{{ pay }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1100,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      upsells: [
+        { name: 'Mini Jewelry Case', price: '$28', slot: 'up-1', ph: 'Jewelry case' },
+        { name: 'Compact Mirror', price: '$18', slot: 'up-2', ph: 'Mirror' },
+        { name: 'Silk Eye Mask', price: '$22', slot: 'up-3', ph: 'Eye mask' },
+        { name: 'Body Oil', price: '$32', slot: 'up-4', ph: 'Body oil' },
+      ],
+      reassure: [
+        { icon: '✓', text: 'Free shipping over $50' },
+        { icon: '↺', text: 'Easy 30-day returns' },
+        { icon: '🔒', text: 'Secure, encrypted checkout' },
+      ],
+      pays: ['VISA', 'AMEX', 'PAYPAL', 'APPLE PAY', 'SHOP PAY'],
+    };
+  }
+}
+</script>
+</body>
+</html>

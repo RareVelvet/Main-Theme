@@ -1,0 +1,224 @@
+
+<section class="rv-os">
+  <!-- HERO -->
+  <div class="rv-os-hero">
+    {%- if section.settings.hero_image != blank -%}
+      {{ section.settings.hero_image | image_url: width: 2000 | image_tag: loading: 'eager', class: 'rv-os-hero__img', alt: section.settings.hero_heading }}
+    {%- else -%}
+      <div class="rv-os-hero__img rv-placeholder-img">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+    <div class="rv-os-hero__scrim"></div>
+    <div class="rv-os-hero__content">
+      <div class="rv-os-eyebrow rv-os-eyebrow--light">{{ section.settings.eyebrow }}</div>
+      <h1 class="rv-os-hero__h1">{{ section.settings.hero_heading }}</h1>
+      <p class="rv-os-hero__sub">{{ section.settings.hero_sub }}</p>
+    </div>
+  </div>
+
+  <!-- ORIGIN -->
+  <div class="rv-os-split rv-container">
+    <div class="rv-os-split__media">
+      {%- if section.settings.origin_image != blank -%}
+        {{ section.settings.origin_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rv-os-img-portrait', alt: '' }}
+      {%- else -%}
+        <div class="rv-os-img-portrait rv-placeholder-img">{{ 'image' | placeholder_svg_tag }}</div>
+      {%- endif -%}
+    </div>
+    <div class="rv-os-split__copy">
+      <div class="rv-os-eyebrow">{{ section.settings.origin_eyebrow }}</div>
+      <h2 class="rv-os-h2">{{ section.settings.origin_heading }}</h2>
+      <div class="rv-os-rich">{{ section.settings.origin_body }}</div>
+    </div>
+  </div>
+
+  <!-- ETHOS pull-quote -->
+  {%- if section.settings.ethos_quote != blank -%}
+    <div class="rv-os-ethos">
+      <div class="rv-os-ethos__mark">✦</div>
+      <p class="rv-os-ethos__quote">{{ section.settings.ethos_quote }}</p>
+      <div class="rv-os-eyebrow rv-os-eyebrow--butter">{{ section.settings.ethos_author }}</div>
+    </div>
+  {%- endif -%}
+
+  <!-- PILLARS -->
+  {%- assign pillar_blocks = section.blocks | where: 'type', 'pillar' -%}
+  {%- if pillar_blocks.size > 0 -%}
+    <div class="rv-os-pillars rv-container">
+      <div class="rv-os-center">
+        <div class="rv-os-eyebrow">{{ section.settings.pillars_eyebrow }}</div>
+        <h2 class="rv-os-h2">{{ section.settings.pillars_heading }}</h2>
+      </div>
+      <div class="rv-os-pillar-grid">
+        {%- for block in pillar_blocks -%}
+          <div {{ block.shopify_attributes }}>
+            <div class="rv-os-pillar__num">{{ block.settings.number }}</div>
+            <div class="rv-os-pillar__title">{{ block.settings.title }}</div>
+            <p class="rv-os-pillar__desc">{{ block.settings.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <!-- CRAFT -->
+  <div class="rv-os-craft">
+    <div class="rv-os-split rv-container rv-os-split--rev">
+      <div class="rv-os-split__copy">
+        <div class="rv-os-eyebrow">{{ section.settings.craft_eyebrow }}</div>
+        <h2 class="rv-os-h2">{{ section.settings.craft_heading }}</h2>
+        <div class="rv-os-rich">{{ section.settings.craft_body }}</div>
+        {%- assign stat_blocks = section.blocks | where: 'type', 'stat' -%}
+        {%- if stat_blocks.size > 0 -%}
+          <div class="rv-os-stats">
+            {%- for block in stat_blocks -%}
+              <div {{ block.shopify_attributes }}>
+                <div class="rv-os-stat__num">{{ block.settings.stat }}</div>
+                <div class="rv-os-stat__label">{{ block.settings.label }}</div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="rv-os-craft__media">
+        {%- if section.settings.craft_image_1 != blank -%}
+          {{ section.settings.craft_image_1 | image_url: width: 700 | image_tag: loading: 'lazy', class: 'rv-os-img-tall', alt: '' }}
+        {%- else -%}<div class="rv-os-img-tall rv-placeholder-img">{{ 'image' | placeholder_svg_tag }}</div>{%- endif -%}
+        {%- if section.settings.craft_image_2 != blank -%}
+          {{ section.settings.craft_image_2 | image_url: width: 700 | image_tag: loading: 'lazy', class: 'rv-os-img-tall rv-os-img-offset', alt: '' }}
+        {%- else -%}<div class="rv-os-img-tall rv-os-img-offset rv-placeholder-img">{{ 'image' | placeholder_svg_tag }}</div>{%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <!-- FOUNDER -->
+  {%- if section.settings.founder_quote != blank -%}
+    <div class="rv-os-founder rv-container">
+      {%- if section.settings.founder_image != blank -%}
+        {{ section.settings.founder_image | image_url: width: 240 | image_tag: loading: 'lazy', class: 'rv-os-founder__img', alt: '' }}
+      {%- else -%}<div class="rv-os-founder__img rv-placeholder-img">{{ 'image' | placeholder_svg_tag }}</div>{%- endif -%}
+      <p class="rv-os-founder__quote">{{ section.settings.founder_quote }}</p>
+      <div class="rv-os-founder__sig">{{ section.settings.founder_signoff }}</div>
+      <div class="rv-os-eyebrow">{{ section.settings.founder_name }}</div>
+    </div>
+  {%- endif -%}
+
+  <!-- CTA -->
+  <div class="rv-os-cta">
+    <div class="rv-container rv-os-center">
+      <h2 class="rv-os-h2">{{ section.settings.cta_heading }}</h2>
+      <p class="rv-os-cta__sub">{{ section.settings.cta_sub }}</p>
+      <a href="{{ section.settings.cta_link }}" class="rv-os-cta__btn">{{ section.settings.cta_label }}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.rv-os-eyebrow{font:600 12px/1 var(--rv-sans);letter-spacing:.26em;text-transform:uppercase;color:var(--rv-clay);margin-bottom:18px;}
+.rv-os-eyebrow--light{color:var(--rv-butter);letter-spacing:.32em;}
+.rv-os-eyebrow--butter{color:var(--rv-butter);margin-top:28px;}
+.rv-os-h2{font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.8vw,52px);line-height:1.05;letter-spacing:-.01em;color:var(--rv-char);margin:0 0 24px;}
+.rv-os-rich{font:400 16px/1.78 var(--rv-sans);color:var(--rv-soft);}
+.rv-os-rich p{margin:0 0 18px;}
+.rv-os-center{text-align:center;}
+/* Hero */
+.rv-os-hero{position:relative;height:78vh;min-height:560px;overflow:hidden;}
+.rv-os-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.rv-os-hero__scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(43,42,39,.5),rgba(43,42,39,.12) 55%,rgba(43,42,39,.28));}
+.rv-os-hero__content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;}
+.rv-os-hero__h1{font-family:var(--rv-serif);font-weight:500;font-size:clamp(44px,7vw,104px);line-height:.98;letter-spacing:-.01em;color:#FBF9F4;margin:0;max-width:14ch;}
+.rv-os-hero__sub{font:400 16px/1.65 var(--rv-sans);color:rgba(244,241,234,.9);max-width:520px;margin:26px 0 0;}
+/* Split */
+.rv-os-split{padding:108px 32px;display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center;}
+.rv-os-split--rev{grid-template-columns:1.05fr 1fr;}
+.rv-os-img-portrait{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;display:block;}
+/* Ethos */
+.rv-os-ethos{background:var(--rv-deep);max-width:none;text-align:center;padding:96px 32px;}
+.rv-os-ethos__mark{color:var(--rv-star);font-size:16px;margin-bottom:26px;}
+.rv-os-ethos__quote{font-family:var(--rv-serif);font-style:italic;font-weight:500;font-size:clamp(26px,3.6vw,46px);line-height:1.28;color:#FBF9F4;margin:0 auto;max-width:900px;}
+/* Pillars */
+.rv-os-pillars{padding:104px 32px 84px;}
+.rv-os-pillars .rv-os-center{margin-bottom:56px;}
+.rv-os-pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;}
+.rv-os-pillar__num{font-family:var(--rv-serif);font-size:38px;color:var(--rv-clay);font-weight:500;margin-bottom:14px;}
+.rv-os-pillar__title{font-family:var(--rv-serif);font-size:24px;color:var(--rv-char);font-weight:500;margin-bottom:12px;}
+.rv-os-pillar__desc{font:400 14px/1.7 var(--rv-sans);color:var(--rv-soft);margin:0;}
+/* Craft */
+.rv-os-craft{background:var(--rv-bone-2);}
+.rv-os-craft__media{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.rv-os-img-tall{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:3px;display:block;}
+.rv-os-img-offset{margin-top:36px;}
+.rv-os-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;}
+.rv-os-stat__num{font-family:var(--rv-serif);font-size:30px;color:var(--rv-char);font-weight:500;line-height:1;border-top:1px solid var(--rv-grey-soft);padding-top:14px;}
+.rv-os-stat__label{font:400 13px/1.5 var(--rv-sans);color:var(--rv-grey-2);margin-top:6px;}
+/* Founder */
+.rv-os-founder{padding:104px 32px;text-align:center;max-width:880px;}
+.rv-os-founder__img{width:120px;height:120px;border-radius:999px;object-fit:cover;margin:0 auto 28px;display:block;}
+.rv-os-founder__quote{font-family:var(--rv-serif);font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.4;color:var(--rv-char);margin:0 0 28px;}
+.rv-os-founder__sig{font-family:var(--rv-serif);font-style:italic;font-size:26px;color:var(--rv-char);margin-bottom:6px;}
+.rv-os-founder .rv-os-eyebrow{color:var(--rv-grey-2);}
+/* CTA */
+.rv-os-cta{background:var(--rv-blush);padding:84px 0;}
+.rv-os-cta__sub{font:400 16px/1.6 var(--rv-sans);color:var(--rv-soft);margin:0 auto 30px;max-width:440px;}
+.rv-os-cta__btn{display:inline-flex;align-items:center;gap:12px;background:var(--rv-clay);color:#FBF9F4;text-decoration:none;font:600 13px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;padding:18px 34px;border-radius:2px;}
+@media(max-width:900px){
+  .rv-os-split,.rv-os-split--rev{grid-template-columns:1fr;gap:40px;}
+  .rv-os-pillar-grid{grid-template-columns:1fr 1fr;gap:32px;}
+}
+@media(max-width:600px){.rv-os-pillar-grid{grid-template-columns:1fr;}.rv-os-craft__media{grid-template-columns:1fr;}.rv-os-img-offset{margin-top:0;}}
+</style>
+
+{% schema %}
+{"name":"Our Story","tag":"section","settings":[
+{"type":"header","content":"Hero"},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Our Story"},
+{"type":"image_picker","id":"hero_image","label":"Hero image"},
+{"type":"text","id":"hero_heading","label":"Hero heading","default":"Beauty, kept beautifully."},
+{"type":"textarea","id":"hero_sub","label":"Hero subtext","default":"A considered collection of beauty, skincare and elegant essentials — designed to make your everyday rituals feel a little more luxurious."},
+{"type":"header","content":"Origin"},
+{"type":"image_picker","id":"origin_image","label":"Origin image"},
+{"type":"text","id":"origin_eyebrow","label":"Eyebrow","default":"How it began"},
+{"type":"text","id":"origin_heading","label":"Heading","default":"It started with the things we reach for every day."},
+{"type":"richtext","id":"origin_body","label":"Body","default":"<p>Rare Velvet began with a simple frustration: the products we used daily rarely felt as considered as the rituals they were part of. Beautiful things, scattered across too many brands.</p><p>So we set out to build one place for the well-made and the everyday-luxurious — beauty, skincare and elegant essentials, each chosen for how it looks, feels and lasts. Curated by editors, not algorithms.</p>"},
+{"type":"header","content":"Ethos quote"},
+{"type":"textarea","id":"ethos_quote","label":"Quote","default":"We believe the small moments — a morning routine, a piece you reach for, the way it's kept — deserve to feel like a quiet luxury."},
+{"type":"text","id":"ethos_author","label":"Attribution","default":"The Rare Velvet philosophy"},
+{"type":"header","content":"Pillars"},
+{"type":"text","id":"pillars_eyebrow","label":"Eyebrow","default":"What we stand for"},
+{"type":"text","id":"pillars_heading","label":"Heading","default":"Four things, in everything we make"},
+{"type":"header","content":"Craft"},
+{"type":"text","id":"craft_eyebrow","label":"Eyebrow","default":"Curated, not catalogued"},
+{"type":"text","id":"craft_heading","label":"Heading","default":"Every piece is chosen by hand"},
+{"type":"richtext","id":"craft_body","label":"Body","default":"<p>We don't list everything — we choose. Each product is tested for material, wear and finish, and only the ones we'd keep for ourselves make the edit.</p>"},
+{"type":"image_picker","id":"craft_image_1","label":"Craft image 1"},
+{"type":"image_picker","id":"craft_image_2","label":"Craft image 2"},
+{"type":"header","content":"Founder note"},
+{"type":"image_picker","id":"founder_image","label":"Founder image"},
+{"type":"textarea","id":"founder_quote","label":"Founder quote","default":"I wanted a brand that treated the everyday with a little more care — where the things you use and the way you keep them both feel like a small luxury. That's Rare Velvet."},
+{"type":"text","id":"founder_signoff","label":"Sign-off","default":"With love,"},
+{"type":"text","id":"founder_name","label":"Name","default":"The Rare Velvet Team"},
+{"type":"header","content":"CTA band"},
+{"type":"text","id":"cta_heading","label":"Heading","default":"Explore the edit"},
+{"type":"textarea","id":"cta_sub","label":"Subtext","default":"Discover the pieces our editors reach for — beauty, skincare and elegant essentials, all in one place."},
+{"type":"text","id":"cta_label","label":"Button label","default":"Shop Best Sellers →"},
+{"type":"url","id":"cta_link","label":"Button link"}
+],"blocks":[
+{"type":"pillar","name":"Pillar","settings":[
+{"type":"text","id":"number","label":"Number","default":"01"},
+{"type":"text","id":"title","label":"Title","default":"Beauty"},
+{"type":"textarea","id":"description","label":"Description","default":"Skincare and beauty chosen for results and for how they feel."}
+]},
+{"type":"stat","name":"Craft stat","settings":[
+{"type":"text","id":"stat","label":"Stat","default":"24h"},
+{"type":"text","id":"label","label":"Label","default":"Dispatch on most orders"}
+]}
+],"presets":[{"name":"Our Story","blocks":[
+{"type":"pillar","settings":{"number":"01","title":"Beauty","description":"Skincare and beauty chosen for results and for how they feel on your shelf."}},
+{"type":"pillar","settings":{"number":"02","title":"Organization","description":"Storage and essentials that bring calm and order to your everyday."}},
+{"type":"pillar","settings":{"number":"03","title":"Self-Care","description":"Pieces that turn an ordinary routine into a ritual worth slowing down for."}},
+{"type":"pillar","settings":{"number":"04","title":"Everyday Luxury","description":"Considered details and lasting quality, at a price that still feels kind."}},
+{"type":"stat","settings":{"stat":"Editor-led","label":"Every piece hand-selected"}},
+{"type":"stat","settings":{"stat":"24h","label":"Dispatch on most orders"}},
+{"type":"stat","settings":{"stat":"30-day","label":"Easy returns"}},
+{"type":"stat","settings":{"stat":"Lifetime","label":"Warranty on jewelry boxes"}}
+]}]}
+{% endschema %}

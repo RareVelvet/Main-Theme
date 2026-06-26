@@ -1,0 +1,5 @@
+# Shopify theme-check config
+root: "."
+ignore:
+  - design-reference/**
+  - docs/**

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+:root{
+  --bone:#F4F1EA;--bone-2:#ECE7DD;--paper:#FBF9F4;
+  --grey:#8B8680;--grey-2:#6E6A64;--line:#DAD4CB;
+  --char:#2B2A27;--soft:#56524C;
+  --deep:#3B3833;--deep-soft:#B8B2A8;--deep-line:rgba(244,241,234,.16);
+  --butter:#F2E6C2;--butter-2:#E2CB92;--clay:#B0795C;--clay-2:#9A6446;
+  --blush:#E9D9D2;--star:#C2A24E;
+  --rv-serif:'Cormorant Garamond',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif;
+}
+image-slot{display:block;}
+.zoomf{overflow:hidden;border-radius:4px;position:relative;}
+.zoomf image-slot{transition:transform .3s cubic-bezier(.2,.7,.2,1);will-change:transform;}
+.zoomf.is-zooming image-slot{transition:none;}
+@media(hover:hover){.zoomf{cursor:zoom-in;}}
+.lng-lightbox{position:fixed;inset:0;z-index:300;background:rgba(43,42,39,.92);display:none;align-items:center;justify-content:center;}
+.lng-lightbox.is-open{display:flex;}
+.lng-lightbox__inner{position:relative;width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch;display:flex;align-items:center;justify-content:center;}
+.lng-lightbox__img{min-width:100%;min-height:100%;object-fit:contain;}
+.lng-lightbox__close{position:absolute;top:18px;right:18px;z-index:2;background:rgba(251,249,244,.92);border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer;color:var(--char);}
+.lng-lightbox__hint{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:rgba(244,241,234,.7);font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;}
+.acc summary{list-style:none;}.acc summary::-webkit-details-marker{display:none;}
+.acc[open] .accx{transform:rotate(45deg);}
+</style>
+</helmet>
+<div data-screen-label="Lounge PDP" style="background:var(--bone);font-family:var(--sans);color:var(--char);width:100%;overflow-x:hidden;">
+
+  <!-- ANNOUNCEMENT -->
+  <div style="background:var(--char);color:var(--bone);text-align:center;font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:9px 16px;">Complimentary shipping over $50 · Easy 30-day returns</div>
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:90;background:rgba(244,241,234,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 40px;">
+      <nav style="display:flex;gap:34px;font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--char);"><span style="cursor:pointer;">Lounge</span><span style="cursor:pointer;">Beauty</span><span style="cursor:pointer;">Jewelry</span></nav>
+      <div style="text-align:center;font-family:var(--rv-serif);font-size:30px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;line-height:1;">Rare Velvet</div>
+      <div style="display:flex;gap:28px;justify-content:flex-end;font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--char);"><span style="cursor:pointer;">Search</span><span style="cursor:pointer;">Bag (0)</span></div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div style="max-width:1320px;margin:0 auto;padding:18px 32px 0;font:400 12px/1 var(--sans);color:var(--grey);">Home / Lounge / <span style="color:var(--char);">The Velvet Lounge Set</span></div>
+
+  <!-- ===== MAIN: GALLERY + BUY BOX ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:24px 32px 64px;display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;">
+
+    <!-- GALLERY — editorial stacked -->
+    <div>
+      <div class="zoomf" style="position:relative;cursor:zoom-in;margin-bottom:10px;background:var(--bone-2);">
+        <image-slot id="lng-g1" shape="rect" placeholder="Lead — model wearing the lounge set, soft daylight" style="width:100%;aspect-ratio:4/5;"></image-slot>
+        <span style="position:absolute;top:16px;left:16px;background:var(--paper);color:var(--char);font:700 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:999px;">New In</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="zoomf" style="background:var(--bone-2);"><image-slot id="lng-g2" shape="rect" placeholder="Fabric detail — texture close-up" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+        <div class="zoomf" style="background:var(--bone-2);"><image-slot id="lng-g3" shape="rect" placeholder="Back / movement shot" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+        <div class="zoomf" style="background:var(--bone-2);"><image-slot id="lng-g4" shape="rect" placeholder="Styled — full look" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+        <div class="zoomf" style="background:var(--bone-2);"><image-slot id="lng-g5" shape="rect" placeholder="Lifestyle — at home, relaxed" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+      </div>
+    </div>
+
+    <!-- BUY BOX -->
+    <div>
+      <div style="font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">The Lounge Edit</div>
+      <h1 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(34px,4vw,52px);line-height:1.02;letter-spacing:-.01em;margin:0 0 8px;">The Velvet Lounge Set</h1>
+      <div style="font-family:var(--rv-serif);font-style:italic;font-size:19px;color:var(--soft);margin-bottom:16px;">Brushed modal · cropped tee &amp; wide-leg pant</div>
+
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+        <span style="color:var(--star);letter-spacing:2px;font-size:14px;">★★★★★</span>
+        <span style="font:400 13px/1 var(--sans);color:var(--soft);">4.8</span>
+        <span style="color:var(--line);">·</span>
+        <span style="font:400 13px/1 var(--sans);color:var(--soft);border-bottom:1px solid var(--line);cursor:pointer;">416 reviews</span>
+      </div>
+
+      <div style="font:600 24px/1 var(--sans);margin-bottom:22px;">$128</div>
+
+      <!-- COLOR -->
+      <div style="margin-bottom:22px;">
+        <div style="font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--char);margin-bottom:10px;">Colour — <span style="color:var(--soft);font-weight:400;text-transform:none;letter-spacing:0;">{{ activeColor }}</span></div>
+        <div style="display:flex;gap:10px;">
+          <sc-for list="{{ colors }}" as="c" hint-placeholder-count="3">
+            <div onClick="{{ c.select }}" title="{{ c.name }}" style="width:34px;height:34px;border-radius:999px;background:{{ c.hex }};cursor:pointer;box-shadow:0 0 0 {{ c.ring }};"></div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- SIZE -->
+      <div style="margin-bottom:14px;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px;">
+          <div style="font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--char);">Size</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="5">
+            <div onClick="{{ s.select }}" style="min-width:54px;text-align:center;border:{{ s.bd }};border-radius:2px;padding:12px 10px;cursor:pointer;font:500 13px/1 var(--sans);color:{{ s.fg }};background:{{ s.bg }};">{{ s.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- ATC -->
+      <button style="width:100%;background:var(--clay);color:#FBF9F4;border:none;cursor:pointer;font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:18px;border-radius:2px;margin-bottom:10px;">Add to bag · $128</button>
+      <button style="width:100%;background:transparent;color:var(--char);border:1px solid var(--char);cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px;border-radius:2px;margin-bottom:20px;">♡ Save for later</button>
+
+      <!-- micro trust -->
+      <div style="display:flex;gap:18px;flex-wrap:wrap;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:22px;">
+        <span style="display:flex;align-items:center;gap:7px;font:500 12px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">✓</span>Ships in 24h</span>
+        <span style="display:flex;align-items:center;gap:7px;font:500 12px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">↺</span>Free 30-day returns</span>
+        <span style="display:flex;align-items:center;gap:7px;font:500 12px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">🔒</span>Secure checkout</span>
+      </div>
+
+      <!-- why love -->
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:22px;">
+        <sc-for list="{{ love }}" as="l" hint-placeholder-count="3">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="width:30px;height:30px;border-radius:999px;background:var(--blush);color:var(--clay-2);display:flex;align-items:center;justify-content:center;flex:none;font-size:14px;">{{ l.icon }}</span>
+            <div><div style="font:600 14px/1.3 var(--sans);color:var(--char);">{{ l.title }}</div><div style="font:400 13px/1.5 var(--sans);color:var(--soft);">{{ l.desc }}</div></div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- complete the set (in buy box) -->
+      <div style="border:1px solid var(--line);border-radius:4px;padding:20px;margin-bottom:22px;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;gap:12px;">
+          <div style="font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--char);">Complete the set</div>
+          <span style="font:600 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--clay-2);background:var(--blush);border-radius:999px;padding:5px 10px;">Save 10%</span>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:16px;align-items:center;">
+          <sc-for list="{{ setItems }}" as="s" hint-placeholder-count="3">
+            <div style="text-align:center;">
+              <div style="width:62px;height:76px;border-radius:2px;overflow:hidden;border:1px solid var(--line);margin-bottom:5px;"><image-slot id="{{ s.id }}" shape="rect" placeholder="{{ s.ph }}" style="width:100%;height:100%;"></image-slot></div>
+              <div style="font:400 10px/1.3 var(--sans);color:var(--soft);">{{ s.name }}<br>{{ s.price }}</div>
+            </div>
+            <sc-if value="{{ s.plus }}" hint-placeholder-val="{{ true }}"><span style="font-family:var(--rv-serif);font-size:22px;color:var(--grey-2);">+</span></sc-if>
+          </sc-for>
+        </div>
+        <button style="width:100%;background:transparent;color:var(--char);border:1px solid var(--char);cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;height:46px;border-radius:2px;">Add the set · $225 — save $25</button>
+        <div style="font:400 11px/1.4 var(--sans);color:var(--grey-2);text-align:center;margin-top:10px;">10% applied automatically with code LOUNGE10</div>
+      </div>
+
+      <!-- accordions -->
+      <sc-for list="{{ accordions }}" as="a" hint-placeholder-count="3">
+        <details class="acc" style="border-top:1px solid var(--line);">
+          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;cursor:pointer;font:500 14px/1.3 var(--sans);color:var(--char);">{{ a.title }}<span class="accx" style="font-size:20px;color:var(--grey-2);transition:transform .2s;flex:none;">+</span></summary>
+          <div style="padding:0 0 18px;font:400 13px/1.7 var(--sans);color:var(--soft);">{{ a.body }}</div>
+        </details>
+      </sc-for>
+      <div style="border-top:1px solid var(--line);"></div>
+    </div>
+  </section>
+
+  <!-- ===== SHOP THE LOOK ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:88px 32px 40px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;">
+      <div>
+        <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">Complete the look</div>
+        <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(26px,3vw,40px);margin:0;">Style it with</h2>
+      </div>
+      <span style="font:500 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--soft);padding-bottom:4px;cursor:pointer;">Shop all lounge →</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <sc-for list="{{ look }}" as="p" hint-placeholder-count="4">
+        <div>
+          <div style="border-radius:3px;overflow:hidden;background:var(--bone-2);margin-bottom:14px;position:relative;">
+            <image-slot id="{{ p.id }}" shape="rect" placeholder="{{ p.ph }}" style="width:100%;aspect-ratio:4/5;"></image-slot>
+            <button style="position:absolute;left:12px;right:12px;bottom:12px;background:var(--paper);color:var(--char);border:1px solid var(--char);cursor:pointer;font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:11px;border-radius:2px;">Quick add</button>
+          </div>
+          <div style="font:500 14px/1.3 var(--sans);color:var(--char);">{{ p.name }}</div>
+          <div style="font-family:var(--rv-serif);font-style:italic;font-size:14px;color:var(--grey-2);">{{ p.cat }}</div>
+          <div style="font:600 13px/1 var(--sans);color:var(--char);margin-top:4px;">{{ p.price }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS (Loox) ===== -->
+  <section id="reviews" style="max-width:1320px;margin:0 auto;padding:64px 32px 72px;border-top:1px solid var(--line);">
+    <div style="font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Reviews</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin:0 0 28px;flex-wrap:wrap;gap:12px;">
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3vw,40px);margin:0;">What customers say</h2>
+      <span style="font:500 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Powered by Loox ◆</span>
+    </div>
+    <div style="display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:center;padding:24px 0 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:32px;">
+      <div style="text-align:center;">
+        <div style="font-family:var(--rv-serif);font-size:52px;line-height:1;font-weight:500;margin-bottom:6px;">4.8</div>
+        <div style="color:var(--star);letter-spacing:2px;font-size:15px;margin-bottom:6px;">★★★★★</div>
+        <div style="font:400 12px/1 var(--sans);color:var(--soft);">Based on 416 reviews</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <sc-for list="{{ dist }}" as="d" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font:400 11px/1 var(--sans);color:var(--soft);width:48px;">{{ d.s }}</span><div style="flex:1;height:6px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:{{ d.w }};height:100%;background:var(--star);"></div></div><span style="font:400 11px/1 var(--sans);color:var(--soft);width:40px;text-align:right;">{{ d.n }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+      <sc-for list="{{ reviews }}" as="rv" hint-placeholder-count="3">
+        <div style="border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;">
+          <image-slot id="{{ rv.photo }}" shape="rect" placeholder="Review photo" style="width:100%;aspect-ratio:4/3;"></image-slot>
+          <div style="padding:18px 20px;display:flex;flex-direction:column;flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="color:var(--star);letter-spacing:1px;font-size:12px;">★★★★★</span><span style="font:400 11px/1 var(--sans);color:var(--soft);">{{ rv.when }}</span></div>
+            <div style="font:600 13px/1.3 var(--sans);color:var(--char);margin-bottom:8px;">{{ rv.headline }}</div>
+            <p style="font:400 14px/1.6 var(--sans);color:var(--soft);margin:0 0 16px;">{{ rv.body }}</p>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:auto;"><span style="font:600 12px/1 var(--sans);color:var(--char);">{{ rv.name }}</span><span style="font:500 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:4px 7px;border-radius:999px;">Verified</span></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== YOU MAY ALSO LIKE ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:0 32px 88px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;">
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(26px,3vw,40px);margin:0;">You may also like</h2>
+      <span style="font:500 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--soft);padding-bottom:4px;cursor:pointer;">All lounge →</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <sc-for list="{{ also }}" as="a" hint-placeholder-count="4">
+        <div>
+          <div style="border-radius:3px;overflow:hidden;background:var(--bone-2);margin-bottom:14px;"><image-slot id="{{ a.id }}" shape="rect" placeholder="{{ a.ph }}" style="width:100%;aspect-ratio:4/5;"></image-slot></div>
+          <div style="font:500 14px/1.3 var(--sans);color:var(--char);">{{ a.name }}</div>
+          <div style="font-family:var(--rv-serif);font-style:italic;font-size:14px;color:var(--grey-2);">{{ a.cat }}</div>
+          <div style="font:600 13px/1 var(--sans);color:var(--char);margin-top:4px;">{{ a.price }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:var(--deep);color:var(--bone);">
+    <div style="max-width:1320px;margin:0 auto;padding:64px 32px 48px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;">
+      <div>
+        <div style="font-family:var(--rv-serif);font-weight:500;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#FBF9F4;margin-bottom:16px;">Rare Velvet</div>
+        <p style="font:400 14px/1.7 var(--sans);color:var(--deep-soft);max-width:300px;margin:0 0 22px;">Beauty. Organization. Everyday Luxury. Curated essentials for your daily rituals.</p>
+        <div style="display:flex;gap:12px;">
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3a5.4 5.4 0 0 0 4.5 4.5v3a8.3 8.3 0 0 1-4.5-1.4v6.6a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v3.2a3 3 0 1 0 2.1 2.9V3h3.2z"/></svg></a>
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.5 2 4 5.66 4 8.74c0 1.86.7 3.52 2.22 4.14.25.1.47 0 .54-.27l.22-.86c.07-.27.04-.37-.16-.6-.43-.5-.7-1.16-.7-2.08 0-2.68 2-5.08 5.22-5.08 2.85 0 4.41 1.74 4.41 4.06 0 3.06-1.35 5.64-3.36 5.64-1.11 0-1.94-.92-1.67-2.04.32-1.35.93-2.8.93-3.77 0-.87-.47-1.6-1.43-1.6-1.13 0-2.05 1.18-2.05 2.75 0 1 .34 1.68.34 1.68l-1.36 5.76c-.27 1.15-.09 2.57.02 3.32.05.32.4.4.6.14 1.07-1.5 1.5-3.05 1.84-4.38.12-.46.66-2.6.66-2.6.35.67 1.38 1.26 2.47 1.26 3.25 0 5.46-2.97 5.46-6.94C20.08 4.93 17.4 2 12.04 2z"/></svg></a>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+        <div>
+          <div style="font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--butter);margin-bottom:18px;">{{ col.head }}</div>
+          <sc-for list="{{ col.links }}" as="lk" hint-placeholder-count="4">
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:13px;cursor:pointer;">{{ lk }}</div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border-top:1px solid var(--deep-line);">
+      <div style="max-width:1320px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+        <span style="font:400 12px/1 var(--sans);color:rgba(244,241,234,.5);letter-spacing:.04em;">© 2026 Rare Velvet. All rights reserved.</span>
+        <div style="display:flex;gap:8px;">
+          <sc-for list="{{ pays }}" as="pay" hint-placeholder-count="4">
+            <span style="font:600 9px/1 var(--sans);letter-spacing:.08em;color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 8px;">{{ pay }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="overflow:hidden;padding:0 24px;max-height:.74em;display:flex;justify-content:center;border-top:1px solid var(--deep-line);">
+      <div style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(72px,15vw,240px);line-height:1;letter-spacing:.01em;color:#FBF9F4;text-transform:uppercase;white-space:nowrap;transform:translateY(-.04em);">Rare Velvet</div>
+    </div>
+  </footer>
+
+  <!-- STICKY ATC -->
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(251,249,244,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <div style="display:flex;align-items:center;gap:14px;min-width:0;">
+      <div style="width:44px;height:44px;border-radius:3px;overflow:hidden;flex:none;background:var(--bone-2);"><image-slot id="lng-sticky" shape="rect" placeholder="thumb" style="width:100%;height:100%;"></image-slot></div>
+      <div style="min-width:0;"><div style="font:600 13px/1.2 var(--sans);color:var(--char);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">The Velvet Lounge Set</div><div style="font:400 12px/1 var(--sans);color:var(--soft);">$128 · ★★★★★ 416</div></div>
+    </div>
+    <button style="background:var(--clay);color:#FBF9F4;border:none;cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px 30px;border-radius:2px;white-space:nowrap;flex:none;">Add to bag</button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { color: 0, size: 1 };
+
+  componentDidMount() {
+    this._initZoom();
+  }
+
+  _initZoom() {
+    const isTouch = window.matchMedia('(hover:none)').matches;
+    const frames = document.querySelectorAll('.zoomf');
+    if (!frames.length) { setTimeout(() => this._initZoom(), 200); return; }
+
+    let lb = document.querySelector('.lng-lightbox');
+    if (!lb) {
+      lb = document.createElement('div');
+      lb.className = 'lng-lightbox';
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'lng-lightbox__close';
+      closeBtn.setAttribute('aria-label', 'Close');
+      closeBtn.textContent = '\u00d7';
+      const inner = document.createElement('div');
+      inner.className = 'lng-lightbox__inner';
+      const hint = document.createElement('div');
+      hint.className = 'lng-lightbox__hint';
+      hint.textContent = isTouch ? 'Pinch to zoom \u00b7 tap to close' : 'Scroll to explore \u00b7 click to close';
+      lb.appendChild(closeBtn); lb.appendChild(inner); lb.appendChild(hint);
+      document.body.appendChild(lb);
+      const close = () => { lb.classList.remove('is-open'); document.body.style.overflow = ''; };
+      closeBtn.addEventListener('click', close);
+      inner.addEventListener('click', (e) => { if (e.target === inner) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    }
+    const inner = lb.querySelector('.lng-lightbox__inner');
+    const openLB = (srcImg) => {
+      inner.innerHTML = '';
+      const clone = srcImg.cloneNode(true);
+      clone.className = 'lng-lightbox__img';
+      clone.style.transform = ''; clone.style.transformOrigin = 'center';
+      inner.appendChild(clone);
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    frames.forEach((f) => {
+      const img = f.querySelector('image-slot');
+      if (!img) return;
+      if (!isTouch) {
+        f.addEventListener('mouseenter', () => { f.classList.add('is-zooming'); img.style.transform = 'scale(2.2)'; });
+        f.addEventListener('mousemove', (e) => {
+          const r = f.getBoundingClientRect();
+          const x = ((e.clientX - r.left) / r.width) * 100;
+          const y = ((e.clientY - r.top) / r.height) * 100;
+          img.style.transformOrigin = x + '% ' + y + '%';
+        });
+        f.addEventListener('mouseleave', () => { f.classList.remove('is-zooming'); img.style.transform = ''; img.style.transformOrigin = 'center'; });
+      }
+      f.addEventListener('click', () => openLB(img));
+    });
+  }
+
+  renderVals() {
+    const colorsRaw = [
+      { name: 'Oat', hex: '#E6DCC8' },
+      { name: 'Clay', hex: '#B0795C' },
+      { name: 'Charcoal', hex: '#3B3833' },
+    ];
+    const colors = colorsRaw.map((c, i) => ({
+      ...c,
+      select: () => this.setState({ color: i }),
+      ring: i === this.state.color ? '2px var(--char)' : '1px var(--line)',
+    }));
+    const sizesRaw = ['XS', 'S', 'M', 'L', 'XL'];
+    const sizes = sizesRaw.map((label, i) => ({
+      label,
+      select: () => this.setState({ size: i }),
+      bd: i === this.state.size ? '1.5px solid var(--char)' : '1px solid var(--line)',
+      bg: i === this.state.size ? 'var(--char)' : 'transparent',
+      fg: i === this.state.size ? '#FBF9F4' : 'var(--char)',
+    }));
+    return {
+      colors, sizes,
+      activeColor: colorsRaw[this.state.color].name,
+      love: [
+        { icon: '☁', title: 'Cloud-soft handfeel', desc: 'Brushed modal with a hint of stretch — softer than cotton, never clingy.' },
+        { icon: '✦', title: 'Day-to-night versatile', desc: 'Polished enough for a coffee run, relaxed enough to melt into the sofa.' },
+        { icon: '♺', title: 'Holds its shape', desc: 'Colour-fast and pill-resistant, wash after wash.' },
+      ],
+      accordions: [
+        { title: 'Fit & sizing', body: 'Relaxed, true-to-size fit. Cropped tee sits at high hip; wide-leg pant has an elastic drawstring waist. Between sizes? Size down for a closer fit. Model is 5\u20199\u201d / 175cm in size S.' },
+        { title: 'Fabric & care', body: '92% TENCEL\u2122 modal, 8% elastane. Machine wash cold on gentle, lay flat to dry, cool iron if needed. Do not bleach.' },
+        { title: 'Shipping & returns', body: 'Ships within 24h. Complimentary shipping over $50. Easy 30-day returns on unworn items with tags attached.' },
+      ],
+      fabricPoints: [
+        { title: 'TENCEL\u2122 modal', desc: 'Sustainably sourced, breathable fibre' },
+        { title: '4-way stretch', desc: 'Moves with you, holds its shape' },
+        { title: 'Pre-washed', desc: 'Pre-shrunk and softened' },
+        { title: 'Oeko-Tex\u2122', desc: 'Certified free from harmful substances' },
+      ],
+      setItems: [
+        { id: 'set-1', ph: 'Lounge set', name: 'Lounge Set', price: '$128', plus: true },
+        { id: 'set-2', ph: 'Robe', name: 'Modal Robe', price: '$98', plus: true },
+        { id: 'set-3', ph: 'Socks', name: 'Cashmere Socks', price: '$24', plus: false },
+      ],
+      look: [
+        { id: 'lk-1', ph: 'Robe', name: 'Brushed Modal Robe', cat: 'Lounge', price: '$98' },
+        { id: 'lk-2', ph: 'Socks', name: 'Cashmere-Blend Socks', cat: 'Accessories', price: '$24' },
+        { id: 'lk-3', ph: 'Slippers', name: 'Velvet Slippers', cat: 'Footwear', price: '$48' },
+        { id: 'lk-4', ph: 'Scrunchie', name: 'Silk Scrunchie Set', cat: 'Accessories', price: '$18' },
+      ],
+      dist: [
+        { s: '5 stars', w: '86%', n: '358' },
+        { s: '4 stars', w: '11%', n: '46' },
+        { s: '3 stars', w: '3%', n: '12' },
+      ],
+      reviews: [
+        { photo: 'lng-r1', when: '5 days ago', headline: 'So soft I bought two', body: '"The fabric is unreal — drapes beautifully and somehow looks put-together even though it feels like pyjamas."', name: 'Sofia L.' },
+        { photo: 'lng-r2', when: '2 weeks ago', headline: 'My new uniform', body: '"True to size, relaxed but not sloppy. I\u2019ve worn the set three times this week already."', name: 'Hannah B.' },
+        { photo: 'lng-r3', when: '1 month ago', headline: 'Worth it', body: '"Washed it five times and it still looks brand new. The clay colour is gorgeous in person."', name: 'Priya R.' },
+      ],
+      also: [
+        { id: 'al-1', ph: 'Knit set', name: 'Ribbed Knit Lounge Set', cat: 'Lounge', price: '$138' },
+        { id: 'al-2', ph: 'Wrap', name: 'Oversized Wrap Cardigan', cat: 'Lounge', price: '$112' },
+        { id: 'al-3', ph: 'Joggers', name: 'Tapered Lounge Joggers', cat: 'Lounge', price: '$88' },
+        { id: 'al-4', ph: 'Tank', name: 'Modal Lounge Tank', cat: 'Lounge', price: '$42' },
+      ],
+      footerCols: [
+        { head: 'Customer Care', links: ['Contact', 'Shipping', 'Returns', 'FAQ'] },
+        { head: 'Company', links: ['Our Story', 'Journal', 'Affiliates'] },
+        { head: 'Policies', links: ['Privacy Policy', 'Refund Policy', 'Terms of Service', 'Shipping Policy'] },
+      ],
+      pays: ['VISA', 'AMEX', 'PAYPAL', 'SHOP PAY'],
+    };
+  }
+}
+</script>
+</body>
+</html>

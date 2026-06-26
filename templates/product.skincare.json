@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "product_main_0": {
+      "type": "rv-product-main"
+    },
+    "product_benefits_1": {
+      "type": "rv-product-benefits"
+    },
+    "product_ingredients_2": {
+      "type": "rv-product-ingredients"
+    },
+    "results_strip_3": {
+      "type": "rv-results-strip"
+    },
+    "product_how_to_use_4": {
+      "type": "rv-product-how-to-use"
+    },
+    "product_fbt_5": {
+      "type": "rv-product-fbt"
+    },
+    "product_ugc_strip_6": {
+      "type": "rv-product-ugc-strip"
+    },
+    "product_accordions_7": {
+      "type": "rv-product-accordions"
+    },
+    "product_reviews_8": {
+      "type": "rv-product-reviews"
+    },
+    "recently_viewed_9": {
+      "type": "rv-recently-viewed"
+    },
+    "product_crosssell_10": {
+      "type": "rv-product-crosssell"
+    }
+  },
+  "order": [
+    "product_main_0",
+    "product_benefits_1",
+    "product_ingredients_2",
+    "results_strip_3",
+    "product_how_to_use_4",
+    "product_fbt_5",
+    "product_ugc_strip_6",
+    "product_accordions_7",
+    "product_reviews_8",
+    "recently_viewed_9",
+    "product_crosssell_10"
+  ]
+}

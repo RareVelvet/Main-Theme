@@ -1,0 +1,47 @@
+
+<section class="rv-pdp-section">
+  <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:32px;align-items:start;">
+    <div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3vw,42px);color:var(--rv-char);margin:0 0 26px;">{{ section.settings.heading }}</h2>
+      <div style="border-top:1px solid var(--rv-line);">
+        {%- for block in section.blocks -%}
+          <div class="rv-pdp-included-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 200 | image_tag: loading: 'lazy', style: 'width:74px;height:74px;object-fit:cover;', alt: block.settings.name }}
+            {%- else -%}
+              <div class="rv-placeholder-img" style="width:74px;height:74px;">{{ 'product-1' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+            <div style="flex:1;">
+              <div class="rv-pdp-included-item__name">{{ block.settings.name }}</div>
+              <div class="rv-pdp-included-item__desc">{{ block.settings.description }}</div>
+            </div>
+            <div style="text-align:right;flex:none;">
+              <div class="rv-pdp-included-item__size">{{ block.settings.size }}</div>
+              <div class="rv-pdp-included-item__value">{{ block.settings.value }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="rv-pdp-value-box" style="position:sticky;top:96px;">
+      <p class="rv-eyebrow" style="color:var(--rv-butter);">The value</p>
+      <div class="rv-pdp-value-row"><span class="rv-pdp-value-row__label">{{ section.settings.count_label }}</span><span class="rv-pdp-value-row__val" style="text-decoration:line-through;">{{ section.settings.price_was }}</span></div>
+      <div class="rv-pdp-value-row"><span class="rv-pdp-value-row__label">Bundle price</span><span style="font-family:var(--rv-serif);font-size:30px;color:var(--rv-bone);font-weight:500;">{{ section.settings.bundle_price }}</span></div>
+      <div class="rv-pdp-save-row"><span class="rv-pdp-save-row__label">You save</span><span class="rv-pdp-save-row__val">{{ section.settings.save_amount }}</span></div>
+      <button class="rv-btn rv-btn--primary rv-btn--full" onclick="document.getElementById('rv-product-form').querySelector('[name=add]').click();">Add the set · {{ section.settings.bundle_price }}</button>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Bundle Included","tag":"section","max_blocks":6,"settings":[
+{"type":"text","id":"heading","label":"Heading","default":"Five pieces, one evening ritual"},
+{"type":"text","id":"count_label","label":"Count label","default":"5 pieces, total value"},
+{"type":"text","id":"price_was","label":"Total retail value (e.g. $196)","default":"$196"},
+{"type":"text","id":"bundle_price","label":"Bundle price (e.g. $148)","default":"$148"},
+{"type":"text","id":"save_amount","label":"Amount saved (e.g. Save $48)","default":"$48"}
+],"blocks":[{"type":"included_item","name":"Included item","settings":[
+{"type":"image_picker","id":"image","label":"Item image"},
+{"type":"text","id":"name","label":"Item name","default":"Velvet Glow Serum"},
+{"type":"textarea","id":"description","label":"Item description","default":"Hyaluronic + vitamin C for overnight glow."},
+{"type":"text","id":"size","label":"Size / qty","default":"Full · 30ml"},
+{"type":"text","id":"value","label":"Retail value","default":"$42"}
+]}],"presets":[{"name":"Bundle Included"}]}{% endschema %}

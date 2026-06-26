@@ -1,0 +1,171 @@
+
+{%- if section.settings.use_loox -%}
+<section class="rv-pdp-section" style="border-top:1px solid var(--rv-line);padding-top:48px;margin-bottom:60px;">
+  <div class="rv-container">
+    <div style="text-align:center;margin-bottom:8px;"><p class="rv-eyebrow">{{ section.settings.heading }}</p></div>
+    <!-- Loox reviews widget (auto-populates from your live reviews) -->
+    <div id="looxReviews" data-product-id="{{ product.id }}"></div>
+  </div>
+</section>
+{%- else -%}
+<section class="rv-pdp-band">
+  <div class="rv-pdp-band__inner">
+    <div class="rv-pdp-reviews">
+      <div>
+        <p class="rv-eyebrow" style="color:var(--rv-butter);">{{ section.settings.heading }}</p>
+        <div style="display:flex;align-items:baseline;gap:12px;">
+          <span class="rv-pdp-rating-big">{{ section.settings.rating }}</span>
+          <span class="rv-stars" style="font-size:18px;">★★★★★</span>
+        </div>
+        <p style="font:400 13px/1 var(--rv-sans);color:var(--rv-deep-soft);margin:10px 0 24px;">Based on {{ section.settings.review_count }} verified reviews</p>
+        {%- for i in (1..5) -%}
+          {%- assign rev_i = 6 | minus: i -%}
+          {%- assign pct_key = 'pct_' | append: rev_i -%}
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;">
+            <span style="font:400 12px/1 var(--rv-sans);color:var(--rv-deep-soft);width:10px;">{{ rev_i }}</span>
+            <span class="rv-stars" style="font-size:11px;">★</span>
+            <span style="flex:1;height:6px;border-radius:999px;background:rgba(244,241,234,.15);overflow:hidden;">
+              <span style="display:block;height:100%;background:var(--rv-star);width:{{ section.settings[pct_key] }};"></span>
+            </span>
+            <span style="font:400 11px/1 var(--rv-sans);color:var(--rv-deep-soft);width:32px;text-align:right;">{{ section.settings[pct_key] }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="rv-grid-3">
+        {%- for block in section.blocks -%}
+          <div class="rv-review-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', style: 'width:100%;height:200px;object-fit:cover;display:block;', alt: block.settings.image.alt }}
+            {%- else -%}
+              <div class="rv-placeholder-img" style="height:200px;">{{ 'image' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+            <div class="rv-review-card__body">
+              <div class="rv-review-card__meta">
+                <span class="rv-stars" style="font-size:12px;">★★★★★</span>
+                <span class="rv-review-card__verified">Verified</span>
+              </div>
+              <p class="rv-review-card__quote">"{{ block.settings.quote }}"</p>
+              <div class="rv-review-card__author"><strong>{{ block.settings.author }}</strong> · {{ block.settings.tag }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{% schema %}{
+  "name": "Reviews",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What customers say"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_loox",
+      "label": "Use Loox reviews widget (recommended)",
+      "info": "On: embeds your live Loox reviews. Off: shows the manual curated reviews below.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Overall rating",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review count",
+      "default": "1,204"
+    },
+    {
+      "type": "text",
+      "id": "pct_5",
+      "label": "5-star %",
+      "default": "88%"
+    },
+    {
+      "type": "text",
+      "id": "pct_4",
+      "label": "4-star %",
+      "default": "8%"
+    },
+    {
+      "type": "text",
+      "id": "pct_3",
+      "label": "3-star %",
+      "default": "2%"
+    },
+    {
+      "type": "text",
+      "id": "pct_2",
+      "label": "2-star %",
+      "default": "1%"
+    },
+    {
+      "type": "text",
+      "id": "pct_1",
+      "label": "1-star %",
+      "default": "1%"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_photo_first",
+      "label": "Show photo reviews first",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Review photo"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review text",
+          "default": "Absolutely obsessed with this product."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Reviewer name",
+          "default": "Sofia L."
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag (e.g. 30ml / Verified)",
+          "default": "Verified buyer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        }
+      ]
+    }
+  ]
+}{% endschema %}

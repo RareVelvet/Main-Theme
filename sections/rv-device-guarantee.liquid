@@ -1,0 +1,18 @@
+
+{%- comment -%} 60-night guarantee band {%- endcomment -%}
+<section style="background:var(--rv-char);">
+  <div class="rv-container" style="max-width:980px;padding:72px 32px;text-align:center;">
+    <div style="font-family:var(--rv-serif);font-size:34px;color:var(--rv-butter);margin-bottom:18px;">✦</div>
+    <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3.4vw,44px);line-height:1.1;color:#FBF9F4;margin:0 0 16px;">{{ section.settings.heading }}</h2>
+    <p style="font:400 16px/1.7 var(--rv-sans);color:rgba(244,241,234,.78);max-width:520px;margin:0 auto 28px;">{{ section.settings.body }}</p>
+    {%- if section.settings.cta_label != blank -%}
+      <a href="{{ section.settings.cta_link }}" style="display:inline-block;background:var(--rv-butter);color:var(--rv-char);text-decoration:none;font:600 12px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;padding:16px 32px;border-radius:2px;">{{ section.settings.cta_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}{"name":"Device Guarantee","tag":"section","settings":[
+{"type":"text","id":"heading","label":"Heading","default":"Try it for 60 nights, risk-free"},
+{"type":"textarea","id":"body","label":"Body","default":"Use it every night for two months. If your skin isn't visibly happier, send it back for a full refund — keep the serum on us."},
+{"type":"text","id":"cta_label","label":"Button label","default":"Start my 60-night trial"},
+{"type":"url","id":"cta_link","label":"Button link"}
+],"presets":[{"name":"Device Guarantee"}]}{% endschema %}

@@ -1,0 +1,38 @@
+
+<section class="rv-section" style="padding-top:40px;">
+  <div class="rv-container">
+    <div class="rv-catnav">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link }}" class="rv-catnav__item" {{ block.shopify_attributes }}>
+          <div class="rv-catnav__img">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings.label }}
+            {%- elsif block.settings.collection != blank and collections[block.settings.collection].featured_image != blank -%}
+              {{ collections[block.settings.collection].featured_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings.label }}
+            {%- else -%}
+              <div class="rv-placeholder-img" style="width:100%;height:100%;">{{ 'image' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+          </div>
+          <div class="rv-catnav__label">{{ block.settings.label }}</div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<style>
+.rv-catnav{display:grid;grid-template-columns:repeat({{ section.blocks.size }},1fr);gap:24px;}
+.rv-catnav__item{text-align:center;text-decoration:none;}
+.rv-catnav__img{width:104px;height:104px;border-radius:999px;overflow:hidden;margin:0 auto 12px;border:1px solid var(--rv-line);}
+.rv-catnav__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+.rv-catnav__item:hover .rv-catnav__img img{transform:scale(1.06);}
+.rv-catnav__label{font:600 11px/1 var(--rv-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rv-char);}
+@media(max-width:768px){.rv-catnav{display:flex;overflow-x:auto;gap:16px;scrollbar-width:none;padding-bottom:4px;}.rv-catnav::-webkit-scrollbar{display:none}.rv-catnav__item{flex:none}.rv-catnav__img{width:78px;height:78px;}}
+</style>
+{% schema %}{"name":"Category Nav","tag":"section","max_blocks":7,"blocks":[{"type":"cat","name":"Category","settings":[
+{"type":"text","id":"label","label":"Label","default":"Skincare"},
+{"type":"image_picker","id":"image","label":"Image (or uses collection image)"},
+{"type":"collection","id":"collection","label":"Collection"},
+{"type":"url","id":"link","label":"Link"}
+]}],"presets":[{"name":"Category Nav","blocks":[
+{"type":"cat","settings":{"label":"Skincare"}},{"type":"cat","settings":{"label":"Beauty"}},{"type":"cat","settings":{"label":"Jewelry"}},{"type":"cat","settings":{"label":"Interior"}},{"type":"cat","settings":{"label":"Gifts"}}
+]}]}{% endschema %}

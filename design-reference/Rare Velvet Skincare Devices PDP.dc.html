@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+:root{
+  --bone:#F4F1EA;--bone-2:#ECE7DD;--paper:#FBF9F4;
+  --grey:#8B8680;--grey-2:#6E6A64;--line:#DAD4CB;
+  --char:#2B2A27;--soft:#56524C;
+  --deep:#3B3833;--deep-soft:#B8B2A8;--deep-line:rgba(244,241,234,.16);
+  --butter:#F2E6C2;--butter-2:#E2CB92;--clay:#B0795C;--clay-2:#9A6446;
+  --blush:#E9D9D2;--star:#C2A24E;--mint:#9DB5A4;
+  --rv-serif:'Cormorant Garamond',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif;
+}
+image-slot{display:block;}
+.zoomf{overflow:hidden;border-radius:4px;}
+.zoomf image-slot{display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-origin:center;}
+.zoomf:hover image-slot{transform:scale(1.6);}
+.acc summary{list-style:none;}.acc summary::-webkit-details-marker{display:none;}
+.acc[open] .accx{transform:rotate(45deg);}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div data-screen-label="Skincare Devices PDP" style="background:var(--bone);font-family:var(--sans);color:var(--char);width:100%;overflow-x:hidden;">
+
+  <!-- ANNOUNCEMENT -->
+  <div style="background:var(--char);color:var(--bone);text-align:center;font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:9px 16px;">FDA-cleared · Clinically tested · 60-night money-back trial · HSA/FSA eligible</div>
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:90;background:rgba(244,241,234,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 40px;">
+      <nav style="display:flex;gap:34px;font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--char);"><span style="cursor:pointer;">Devices</span><span style="cursor:pointer;">Skincare</span><span style="cursor:pointer;">Bundles</span></nav>
+      <div style="text-align:center;font-family:var(--rv-serif);font-size:30px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;line-height:1;">Rare Velvet</div>
+      <div style="display:flex;gap:20px;justify-content:flex-end;font:500 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);"><span style="cursor:pointer;">Search</span><span style="cursor:pointer;">Bag (0)</span></div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN: GALLERY + BUY BOX ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:32px 32px 64px;display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;">
+
+    <!-- GALLERY — editorial stacked (Jewelry PDP v2 style) -->
+    <div>
+      <div class="zoomf" style="position:relative;cursor:zoom-in;margin-bottom:10px;background:var(--bone-2);">
+        <image-slot id="dev-main" shape="rect" placeholder="Hero device shot — macro, soft daylight on bone" style="width:100%;aspect-ratio:4/5;"></image-slot>
+        <div style="position:absolute;top:16px;left:16px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="background:var(--mint);color:#1F2A22;font:700 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border-radius:999px;">FDA-Cleared</span>
+          <span style="background:var(--paper);color:var(--char);font:700 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:999px;">★ Best Seller</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="zoomf" style="position:relative;cursor:zoom-in;background:var(--bone-2);"><image-slot id="dev-g2" shape="rect" placeholder="Device macro — texture" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+        <div class="zoomf" style="position:relative;cursor:zoom-in;background:var(--bone-2);"><image-slot id="dev-g3" shape="rect" placeholder="In hand — scale" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+        <div class="zoomf" style="position:relative;cursor:zoom-in;background:var(--bone-2);"><image-slot id="dev-g4" shape="rect" placeholder="On skin — in use" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+        <div class="zoomf" style="position:relative;cursor:zoom-in;background:var(--bone-2);"><image-slot id="dev-g5" shape="rect" placeholder="Lifestyle — vanity" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+      </div>
+    </div>
+
+    <!-- BUY BOX -->
+    <div>
+      <div style="font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">The Skincare Devices Edit</div>
+      <h1 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(34px,4vw,52px);line-height:1.02;letter-spacing:-.01em;margin:0 0 8px;">The Velvet Glow Pro</h1>
+      <div style="font-family:var(--rv-serif);font-style:italic;font-size:19px;color:var(--soft);margin-bottom:16px;">Red-light &amp; microcurrent facial wand</div>
+
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+        <span style="color:var(--star);letter-spacing:2px;font-size:14px;">★★★★★</span>
+        <span style="font:400 13px/1 var(--sans);color:var(--soft);">4.9</span>
+        <span style="color:var(--line);">·</span>
+        <span style="font:400 13px/1 var(--sans);color:var(--soft);border-bottom:1px solid var(--line);cursor:pointer;">2,847 reviews</span>
+        <span style="color:var(--line);">·</span>
+        <span style="font:600 12px/1 var(--sans);color:var(--clay);">38,000+ sold</span>
+      </div>
+
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px;">
+        <span style="font:600 28px/1 var(--sans);">$149</span>
+        <span style="font:400 16px/1 var(--sans);color:var(--grey-2);text-decoration:line-through;">$249</span>
+        <span style="background:var(--blush);color:var(--clay-2);font:700 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px;">Save $100</span>
+      </div>
+      <div style="font:400 13px/1.4 var(--sans);color:var(--clay);margin:6px 0 18px;">Earn 149 Rare Velvet points with this purchase</div>
+
+      <!-- SUBSCRIBE (slim, only when serum kit chosen) -->
+      <sc-if value="{{ hasSerum }}" hint-placeholder-val="{{ true }}">
+        <div onClick="{{ toggleSub }}" style="display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:3px;padding:13px 16px;margin-bottom:20px;cursor:pointer;background:var(--paper);">
+          <span style="width:20px;height:20px;border-radius:4px;border:1.5px solid var(--char);display:flex;align-items:center;justify-content:center;flex:none;background:{{ subBg2 }};"><span style="color:#FBF9F4;font-size:12px;line-height:1;opacity:{{ subTick }};">✓</span></span>
+          <div style="flex:1;"><span style="font:600 13px/1.2 var(--sans);color:var(--char);">Auto-refill my serum &amp; save 15%</span><span style="display:block;font:400 12px/1.3 var(--sans);color:var(--soft);margin-top:2px;">Refills every 2 months at {{ refillPrice }} · free shipping · cancel anytime</span></div>
+        </div>
+      </sc-if>
+
+      <!-- FREE GIFT -->
+      <div style="display:flex;align-items:center;gap:14px;background:#EAEFE9;border:1px solid #D5E0D4;border-radius:4px;padding:12px 14px;margin-bottom:22px;">
+        <div style="width:56px;height:56px;border-radius:3px;overflow:hidden;flex:none;background:#DCE5DB;"><image-slot id="dev-gift" shape="rect" placeholder="Gold mask" style="width:100%;height:100%;"></image-slot></div>
+        <div style="flex:1;">
+          <div style="display:inline-block;font:700 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#3E5C45;background:#CFE0CE;border-radius:999px;padding:4px 9px;margin-bottom:6px;">Free gift · $28 value</div>
+          <div style="font:500 13px/1.4 var(--sans);color:var(--char);">Gold-Infused Glow Mask, free with every device</div>
+        </div>
+        <span style="font-family:var(--rv-serif);font-size:22px;color:#3E5C45;flex:none;padding-right:4px;">✦</span>
+      </div>
+
+      <!-- variant: kit -->
+      <div style="margin-bottom:20px;">
+        <div style="font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--char);margin-bottom:10px;">Choose your kit</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <sc-for list="{{ kits }}" as="k" hint-placeholder-count="3">
+            <div onClick="{{ k.select }}" style="border:{{ k.bd }};border-radius:3px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;background:{{ k.bg }};">
+              <div><div style="font:600 14px/1.2 var(--sans);color:var(--char);">{{ k.name }}</div><div style="font:400 12px/1.3 var(--sans);color:var(--soft);margin-top:3px;">{{ k.desc }}</div></div>
+              <div style="text-align:right;flex:none;"><div style="font:600 14px/1 var(--sans);color:var(--char);">{{ k.price }}</div><sc-if value="{{ k.tag }}" hint-placeholder-val="{{ true }}"><div style="font:700 9px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--clay);margin-top:5px;">{{ k.tag }}</div></sc-if></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- ATC -->
+      <button style="width:100%;background:var(--clay);color:#FBF9F4;border:none;cursor:pointer;font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:18px;border-radius:2px;margin-bottom:10px;">Add to bag · {{ selectedPrice }}</button>
+      <button data-wishlist data-product-id="velvet-glow-pro" data-product-handle="velvet-glow-pro" style="width:100%;background:transparent;color:var(--char);border:1px solid var(--char);cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px;border-radius:2px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:8px;">♡ Save to wishlist</button>
+
+      <!-- micro trust -->
+      <div style="display:flex;gap:18px;flex-wrap:wrap;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:22px;">
+        <sc-for list="{{ microtrust }}" as="m" hint-placeholder-count="4">
+          <span style="display:flex;align-items:center;gap:7px;font:500 12px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);font-size:13px;">{{ m.icon }}</span>{{ m.text }}</span>
+        </sc-for>
+      </div>
+
+      <!-- why love bullets -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <sc-for list="{{ love }}" as="l" hint-placeholder-count="3">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="width:30px;height:30px;border-radius:999px;background:var(--blush);color:var(--clay-2);display:flex;align-items:center;justify-content:center;flex:none;font-size:14px;">{{ l.icon }}</span>
+            <div><div style="font:600 14px/1.3 var(--sans);color:var(--char);">{{ l.title }}</div><div style="font:400 13px/1.5 var(--sans);color:var(--soft);">{{ l.desc }}</div></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLINICAL CREDIBILITY STRIP (Qure) ===== -->
+  <section style="background:var(--deep);">
+    <div style="max-width:1320px;margin:0 auto;padding:40px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;">
+      <sc-for list="{{ credibility }}" as="c" hint-placeholder-count="4">
+        <div style="text-align:center;">
+          <div style="font-family:var(--rv-serif);font-size:38px;color:var(--butter);font-weight:500;line-height:1;margin-bottom:8px;">{{ c.stat }}</div>
+          <div style="font:400 13px/1.5 var(--sans);color:var(--deep-soft);max-width:200px;margin:0 auto;">{{ c.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS (Solawave benefit-led) ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:96px 32px 72px;">
+    <div style="text-align:center;margin-bottom:54px;">
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">The science, simplified</div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.8vw,50px);line-height:1.04;margin:0;max-width:18ch;margin:0 auto;">Four technologies, one effortless glide</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;">
+      <sc-for list="{{ tech }}" as="t" hint-placeholder-count="4">
+        <div style="background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:28px 24px;">
+          <div style="width:48px;height:48px;border-radius:999px;background:{{ t.dotbg }};display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:{{ t.dotfg }};font-size:18px;font-weight:700;">{{ t.glyph }}</div>
+          <div style="font-family:var(--rv-serif);font-size:22px;color:var(--char);font-weight:500;margin-bottom:8px;">{{ t.title }}</div>
+          <div style="font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">{{ t.spec }}</div>
+          <p style="font:400 13px/1.6 var(--sans);color:var(--soft);margin:0;">{{ t.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== RESULTS — before/after + stats (Qure results-led) ===== -->
+  <section style="background:var(--bone-2);">
+    <div style="max-width:1320px;margin:0 auto;padding:96px 32px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--bone-2);">
+            <image-slot id="dev-before" shape="rect" placeholder="BEFORE — bare skin, week 0" style="width:100%;height:100%;"></image-slot>
+            <span style="position:absolute;top:12px;left:12px;background:rgba(43,42,39,.8);color:var(--bone);font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px;">Before</span>
+          </div>
+          <div style="position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--bone-2);">
+            <image-slot id="dev-after" shape="rect" placeholder="AFTER — week 8" style="width:100%;height:100%;"></image-slot>
+            <span style="position:absolute;top:12px;left:12px;background:var(--clay);color:#FBF9F4;font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px;">Week 8</span>
+          </div>
+        </div>
+        <div style="font:400 12px/1.4 var(--sans);color:var(--grey-2);text-align:center;margin-top:12px;">Real customer, 8 weeks of nightly use. Unretouched.</div>
+      </div>
+      <div>
+        <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:16px;">Proven results</div>
+        <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.05;margin:0 0 28px;">Visible glow in 8 weeks — or your money back</h2>
+        <div style="display:flex;flex-direction:column;gap:22px;">
+          <sc-for list="{{ results }}" as="r" hint-placeholder-count="3">
+            <div style="display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--line);padding-bottom:18px;">
+              <div style="font-family:var(--rv-serif);font-size:46px;color:var(--clay);font-weight:500;line-height:.9;flex:none;min-width:96px;">{{ r.pct }}</div>
+              <div style="font:400 15px/1.5 var(--sans);color:var(--soft);">{{ r.claim }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font:400 11px/1.5 var(--sans);color:var(--grey-2);margin-top:16px;">Based on an 8-week independent consumer study of 120 participants using the device 5 nights a week.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REAL RESULTS GALLERY (Solawave) ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:80px 32px 8px;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">Real people, real glow</div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3.4vw,44px);line-height:1.04;margin:0;">Before &amp; after, unretouched</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <sc-for list="{{ baGallery }}" as="g" hint-placeholder-count="3">
+        <div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--bone-2);"><image-slot id="{{ g.b }}" shape="rect" placeholder="Before" style="width:100%;height:100%;"></image-slot><span style="position:absolute;top:10px;left:10px;background:rgba(43,42,39,.78);color:var(--bone);font:600 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;border-radius:999px;">Before</span></div>
+            <div style="position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--bone-2);"><image-slot id="{{ g.a }}" shape="rect" placeholder="After" style="width:100%;height:100%;"></image-slot><span style="position:absolute;top:10px;left:10px;background:var(--clay);color:#FBF9F4;font:600 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;border-radius:999px;">After</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:12px;">
+            <span style="color:var(--star);letter-spacing:1px;font-size:11px;">★★★★★</span>
+            <span style="font:600 12px/1 var(--sans);color:var(--char);">{{ g.name }}</span>
+            <span style="font:400 12px/1 var(--sans);color:var(--grey-2);">· {{ g.weeks }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== WHAT IT TARGETS (Solawave) ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:56px 32px 8px;">
+    <div style="background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:32px 36px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center;">
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--char);">Targets</div>
+      <sc-for list="{{ targets }}" as="t" hint-placeholder-count="6">
+        <span style="display:flex;align-items:center;gap:8px;font:500 14px/1 var(--sans);color:var(--soft);"><span style="color:var(--clay);font-size:13px;">✦</span>{{ t }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== DEMO VIDEO + DERM CREDIBILITY ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:88px 32px 8px;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;">
+    <div style="position:relative;border-radius:4px;overflow:hidden;aspect-ratio:16/10;background:var(--bone-2);">
+      <image-slot id="dev-demo" shape="rect" placeholder="60-second demo — the wand in motion" style="width:100%;height:100%;"></image-slot>
+      <div style="position:absolute;inset:0;background:rgba(43,42,39,.18);display:flex;align-items:center;justify-content:center;"><span style="width:62px;height:62px;border-radius:999px;background:rgba(251,249,244,.94);display:flex;align-items:center;justify-content:center;color:var(--char);font-size:18px;padding-left:5px;">▶</span></div>
+      <span style="position:absolute;bottom:14px;left:14px;background:rgba(43,42,39,.8);color:var(--bone);font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;">Watch · 0:60</span>
+    </div>
+    <div>
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:18px;">Dermatologist approved</div>
+      <p style="font-family:var(--rv-serif);font-style:italic;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.32;color:var(--char);margin:0 0 24px;">"Consistent red-light and microcurrent use is one of the most effective at-home ways to support collagen and tone. The Velvet Glow Pro makes the routine genuinely easy to keep."</p>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <image-slot id="dev-derm" shape="circle" placeholder="Dr. portrait" style="width:54px;height:54px;flex:none;"></image-slot>
+        <div>
+          <div style="font:600 14px/1.2 var(--sans);color:var(--char);">Dr. Amara Okafor, MD</div>
+          <div style="font:400 13px/1.3 var(--sans);color:var(--soft);">Board-Certified Dermatologist · Advisor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW TO USE — 3 step (Rhode clean) ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:96px 32px 72px;">
+    <div style="text-align:center;margin-bottom:54px;">
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">Your 5-minute ritual</div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.8vw,50px);line-height:1.04;margin:0;">Three steps, five minutes, glowing</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div>
+          <div style="position:relative;border-radius:4px;overflow:hidden;aspect-ratio:5/4;background:var(--bone-2);margin-bottom:20px;">
+            <image-slot id="{{ s.id }}" shape="rect" placeholder="{{ s.ph }}" style="width:100%;height:100%;"></image-slot>
+            <span style="position:absolute;top:14px;left:14px;width:36px;height:36px;border-radius:999px;background:var(--paper);color:var(--char);display:flex;align-items:center;justify-content:center;font-family:var(--rv-serif);font-size:18px;font-weight:600;">{{ s.n }}</span>
+          </div>
+          <div style="font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-bottom:8px;">{{ s.dur }}</div>
+          <div style="font-family:var(--rv-serif);font-size:23px;color:var(--char);font-weight:500;margin-bottom:8px;">{{ s.title }}</div>
+          <p style="font:400 14px/1.6 var(--sans);color:var(--soft);margin:0;">{{ s.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== RHODE-FUN LIFESTYLE BAND ===== -->
+  <section style="background:var(--blush);">
+    <div style="max-width:1320px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;">
+      <div>
+        <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay-2);margin-bottom:18px;">No, really — it's kind of addictive</div>
+        <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.02;margin:0 0 20px;">The 5 minutes you'll actually look forward to.</h2>
+        <p style="font:400 16px/1.7 var(--sans);color:var(--soft);margin:0 0 18px;">Pour the glass of wine. Queue the show. Glide on the serum and let the warm hum do its thing. Self-care that feels less like a chore and more like the best part of your evening.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <span style="background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font:500 13px/1 var(--sans);color:var(--char);">✨ Glowy, not greasy</span>
+          <span style="background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font:500 13px/1 var(--sans);color:var(--char);">📺 Show-friendly</span>
+          <span style="background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font:500 13px/1 var(--sans);color:var(--char);">💤 Wind-down ready</span>
+        </div>
+      </div>
+      <image-slot id="dev-lifestyle" shape="rounded" radius="4" placeholder="Lifestyle — using the wand at the vanity, warm evening light" style="width:100%;aspect-ratio:4/3;"></image-slot>
+    </div>
+  </section>
+
+  <!-- ===== TECH SPECS (super-detailed, upscale) ===== -->
+  <section style="max-width:1040px;margin:0 auto;padding:96px 32px 72px;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">The detail</div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.04;margin:0;">Technical specifications</h2>
+    </div>
+    <div style="border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--paper);">
+      <sc-for list="{{ specs }}" as="sp" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:20px;padding:16px 24px;border-bottom:1px solid var(--line);">
+          <div style="font:600 12px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--grey-2);">{{ sp.k }}</div>
+          <div style="font:400 14px/1.5 var(--sans);color:var(--char);">{{ sp.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:28px;">
+      <sc-for list="{{ certs }}" as="c" hint-placeholder-count="4">
+        <span style="display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:10px 18px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--soft);"><span style="color:var(--mint);">✓</span>{{ c }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== FREQUENTLY BOUGHT TOGETHER ===== -->
+  <section style="background:var(--deep);">
+    <div style="max-width:1320px;margin:0 auto;padding:80px 32px;">
+      <div style="text-align:center;margin-bottom:44px;">
+        <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--butter);margin-bottom:14px;">Complete the ritual</div>
+        <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3.4vw,44px);color:#FBF9F4;margin:0;">Frequently bought together</h2>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
+        <sc-for list="{{ fbt }}" as="f" hint-placeholder-count="3">
+          <div style="background:var(--paper);border-radius:4px;overflow:hidden;width:210px;">
+            <image-slot id="{{ f.id }}" shape="rect" placeholder="{{ f.ph }}" style="width:100%;aspect-ratio:1/1;"></image-slot>
+            <div style="padding:14px;"><div style="font:600 13px/1.3 var(--sans);color:var(--char);">{{ f.name }}</div><div style="font:400 12px/1 var(--sans);color:var(--soft);margin-top:5px;">{{ f.price }}</div></div>
+          </div>
+          <sc-if value="{{ f.plus }}" hint-placeholder-val="{{ true }}"><span style="font-family:var(--rv-serif);font-size:34px;color:var(--deep-soft);">+</span></sc-if>
+        </sc-for>
+      </div>
+      <div style="text-align:center;margin-top:36px;">
+        <div style="font:400 14px/1 var(--sans);color:var(--deep-soft);margin-bottom:16px;">Bundle price <span style="color:#FBF9F4;font-weight:600;">{{ bundlePrice }}</span> <span style="text-decoration:line-through;color:var(--deep-soft);margin-left:6px;">{{ bundleFull }}</span> · <span style="color:var(--butter);">save {{ bundleSave }} with code GLOWKIT</span></div>
+        <button style="background:var(--butter);color:var(--char);border:none;cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:16px 32px;border-radius:2px;">Add all 3 to bag</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARISON ===== -->
+  <section style="max-width:1040px;margin:0 auto;padding:96px 32px 72px;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">Why Rare Velvet</div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.04;margin:0;">How we compare</h2>
+    </div>
+    <div style="border:1px solid var(--line);border-radius:4px;overflow:hidden;">
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;background:var(--char);color:var(--bone);">
+        <div style="padding:18px 22px;font:600 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;"></div>
+        <div style="padding:18px 22px;font:700 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;text-align:center;background:var(--clay);">Velvet Glow Pro</div>
+        <div style="padding:18px 22px;font:600 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;text-align:center;color:var(--deep-soft);">Others</div>
+      </div>
+      <sc-for list="{{ compare }}" as="c" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;border-bottom:1px solid var(--line);background:{{ c.bg }};">
+          <div style="padding:15px 22px;font:500 13px/1.4 var(--sans);color:var(--char);">{{ c.feat }}</div>
+          <div style="padding:15px 22px;text-align:center;color:var(--clay);font-size:16px;">{{ c.us }}</div>
+          <div style="padding:15px 22px;text-align:center;color:var(--grey-2);font-size:16px;">{{ c.them }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section id="reviews" style="max-width:1320px;margin:0 auto;padding:0 32px 72px;border-top:1px solid var(--line);padding-top:72px;">
+    <div style="font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Reviews</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin:0 0 28px;flex-wrap:wrap;gap:12px;">
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3vw,40px);margin:0;">Loved by 38,000+ glow-getters</h2>
+      <span style="font:500 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Powered by Loox ◆</span>
+    </div>
+    <div style="display:grid;grid-template-columns:240px 1fr auto;gap:40px;align-items:center;padding:24px 0 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:32px;">
+      <div style="text-align:center;">
+        <div style="font-family:var(--rv-serif);font-size:52px;line-height:1;color:var(--char);font-weight:500;margin-bottom:6px;">4.9</div>
+        <div style="color:var(--star);letter-spacing:2px;font-size:15px;margin-bottom:6px;">★★★★★</div>
+        <div style="font:400 12px/1 var(--sans);color:var(--soft);">Based on 2,847 reviews</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <sc-for list="{{ dist }}" as="d" hint-placeholder-count="5">
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font:400 11px/1 var(--sans);color:var(--soft);width:30px;">{{ d.s }}</span><div style="flex:1;height:6px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:{{ d.w }};height:100%;background:var(--star);"></div></div><span style="font:400 11px/1 var(--sans);color:var(--soft);width:40px;text-align:right;">{{ d.n }}</span></div>
+        </sc-for>
+      </div>
+      <button style="background:var(--char);color:var(--bone);border:none;cursor:pointer;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px 24px;border-radius:2px;white-space:nowrap;">Write a review</button>
+    </div>
+    <div style="display:flex;gap:12px;margin-bottom:28px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
+      <sc-for list="{{ rphotos }}" as="p" hint-placeholder-count="6">
+        <div style="position:relative;width:128px;flex:none;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--paper);">
+          <image-slot id="{{ p.id }}" shape="rect" placeholder="Photo review" style="width:100%;aspect-ratio:1/1;"></image-slot>
+          <div style="position:absolute;top:8px;right:8px;background:rgba(43,42,39,.78);border-radius:999px;padding:3px 7px;"><span style="color:var(--star);font-size:9px;letter-spacing:1px;">★★★★★</span></div>
+          <div style="padding:9px 10px;display:flex;align-items:center;justify-content:center;gap:6px;height:34px;">
+            <span style="font:600 11px/1 var(--sans);color:var(--char);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span>
+            <span style="color:var(--mint);font-size:11px;line-height:1;flex:none;" title="Verified">✓</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+      <sc-for list="{{ reviews }}" as="rv" hint-placeholder-count="3">
+        <div style="border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;">
+          <image-slot id="{{ rv.photo }}" shape="rect" placeholder="Review photo" style="width:100%;aspect-ratio:4/3;"></image-slot>
+          <div style="padding:18px 20px;display:flex;flex-direction:column;flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="color:var(--star);letter-spacing:1px;font-size:12px;">★★★★★</span><span style="font:400 11px/1 var(--sans);color:var(--soft);">{{ rv.when }}</span></div>
+            <div style="font:600 13px/1.3 var(--sans);color:var(--char);margin-bottom:8px;">{{ rv.headline }}</div>
+            <p style="font:400 14px/1.6 var(--sans);color:var(--soft);margin:0 0 16px;">{{ rv.body }}</p>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:auto;"><span style="font:600 12px/1 var(--sans);color:var(--char);">{{ rv.name }}</span><span style="font:500 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:4px 7px;border-radius:999px;">Verified</span></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section style="max-width:780px;margin:0 auto;padding:0 32px 80px;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">Good to know</div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);margin:0;">Your questions, answered</h2>
+    </div>
+    <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+      <details class="acc" style="border-top:1px solid var(--line);">
+        <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;cursor:pointer;font:500 15px/1.3 var(--sans);color:var(--char);">{{ f.q }}<span class="accx" style="font-size:20px;color:var(--grey-2);transition:transform .2s;flex:none;">+</span></summary>
+        <div style="padding:0 0 20px;font:400 14px/1.7 var(--sans);color:var(--soft);">{{ f.a }}</div>
+      </details>
+    </sc-for>
+    <div style="border-top:1px solid var(--line);"></div>
+  </section>
+
+  <!-- ===== GUARANTEE BAND ===== -->
+  <section style="background:var(--char);">
+    <div style="max-width:980px;margin:0 auto;padding:72px 32px;text-align:center;">
+      <div style="font-family:var(--rv-serif);font-size:34px;color:var(--butter);margin-bottom:18px;">✦</div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3.4vw,44px);line-height:1.1;color:#FBF9F4;margin:0 0 16px;">Try it for 60 nights, risk-free</h2>
+      <p style="font:400 16px/1.7 var(--sans);color:rgba(244,241,234,.78);max-width:520px;margin:0 auto 28px;">Use it every night for two months. If your skin isn't visibly happier, send it back for a full refund — keep the serum on us.</p>
+      <button style="background:var(--butter);color:var(--char);border:none;cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:16px 32px;border-radius:2px;">Start my 60-night trial</button>
+    </div>
+  </section>
+
+  <!-- ===== YOU MAY ALSO LIKE ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:88px 32px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;">
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(26px,3vw,40px);margin:0;">You may also like</h2>
+      <span style="font:500 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--soft);padding-bottom:4px;cursor:pointer;">All skincare →</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <sc-for list="{{ also }}" as="a" hint-placeholder-count="4">
+        <div>
+          <div style="border-radius:3px;overflow:hidden;background:var(--bone-2);margin-bottom:14px;"><image-slot id="{{ a.id }}" shape="rect" placeholder="{{ a.ph }}" style="width:100%;aspect-ratio:4/5;"></image-slot></div>
+          <div style="font:500 14px/1.3 var(--sans);color:var(--char);">{{ a.name }}</div>
+          <div style="font-family:var(--rv-serif);font-style:italic;font-size:14px;color:var(--grey-2);">{{ a.cat }}</div>
+          <div style="font:600 13px/1 var(--sans);color:var(--char);margin-top:4px;">{{ a.price }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:var(--deep);color:var(--bone);">
+    <div style="max-width:1320px;margin:0 auto;padding:64px 32px 48px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;">
+      <div>
+        <div style="font-family:var(--rv-serif);font-weight:500;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#FBF9F4;margin-bottom:16px;">Rare Velvet</div>
+        <p style="font:400 14px/1.7 var(--sans);color:var(--deep-soft);max-width:300px;margin:0 0 22px;">Beauty. Organization. Everyday Luxury. Curated essentials for your daily rituals.</p>
+        <div style="display:flex;gap:12px;">
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3a5.4 5.4 0 0 0 4.5 4.5v3a8.3 8.3 0 0 1-4.5-1.4v6.6a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v3.2a3 3 0 1 0 2.1 2.9V3h3.2z"/></svg></a>
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.5 2 4 5.66 4 8.74c0 1.86.7 3.52 2.22 4.14.25.1.47 0 .54-.27l.22-.86c.07-.27.04-.37-.16-.6-.43-.5-.7-1.16-.7-2.08 0-2.68 2-5.08 5.22-5.08 2.85 0 4.41 1.74 4.41 4.06 0 3.06-1.35 5.64-3.36 5.64-1.11 0-1.94-.92-1.67-2.04.32-1.35.93-2.8.93-3.77 0-.87-.47-1.6-1.43-1.6-1.13 0-2.05 1.18-2.05 2.75 0 1 .34 1.68.34 1.68l-1.36 5.76c-.27 1.15-.09 2.57.02 3.32.05.32.4.4.6.14 1.07-1.5 1.5-3.05 1.84-4.38.12-.46.66-2.6.66-2.6.35.67 1.38 1.26 2.47 1.26 3.25 0 5.46-2.97 5.46-6.94C20.08 4.93 17.4 2 12.04 2z"/></svg></a>
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.83.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.83-.43a2.5 2.5 0 0 0 1.77-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+        <div>
+          <div style="font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--butter);margin-bottom:18px;">{{ col.head }}</div>
+          <sc-for list="{{ col.links }}" as="lk" hint-placeholder-count="4">
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:13px;cursor:pointer;">{{ lk }}</div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border-top:1px solid var(--deep-line);">
+      <div style="max-width:1320px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+        <span style="font:400 12px/1 var(--sans);color:rgba(244,241,234,.5);letter-spacing:.04em;">© 2026 Rare Velvet. All rights reserved.</span>
+        <div style="display:flex;gap:8px;">
+          <sc-for list="{{ pays }}" as="pay" hint-placeholder-count="4">
+            <span style="font:600 9px/1 var(--sans);letter-spacing:.08em;color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 8px;">{{ pay }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="overflow:hidden;padding:0 24px;max-height:.74em;display:flex;justify-content:center;border-top:1px solid var(--deep-line);">
+      <div style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(72px,15vw,240px);line-height:1;letter-spacing:.01em;color:#FBF9F4;text-transform:uppercase;white-space:nowrap;transform:translateY(-.04em);">Rare Velvet</div>
+    </div>
+  </footer>
+
+  <!-- STICKY ATC BAR -->
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(251,249,244,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <div style="display:flex;align-items:center;gap:14px;min-width:0;">
+      <div style="width:44px;height:44px;border-radius:3px;overflow:hidden;flex:none;background:var(--bone-2);"><image-slot id="dev-sticky" shape="rect" placeholder="thumb" style="width:100%;height:100%;"></image-slot></div>
+      <div style="min-width:0;"><div style="font:600 13px/1.2 var(--sans);color:var(--char);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">The Velvet Glow Pro</div><div style="font:400 12px/1 var(--sans);color:var(--soft);">{{ selectedPrice }} · ★★★★★ 2,847</div></div>
+    </div>
+    <button style="background:var(--clay);color:#FBF9F4;border:none;cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px 30px;border-radius:2px;white-space:nowrap;flex:none;">Add to bag</button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { kit: 1, ba: 50, thumb: 0, sub: false };
+
+  componentDidMount() { this._initZoom(); }
+  _initZoom() {
+    const isTouch = window.matchMedia('(hover:none)').matches;
+    const frames = document.querySelectorAll('.zoomf');
+    if (!frames.length) { setTimeout(() => this._initZoom(), 200); return; }
+    let lb = document.querySelector('.rv-lb');
+    if (!lb) {
+      lb = document.createElement('div');
+      lb.className = 'rv-lb';
+      lb.style.cssText = 'position:fixed;inset:0;z-index:300;background:rgba(43,42,39,.92);display:none;align-items:center;justify-content:center;';
+      const close = document.createElement('button');
+      close.textContent = '\u00d7';
+      close.style.cssText = 'position:absolute;top:18px;right:18px;z-index:2;background:rgba(251,249,244,.92);border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer;';
+      const inner = document.createElement('div');
+      inner.className = 'rv-lb-inner';
+      inner.style.cssText = 'width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch;display:flex;align-items:center;justify-content:center;';
+      lb.appendChild(close); lb.appendChild(inner);
+      document.body.appendChild(lb);
+      const hide = () => { lb.style.display = 'none'; document.body.style.overflow = ''; };
+      close.addEventListener('click', hide);
+      inner.addEventListener('click', (e) => { if (e.target === inner) hide(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+    }
+    const inner = lb.querySelector('.rv-lb-inner');
+    const open = (img) => {
+      inner.innerHTML = '';
+      const c = img.cloneNode(true);
+      c.style.cssText = 'min-width:100%;min-height:100%;object-fit:contain;';
+      inner.appendChild(c);
+      lb.style.display = 'flex'; document.body.style.overflow = 'hidden';
+    };
+    frames.forEach((f) => {
+      const img = f.querySelector('image-slot');
+      if (!img) return;
+      f.style.cursor = 'zoom-in';
+      if (!isTouch) {
+        f.addEventListener('mouseenter', () => { img.style.transition = 'none'; img.style.transform = 'scale(2.2)'; });
+        f.addEventListener('mousemove', (e) => {
+          const r = f.getBoundingClientRect();
+          img.style.transformOrigin = ((e.clientX - r.left) / r.width * 100) + '% ' + ((e.clientY - r.top) / r.height * 100) + '%';
+        });
+        f.addEventListener('mouseleave', () => { img.style.transition = ''; img.style.transform = ''; img.style.transformOrigin = 'center'; });
+      }
+      f.addEventListener('click', () => open(img));
+    });
+  }
+
+  renderVals() {
+    const kitsRaw = [
+      { name: 'Device only', desc: 'The Velvet Glow Pro wand', price: '$149', amount: 149 },
+      { name: 'Device + Glow Serum', desc: 'Conductive serum (60 uses) included', price: '$174', amount: 174, tag: 'Most popular' },
+      { name: 'The Full Ritual', desc: 'Wand, serum, travel case & stand', price: '$196', amount: 196, tag: 'Best value' },
+    ];
+    const sel = this.state.kit;
+    const refillNum = Math.round(38 * 0.85); // Glow Serum refill, 15% off
+    const kits = kitsRaw.map((k, i) => ({
+      ...k,
+      select: () => this.setState({ kit: i }),
+      bd: i === sel ? '2px solid var(--char)' : '1px solid var(--line)',
+      bg: i === sel ? 'var(--paper)' : 'transparent',
+    }));
+    const thumbs = ['dev-t1','dev-t2','dev-t3','dev-t4','dev-t5'].map((id, i) => ({
+      id, ph: 'View ' + (i + 1),
+      select: () => this.setState({ thumb: i }),
+      border: i === this.state.thumb ? 'var(--char)' : 'var(--line)',
+    }));
+    const fbt = [
+      { id: 'fbt-1', ph: 'The wand', name: 'Velvet Glow Pro', price: '$149', amount: 149, plus: true },
+      { id: 'fbt-2', ph: 'Glow serum', name: 'Conductive Glow Serum', price: '$38', amount: 38, plus: true },
+      { id: 'fbt-3', ph: 'Charging stand', name: 'Charging Stand', price: '$45', amount: 45, plus: false },
+    ];
+    const bundleFull = fbt.reduce((s, f) => s + f.amount, 0);
+    const bundleSave = Math.round(bundleFull * 0.13); // 13% bundle saving (code GLOWKIT)
+    const bundlePrice = bundleFull - bundleSave;
+    const money = (n) => '$' + n;
+    return {
+      thumbs, kits,
+      bundleFull: money(bundleFull),
+      bundlePrice: money(bundlePrice),
+      bundleSave: money(bundleSave),
+      selectedPrice: kitsRaw[sel].price,
+      refillPrice: '$' + refillNum,
+      isSub: this.state.sub,
+      onceBd: !this.state.sub ? '2px solid var(--char)' : '1px solid var(--line)',
+      onceBg: !this.state.sub ? 'var(--paper)' : 'transparent',
+      subBd: this.state.sub ? '2px solid var(--char)' : '1px solid var(--line)',
+      subBg: this.state.sub ? 'var(--paper)' : 'transparent',
+      setOnce: () => this.setState({ sub: false }),
+      setSub: () => this.setState({ sub: true }),
+      hasSerum: sel !== 0,
+      toggleSub: () => this.setState(s => ({ sub: !s.sub })),
+      subBg2: this.state.sub ? 'var(--char)' : 'transparent',
+      subTick: this.state.sub ? '1' : '0',
+      baValue: this.state.ba,
+      baPct: this.state.ba + '%',
+      baClip: (100 - this.state.ba) + '%',
+      setBA: (e) => this.setState({ ba: +e.target.value }),
+      baGallery: [
+        { b: 'ba-b1', a: 'ba-a1', name: 'Renee, 42', weeks: '8 weeks' },
+        { b: 'ba-b2', a: 'ba-a2', name: 'Mia, 35', weeks: '10 weeks' },
+        { b: 'ba-b3', a: 'ba-a3', name: 'Lena, 51', weeks: '12 weeks' },
+      ],
+      targets: ['Fine lines', 'Dullness', 'Loss of firmness', 'Puffiness', 'Uneven tone', 'Breakouts'],
+      microtrust: [
+        { icon: '✓', text: 'Ships in 24h' },
+        { icon: '↺', text: '60-night trial' },
+        { icon: '🔒', text: 'Secure checkout' },
+        { icon: '＋', text: 'HSA/FSA eligible' },
+      ],
+      love: [
+        { icon: '✦', title: 'Firmer, lifted skin', desc: 'Microcurrent gently tones the muscles that hold your glow.' },
+        { icon: '◐', title: 'Calmer, clearer tone', desc: 'Red & blue light target redness, breakouts and dullness.' },
+        { icon: '♨', title: 'Spa-grade at home', desc: 'Warmth + vibration drive serum deeper — no appointment needed.' },
+      ],
+      credibility: [
+        { stat: 'FDA', label: 'Cleared Class II device' },
+        { stat: '93%', label: 'saw firmer skin in 8 weeks' },
+        { stat: '38k+', label: 'devices sold' },
+        { stat: '4.9★', label: 'from 2,847 verified reviews' },
+      ],
+      tech: [
+        { glyph: '◉', title: 'Red Light', spec: '630nm', desc: 'Stimulates collagen and elastin for firmer, plumper skin over time.', dotbg: 'var(--blush)', dotfg: 'var(--clay-2)' },
+        { glyph: '◐', title: 'Blue Light', spec: '415nm', desc: 'Targets blemish-causing bacteria to calm and clear breakouts.', dotbg: '#DCE4EA', dotfg: '#4A6173' },
+        { glyph: '∿', title: 'Microcurrent', spec: '9V · low-level', desc: 'Mirrors your skin\u2019s natural current to tone and lift facial muscles.', dotbg: 'var(--butter)', dotfg: '#7A6A2E' },
+        { glyph: '♨', title: 'Therapeutic Warmth', spec: '42°C', desc: 'Opens the skin to absorb serum more deeply and feels deeply calming.', dotbg: '#E8D9CF', dotfg: 'var(--clay-2)' },
+      ],
+      results: [
+        { pct: '93%', claim: 'saw visibly firmer, more lifted skin after 8 weeks' },
+        { pct: '88%', claim: 'reported a brighter, more even-looking complexion' },
+        { pct: '96%', claim: 'said it became the favourite part of their evening' },
+      ],
+      steps: [
+        { n: '1', id: 'dev-s1', ph: 'Cleanse', dur: '1 min', title: 'Cleanse & apply serum', desc: 'Start on clean, damp skin and glide on the conductive Glow Serum generously.' },
+        { n: '2', id: 'dev-s2', ph: 'Glide', dur: '4 min', title: 'Glide upward & out', desc: 'Move the warm wand in slow, upward strokes along the jaw, cheeks and brow.' },
+        { n: '3', id: 'dev-s3', ph: 'Seal', dur: '30 sec', title: 'Seal it in', desc: 'Finish with your moisturiser to lock in the glow. Five nights a week for best results.' },
+      ],
+      specs: [
+        { k: 'Technologies', v: 'Red light (630nm), blue light (415nm), microcurrent, thermal warmth, sonic vibration' },
+        { k: 'Treatment time', v: '5 minutes per session, 5 nights per week' },
+        { k: 'Battery', v: 'USB-C rechargeable · up to 14 sessions per charge' },
+        { k: 'Materials', v: 'Medical-grade stainless steel head, soft-touch aluminium body' },
+        { k: 'Water resistance', v: 'IPX6 — safe to rinse under water' },
+        { k: 'In the box', v: 'Wand, USB-C cable, velvet travel pouch, quick-start guide' },
+        { k: 'Dimensions', v: '16.5 cm L · 180 g' },
+        { k: 'Warranty', v: '2-year limited warranty + 60-night money-back trial' },
+      ],
+      certs: ['FDA Cleared', 'Dermatologist Developed', 'Cruelty-Free', 'HSA/FSA Eligible'],
+      fbt,
+      compare: [
+        { feat: '5 technologies in one wand', us: '✓', them: '✕', bg: 'var(--paper)' },
+        { feat: 'FDA-cleared', us: '✓', them: 'Sometimes', bg: 'var(--bone-2)' },
+        { feat: 'Therapeutic warmth', us: '✓', them: '✕', bg: 'var(--paper)' },
+        { feat: '60-night money-back trial', us: '✓', them: '14 days', bg: 'var(--bone-2)' },
+        { feat: 'HSA/FSA eligible', us: '✓', them: 'Rarely', bg: 'var(--paper)' },
+      ],
+      dist: [
+        { s: '5★', w: '94%', n: '2,676' },
+        { s: '4★', w: '4%', n: '114' },
+        { s: '3★', w: '1%', n: '34' },
+        { s: '2★', w: '1%', n: '14' },
+        { s: '1★', w: '1%', n: '9' },
+      ],
+      rphotos: [
+        { id: 'dev-rp1', name: 'Renee K.' }, { id: 'dev-rp2', name: 'Talia M.' },
+        { id: 'dev-rp3', name: 'Jordan P.' }, { id: 'dev-rp4', name: 'Mia S.' },
+        { id: 'dev-rp5', name: 'Lena R.' }, { id: 'dev-rp6', name: 'Aria D.' },
+      ],
+      reviews: [
+        { photo: 'dev-r1', when: '1 week ago', headline: 'My jawline is BACK', body: '"Eight weeks in and the difference along my jaw is unreal. My partner noticed before I said anything."', name: 'Renee K.' },
+        { photo: 'dev-r2', when: '3 weeks ago', headline: 'Worth every penny', body: '"I was skeptical at a premium price but the warmth + glide feels genuinely spa-grade. The serum bundle is the move."', name: 'Talia M.' },
+        { photo: 'dev-r3', when: '1 month ago', headline: 'Actually look forward to it', body: '"Five minutes with a show on and my skin looks lit-from-within. The most consistent I\u2019ve ever been with skincare."', name: 'Jordan P.' },
+      ],
+      faqs: [
+        { q: 'How soon will I see results?', a: 'Most people notice a brighter, plumper glow within the first two weeks. Firming and lifting results build over 6\u20138 weeks of consistent use, 5 nights a week.' },
+        { q: 'Is it safe for sensitive skin?', a: 'Yes. The wand uses low-level, dermatologist-tested settings. Start with 2\u20133 sessions a week and build up. Avoid use over active cystic acne or broken skin.' },
+        { q: 'Do I have to use the Glow Serum?', a: 'We strongly recommend it \u2014 the conductive serum helps the microcurrent and light travel evenly, improves glide and boosts absorption. Any water-based gel serum works in a pinch.' },
+        { q: 'Can I use it with Botox or filler?', a: 'Microcurrent is generally considered safe, but we recommend checking with your provider and waiting two weeks after any treatment.' },
+        { q: 'Is this HSA/FSA eligible?', a: 'Yes. As an FDA-cleared device it qualifies for most HSA and FSA plans \u2014 check with your administrator at checkout.' },
+        { q: 'What does the 60-night trial cover?', a: 'Use it nightly for 60 nights. If you\u2019re not happy, return the device for a full refund and keep the serum on us.' },
+      ],
+      also: [
+        { id: 'al-1', ph: 'LED mask', name: 'Glow LED Mask', cat: 'Skincare Device', price: '$229' },
+        { id: 'al-2', ph: 'Eye device', name: 'Bright Eye Wand', cat: 'Skincare Device', price: '$129' },
+        { id: 'al-3', ph: 'Roller', name: 'Sculpt Ice Roller', cat: 'Skincare Device', price: '$42' },
+        { id: 'al-4', ph: 'Serum', name: 'Conductive Glow Serum', cat: 'Skincare', price: '$38' },
+      ],
+      footerCols: [
+        { head: 'Customer Care', links: ['Contact', 'Shipping', 'Returns', 'FAQ'] },
+        { head: 'Company', links: ['Our Story', 'Journal', 'Affiliates'] },
+        { head: 'Policies', links: ['Privacy Policy', 'Refund Policy', 'Terms of Service', 'Shipping Policy'] },
+      ],
+      pays: ['VISA', 'AMEX', 'PAYPAL', 'SHOP PAY'],
+    };
+  }
+}
+</script>
+</body>
+</html>

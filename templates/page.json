@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "page_0": {
+      "type": "rv-page"
+    }
+  },
+  "order": [
+    "page_0"
+  ]
+}

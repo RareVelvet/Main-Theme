@@ -1,0 +1,134 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Rare Velvet",
+    "theme_version": "3.0.0",
+    "theme_author": "Rare Velvet",
+    "theme_documentation_url": "https://www.rarevelvetofficial.com",
+    "theme_support_url": "https://www.rarevelvetofficial.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_cta",
+        "label": "CTA button color",
+        "default": "#B0795C"
+      },
+      {
+        "type": "color",
+        "id": "color_cta_text",
+        "label": "CTA button text",
+        "default": "#FBF9F4"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Page background",
+        "default": "#F4F1EA"
+      },
+      {
+        "type": "color",
+        "id": "color_deep",
+        "label": "Dark section background",
+        "default": "#3B3833"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent / badge color",
+        "default": "#F2E6C2"
+      }
+    ]
+  },
+  {
+    "name": "Cart & shipping",
+    "settings": [
+      {
+        "type": "number",
+        "id": "free_ship_threshold",
+        "label": "Free shipping threshold ($)",
+        "info": "Used by the cart page, cart drawer and the free-shipping progress bar. Set to 0 to hide.",
+        "default": 50
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram handle (without @)"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok handle (without @)"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest",
+        "label": "Pinterest URL"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      }
+    ]
+  },
+  {
+    "name": "Product info (PDP accordions)",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Shipping & Returns — shown on every product, identical"
+      },
+      {
+        "type": "richtext",
+        "id": "shipping_returns",
+        "label": "Shipping & Returns text",
+        "default": "<p>Ships within 24h. Enjoy easy 30-day returns on unworn items in their original packaging. Final-sale items are non-returnable.</p>"
+      },
+      {
+        "type": "header",
+        "content": "Materials & Care — default by product type (auto). A product's own metafield overrides these."
+      },
+      {
+        "type": "richtext",
+        "id": "care_default_jewelry",
+        "label": "Default — Jewelry",
+        "default": "<p>Crafted from 925 sterling silver with 18ct gold vermeil plating. Keep dry, avoid perfumes and lotions, and store in the velvet pouch provided. Polish gently with a soft cloth. Backed by our 2-year warranty.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "care_default_beauty",
+        "label": "Default — Beauty / Skincare",
+        "default": "<p>Store away from direct sunlight and extreme heat. Patch-test before first use. For best results use within 12 months of opening. Cruelty-free and dermatologically tested.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "care_default_general",
+        "label": "Default — Everything else",
+        "default": "<p>Wipe clean with a soft, dry cloth. Avoid moisture and direct heat. Store in a cool, dry place to keep it looking beautiful for years.</p>"
+      },
+      {
+        "type": "header",
+        "content": "Loyalty (LoyaltyLion)"
+      },
+      {
+        "type": "number",
+        "id": "loyalty_points_per_dollar",
+        "label": "Rare Velvet points earned per $1",
+        "default": 1
+      }
+    ]
+  }
+]

@@ -1,0 +1,393 @@
+{
+  "sections": {
+    "hero_0": {
+      "type": "rv-hero"
+    },
+    "trust_bar_1": {
+      "type": "rv-trust-bar",
+      "blocks": {
+        "item_0": {
+          "type": "item",
+          "settings": {
+            "text": "Free shipping over $50"
+          }
+        },
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "text": "Secure checkout"
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "text": "Easy 30-day returns"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "text": "Lifetime warranty on jewelry boxes"
+          }
+        }
+      },
+      "block_order": [
+        "item_0",
+        "item_1",
+        "item_2",
+        "item_3"
+      ]
+    },
+    "category_nav_2": {
+      "type": "rv-category-nav",
+      "blocks": {
+        "cat_0": {
+          "type": "cat",
+          "settings": {
+            "label": "Skincare"
+          }
+        },
+        "cat_1": {
+          "type": "cat",
+          "settings": {
+            "label": "Beauty"
+          }
+        },
+        "cat_2": {
+          "type": "cat",
+          "settings": {
+            "label": "Jewelry"
+          }
+        },
+        "cat_3": {
+          "type": "cat",
+          "settings": {
+            "label": "Interior"
+          }
+        },
+        "cat_4": {
+          "type": "cat",
+          "settings": {
+            "label": "Gifts"
+          }
+        }
+      },
+      "block_order": [
+        "cat_0",
+        "cat_1",
+        "cat_2",
+        "cat_3",
+        "cat_4"
+      ]
+    },
+    "lifestyle_tiles_3": {
+      "type": "rv-lifestyle-tiles",
+      "blocks": {
+        "tile_0": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "Skincare",
+            "title": "Morning Glow Routine",
+            "subtitle": "Cleanser · serum · lip"
+          }
+        },
+        "tile_1": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "On the go",
+            "title": "Travel Essentials",
+            "subtitle": "Bag · mirror · case"
+          }
+        },
+        "tile_2": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "At home",
+            "title": "Vanity Favorites",
+            "subtitle": "Organizers · accessories"
+          }
+        },
+        "tile_3": {
+          "type": "tile",
+          "settings": {
+            "eyebrow": "For someone special",
+            "title": "Gifts Under $50",
+            "subtitle": "Thoughtfully wrapped"
+          }
+        }
+      },
+      "block_order": [
+        "tile_0",
+        "tile_1",
+        "tile_2",
+        "tile_3"
+      ]
+    },
+    "product_grid_4": {
+      "type": "rv-product-grid"
+    },
+    "new_arrivals_5": {
+      "type": "rv-new-arrivals"
+    },
+    "routine_builder_6": {
+      "type": "rv-routine-builder",
+      "blocks": {
+        "step_0": {
+          "type": "step",
+          "settings": {
+            "step_name": "Step 1 · Cleanse",
+            "step_desc": "Remove makeup and impurities without stripping the skin barrier."
+          }
+        },
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "step_name": "Step 2 · Treat",
+            "step_desc": "Apply serum to damp skin for maximum absorption and glow."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "step_name": "Step 3 · Protect",
+            "step_desc": "Seal with moisturiser, then SPF to protect all-day radiance."
+          }
+        }
+      },
+      "block_order": [
+        "step_0",
+        "step_1",
+        "step_2"
+      ]
+    },
+    "why_us_7": {
+      "type": "rv-why-us",
+      "blocks": {
+        "pillar_0": {
+          "type": "pillar",
+          "settings": {
+            "title": "Editor-Curated",
+            "description": "Every piece is hand-selected and checked for material, wear and finish before it earns a place in the edit.",
+            "icon_shape": "999px"
+          }
+        },
+        "pillar_1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Ships in 24 Hours",
+            "description": "Orders leave our studio within a day — tracked, carbon-neutral delivery, with a tracking link by email.",
+            "icon_shape": "3px"
+          }
+        },
+        "pillar_2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Arrives Gift-Ready",
+            "description": "Wrapped in our signature velvet pouch and hand-finished box — ready to gift, beautiful to keep.",
+            "icon_shape": "50% 50% 50% 0"
+          }
+        },
+        "pillar_3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Shop with Confidence",
+            "description": "Encrypted checkout, easy 30-day returns, and a lifetime warranty on every jewelry box.",
+            "icon_shape": "999px"
+          }
+        }
+      },
+      "block_order": [
+        "pillar_0",
+        "pillar_1",
+        "pillar_2",
+        "pillar_3"
+      ]
+    },
+    "bundle_grid_8": {
+      "type": "rv-bundle-grid",
+      "blocks": {
+        "bundle_0": {
+          "type": "bundle",
+          "settings": {
+            "title": "Night Routine Bundle",
+            "badge": "Save $18"
+          }
+        },
+        "bundle_1": {
+          "type": "bundle",
+          "settings": {
+            "title": "Travel Essentials Set",
+            "badge": "3-in-1"
+          }
+        },
+        "bundle_2": {
+          "type": "bundle",
+          "settings": {
+            "title": "Self-Care Bundle",
+            "badge": "Save $14"
+          }
+        },
+        "bundle_3": {
+          "type": "bundle",
+          "settings": {
+            "title": "Beauty Lover Gift Set",
+            "badge": "Gift Set"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_0",
+        "bundle_1",
+        "bundle_2",
+        "bundle_3"
+      ]
+    },
+    "ugc_grid_9": {
+      "type": "rv-ugc-grid",
+      "blocks": {
+        "photo_0": {
+          "type": "photo",
+          "settings": {
+            "is_video": true
+          }
+        },
+        "photo_1": {
+          "type": "photo"
+        },
+        "photo_2": {
+          "type": "photo"
+        },
+        "photo_3": {
+          "type": "photo"
+        }
+      },
+      "block_order": [
+        "photo_0",
+        "photo_1",
+        "photo_2",
+        "photo_3"
+      ]
+    },
+    "journal_11": {
+      "type": "rv-journal",
+      "blocks": {
+        "post_0": {
+          "type": "post",
+          "settings": {
+            "category": "Ritual",
+            "read_time": "4 min",
+            "title": "A five-minute morning glow routine, edited down to essentials"
+          }
+        },
+        "post_1": {
+          "type": "post",
+          "settings": {
+            "category": "Guides",
+            "read_time": "5 min",
+            "title": "How to pack your jewelry for travel (without the tangles)"
+          }
+        },
+        "post_2": {
+          "type": "post",
+          "settings": {
+            "category": "Gifting",
+            "read_time": "3 min",
+            "title": "The Rare Velvet gift guide: under-$50 pieces they'll love"
+          }
+        }
+      },
+      "block_order": [
+        "post_0",
+        "post_1",
+        "post_2"
+      ]
+    },
+    "press_bar_12": {
+      "type": "rv-press-bar",
+      "blocks": {
+        "outlet_0": {
+          "type": "outlet",
+          "settings": {
+            "name": "VOGUE"
+          }
+        },
+        "outlet_1": {
+          "type": "outlet",
+          "settings": {
+            "name": "ALLURE"
+          }
+        },
+        "outlet_2": {
+          "type": "outlet",
+          "settings": {
+            "name": "ELLE"
+          }
+        },
+        "outlet_3": {
+          "type": "outlet",
+          "settings": {
+            "name": "BAZAAR"
+          }
+        }
+      },
+      "block_order": [
+        "outlet_0",
+        "outlet_1",
+        "outlet_2",
+        "outlet_3"
+      ]
+    },
+    "newsletter_13": {
+      "type": "rv-newsletter"
+    },
+    "testimonial_band_45": {
+      "type": "rv-testimonial-band",
+      "settings": {
+        "anchor": "12,400+ reviews",
+        "rotate_seconds": 4,
+        "bg": "#FBF9F4"
+      },
+      "blocks": {
+        "quote_0": {
+          "type": "quote",
+          "settings": {
+            "quote": "\"Absolutely obsessed — every piece feels like a little luxury on my vanity.\""
+          }
+        },
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "quote": "\"My skin has never looked this dewy. The first thing I reach for every morning.\""
+          }
+        },
+        "quote_2": {
+          "type": "quote",
+          "settings": {
+            "quote": "\"Beautifully made and beautifully packaged. It feels far more expensive than it is.\""
+          }
+        }
+      },
+      "block_order": [
+        "quote_0",
+        "quote_1",
+        "quote_2"
+      ]
+    }
+  },
+  "order": [
+    "hero_0",
+    "trust_bar_1",
+    "category_nav_2",
+    "lifestyle_tiles_3",
+    "product_grid_4",
+    "testimonial_band_45",
+    "new_arrivals_5",
+    "routine_builder_6",
+    "why_us_7",
+    "bundle_grid_8",
+    "ugc_grid_9",
+    "journal_11",
+    "press_bar_12",
+    "newsletter_13"
+  ]
+}

@@ -1,0 +1,86 @@
+
+<section class="rv-section">
+  <div class="rv-container">
+    <div class="rv-section-head">
+      <div>
+        <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="rv-heading">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.all_url != blank -%}
+        <a href="{{ section.settings.all_url }}" class="rv-view-all">View all collections →</a>
+      {%- endif -%}
+    </div>
+    <div class="rv-grid-4 rv-lifestyle-grid">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link }}" class="rv-tile" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', style: 'width:100%;height:400px;object-fit:cover;display:block;', alt: block.settings.image.alt }}
+          {%- elsif block.settings.collection != blank -%}
+            {%- assign tc = collections[block.settings.collection] -%}
+            {%- if tc.image -%}
+              {{ tc.image | image_url: width: 700 | image_tag: loading: 'lazy', style: 'width:100%;height:400px;object-fit:cover;display:block;', alt: tc.title }}
+            {%- else -%}
+              <div class="rv-placeholder-img" style="height:400px;">{{ 'collection-1' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+          {%- else -%}
+            <div class="rv-placeholder-img" style="height:400px;">{{ 'image' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+          <div class="rv-tile__scrim"></div>
+          <div class="rv-tile__content">
+            <div class="rv-tile__eyebrow">{{ block.settings.eyebrow }}</div>
+            <div class="rv-tile__title">{{ block.settings.title }}</div>
+            {%- if block.settings.subtitle != blank -%}
+              <div class="rv-tile__sub">{{ block.settings.subtitle }}</div>
+            {%- endif -%}
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+@media(max-width:768px){
+  .rv-lifestyle-grid{
+    display:flex!important;
+    grid-template-columns:none!important;
+    overflow-x:auto;
+    gap:12px;
+    margin:0 -18px;
+    padding:0 18px 4px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .rv-lifestyle-grid::-webkit-scrollbar{display:none}
+  .rv-lifestyle-grid .rv-tile{
+    flex:0 0 76%;
+    scroll-snap-align:start;
+  }
+  .rv-lifestyle-grid .rv-tile img,
+  .rv-lifestyle-grid .rv-placeholder-img{
+    height:340px!important;
+  }
+}
+@media(max-width:480px){
+  .rv-lifestyle-grid .rv-tile{flex:0 0 82%;}
+}
+</style>
+
+{% schema %}{"name":"Lifestyle Tiles","tag":"section","max_blocks":4,"settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Shop by Ritual"},
+{"type":"text","id":"heading","label":"Heading","default":"Edits made for the way you live"},
+{"type":"url","id":"all_url","label":"View all link"}
+],"blocks":[{"type":"tile","name":"Lifestyle tile","settings":[
+{"type":"image_picker","id":"image","label":"Tile image"},
+{"type":"collection","id":"collection","label":"Or pick a collection (uses its image if no image above)"},
+{"type":"text","id":"eyebrow","label":"Eyebrow tag","default":"Skincare"},
+{"type":"text","id":"title","label":"Tile title","default":"Morning Glow Routine"},
+{"type":"text","id":"subtitle","label":"Subtitle","default":"Cleanser · serum · lip"},
+{"type":"url","id":"link","label":"Link"}
+]}],"presets":[{"name":"Lifestyle Tiles","blocks":[
+{"type":"tile","settings":{"eyebrow":"Skincare","title":"Morning Glow Routine","subtitle":"Cleanser · serum · lip"}},
+{"type":"tile","settings":{"eyebrow":"On the go","title":"Travel Essentials","subtitle":"Bag · mirror · case"}},
+{"type":"tile","settings":{"eyebrow":"At home","title":"Vanity Favorites","subtitle":"Organizers · accessories"}},
+{"type":"tile","settings":{"eyebrow":"For someone special","title":"Gifts Under $50","subtitle":"Thoughtfully wrapped"}}
+]}]}{% endschema %}

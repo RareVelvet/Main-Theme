@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+@page{size:A4;margin:0}
+.chk:checked + .box{background:#B0795C;border-color:#B0795C}
+.chk:checked + .box .tick{opacity:1!important}
+@media print{.sheet{box-shadow:none!important;margin:0!important}}
+</style>
+</helmet>
+<div style="background:#E7E5DF;min-height:100vh;padding:40px 20px;font-family:'Hanken Grotesk',system-ui,sans-serif;">
+  <div class="sheet" style="width:820px;max-width:100%;margin:0 auto;background:#F4F1EA;box-shadow:0 24px 60px -28px rgba(43,42,39,.4);padding:56px 60px 64px;">
+
+    <!-- header -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid #2B2A27;padding-bottom:22px;margin-bottom:32px;">
+      <div>
+        <div style="font:600 11px/1 'Hanken Grotesk';letter-spacing:.28em;text-transform:uppercase;color:#B0795C;margin-bottom:12px;">Launch Checklist</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:42px;line-height:.95;letter-spacing:.06em;text-transform:uppercase;color:#2B2A27;">Rare Velvet</div>
+      </div>
+      <div style="text-align:right;font:400 11px/1.5 'Hanken Grotesk';color:#6E6A64;">Shopify theme: <strong style="color:#2B2A27;">rv-theme-final</strong><br>Go-live readiness</div>
+    </div>
+
+    <p style="font:400 14px/1.6 'Hanken Grotesk';color:#56524C;margin:0 0 34px;max-width:620px;">Work top to bottom. The theme design is complete — everything below is content, configuration and app setup done inside Shopify Admin. Tick each as you go.</p>
+
+    <!-- two-column body -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+
+      <!-- LEFT COLUMN -->
+      <div style="display:flex;flex-direction:column;gap:30px;">
+
+        <div>
+          <div style="font:600 12px/1 'Hanken Grotesk';letter-spacing:.16em;text-transform:uppercase;color:#2B2A27;margin-bottom:4px;">01 · Content &amp; Imagery</div>
+          <div style="height:1px;background:#DAD4CB;margin-bottom:16px;"></div>
+          <sc-for list="{{ content }}" as="item" hint-placeholder-count="4">
+            <label style="display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;cursor:pointer;">
+              <input type="checkbox" class="chk" style="position:absolute;opacity:0;width:0;height:0;">
+              <span class="box" style="flex:none;width:17px;height:17px;border:1.5px solid #B0A89B;border-radius:3px;margin-top:1px;position:relative;transition:all .15s;"><span style="position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid #F4F1EA;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;transition:opacity .15s;" class="tick"></span></span>
+              <span style="font:400 13px/1.45 'Hanken Grotesk';color:#3F3B35;">{{ item }}</span>
+            </label>
+          </sc-for>
+        </div>
+
+        <div>
+          <div style="font:600 12px/1 'Hanken Grotesk';letter-spacing:.16em;text-transform:uppercase;color:#2B2A27;margin-bottom:4px;">02 · Product Data (metafields)</div>
+          <div style="height:1px;background:#DAD4CB;margin-bottom:16px;"></div>
+          <sc-for list="{{ metafields }}" as="item" hint-placeholder-count="4">
+            <label style="display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;cursor:pointer;">
+              <input type="checkbox" class="chk" style="position:absolute;opacity:0;width:0;height:0;">
+              <span class="box" style="flex:none;width:17px;height:17px;border:1.5px solid #B0A89B;border-radius:3px;margin-top:1px;position:relative;transition:all .15s;"><span style="position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid #F4F1EA;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;transition:opacity .15s;" class="tick"></span></span>
+              <span style="font:400 13px/1.45 'Hanken Grotesk';color:#3F3B35;">{{ item }}</span>
+            </label>
+          </sc-for>
+        </div>
+
+        <div>
+          <div style="font:600 12px/1 'Hanken Grotesk';letter-spacing:.16em;text-transform:uppercase;color:#2B2A27;margin-bottom:4px;">03 · Discounts</div>
+          <div style="height:1px;background:#DAD4CB;margin-bottom:16px;"></div>
+          <sc-for list="{{ discounts }}" as="item" hint-placeholder-count="4">
+            <label style="display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;cursor:pointer;">
+              <input type="checkbox" class="chk" style="position:absolute;opacity:0;width:0;height:0;">
+              <span class="box" style="flex:none;width:17px;height:17px;border:1.5px solid #B0A89B;border-radius:3px;margin-top:1px;position:relative;transition:all .15s;"><span style="position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid #F4F1EA;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;transition:opacity .15s;" class="tick"></span></span>
+              <span style="font:400 13px/1.45 'Hanken Grotesk';color:#3F3B35;">{{ item }}</span>
+            </label>
+          </sc-for>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div style="display:flex;flex-direction:column;gap:30px;">
+
+        <div>
+          <div style="font:600 12px/1 'Hanken Grotesk';letter-spacing:.16em;text-transform:uppercase;color:#2B2A27;margin-bottom:4px;">04 · Apps &amp; Integrations</div>
+          <div style="height:1px;background:#DAD4CB;margin-bottom:16px;"></div>
+          <sc-for list="{{ apps }}" as="item" hint-placeholder-count="4">
+            <label style="display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;cursor:pointer;">
+              <input type="checkbox" class="chk" style="position:absolute;opacity:0;width:0;height:0;">
+              <span class="box" style="flex:none;width:17px;height:17px;border:1.5px solid #B0A89B;border-radius:3px;margin-top:1px;position:relative;transition:all .15s;"><span style="position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid #F4F1EA;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;transition:opacity .15s;" class="tick"></span></span>
+              <span style="font:400 13px/1.45 'Hanken Grotesk';color:#3F3B35;">{{ item }}</span>
+            </label>
+          </sc-for>
+        </div>
+
+        <div>
+          <div style="font:600 12px/1 'Hanken Grotesk';letter-spacing:.16em;text-transform:uppercase;color:#2B2A27;margin-bottom:4px;">05 · Navigation &amp; Pages</div>
+          <div style="height:1px;background:#DAD4CB;margin-bottom:16px;"></div>
+          <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+            <label style="display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;cursor:pointer;">
+              <input type="checkbox" class="chk" style="position:absolute;opacity:0;width:0;height:0;">
+              <span class="box" style="flex:none;width:17px;height:17px;border:1.5px solid #B0A89B;border-radius:3px;margin-top:1px;position:relative;transition:all .15s;"><span style="position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid #F4F1EA;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;transition:opacity .15s;" class="tick"></span></span>
+              <span style="font:400 13px/1.45 'Hanken Grotesk';color:#3F3B35;">{{ item }}</span>
+            </label>
+          </sc-for>
+        </div>
+
+        <div>
+          <div style="font:600 12px/1 'Hanken Grotesk';letter-spacing:.16em;text-transform:uppercase;color:#2B2A27;margin-bottom:4px;">06 · Analytics &amp; Final QA</div>
+          <div style="height:1px;background:#DAD4CB;margin-bottom:16px;"></div>
+          <sc-for list="{{ qa }}" as="item" hint-placeholder-count="5">
+            <label style="display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;cursor:pointer;">
+              <input type="checkbox" class="chk" style="position:absolute;opacity:0;width:0;height:0;">
+              <span class="box" style="flex:none;width:17px;height:17px;border:1.5px solid #B0A89B;border-radius:3px;margin-top:1px;position:relative;transition:all .15s;"><span style="position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid #F4F1EA;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;transition:opacity .15s;" class="tick"></span></span>
+              <span style="font:400 13px/1.45 'Hanken Grotesk';color:#3F3B35;">{{ item }}</span>
+            </label>
+          </sc-for>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- footer note -->
+    <div style="margin-top:40px;padding:18px 22px;background:#3B3833;border-radius:3px;display:flex;align-items:center;gap:14px;">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#F2E6C2;line-height:1;">✦</span>
+      <div style="font:400 12px/1.55 'Hanken Grotesk';color:#D8D2C7;">Once every box is ticked, duplicate the theme as a backup, then <strong style="color:#F2E6C2;">publish</strong>. Keep this list — re-run §06 after any future theme update.</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      content: [
+        'Replace all placeholder image slots with real photography (hero, lifestyle tiles, bundles, UGC, PDP galleries).',
+        'Add product descriptions, titles & alt text for every product.',
+        'Write Journal/blog posts (or hide the Journal section until ready).',
+        'Set the About Us story copy + founder image.',
+      ],
+      metafields: [
+        'Create custom.material, custom.size, custom.finish (single-line text).',
+        'Create custom.material_name for card/PDP subtitles.',
+        'Fill metafields per product so Details & Materials auto-populates.',
+        'Tag/assign products to collections: Best Sellers, New In, Stackables, Jewelry Boxes.',
+        'Set Product Type = "Ring" (or tag "ring") on ring products so the ring size guide shows.',
+      ],
+      discounts: [
+        'STACK15 — 15% off Stackables (via "Add the full stack").',
+        'VANITY10 — 10% off vanity upsell; mark non-combinable.',
+        'GLOW15 — 15% off the 3-step routine bundle.',
+        'COLLECT15 — jewelry "Add to your collection" offer.',
+      ],
+      apps: [
+        'Loox — enable reviews widget + star ratings (app embed ON).',
+        'LoyaltyLion — connect "Rare Velvet points" + Rewards band.',
+        'Notify Me — wishlist heart + back-in-stock button.',
+        'Search & Discovery — turn on to power collection filters.',
+      ],
+      nav: [
+        'Set main menu, mobile category pills & footer link lists.',
+        'Fill Settings → Policies (auto-fills footer Policies column).',
+        'Configure announcement bar messages (rotating).',
+        'Set free-shipping threshold in Cart Drawer settings ($50).',
+      ],
+      qa: [
+        'Add GA4 + Meta Pixel (Settings → Customer events).',
+        'Set up the welcome-email automation that sends the 10% code.',
+        'Test checkout end-to-end on mobile + desktop.',
+        'Verify each PDP type renders (Jewelry, Beauty, Device, Bundle, Fashion, Box).',
+        'Check quick-view, cart drawer, search & filters on mobile.',
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

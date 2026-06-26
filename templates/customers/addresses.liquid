@@ -1,0 +1,10 @@
+
+<div style="max-width:700px;margin:60px auto;padding:0 24px;">
+  <h1 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:500;color:#2B2A27;margin:0 0 32px;">Addresses</h1>
+  {%- for address in customer.addresses -%}
+    <div style="border:1px solid #DAD4CB;border-radius:3px;padding:18px 20px;margin-bottom:12px;">
+      <p style="font:400 14px/1.6 sans-serif;color:#2B2A27;margin:0 0 12px;">{{ address | format_address }}</p>
+      <a href="#" style="font:400 11px/1 sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#B0795C;border-bottom:1px solid #B0795C;">Edit</a>
+    </div>
+  {%- endfor -%}
+</div>

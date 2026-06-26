@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+:root{
+  --bone:#F4F1EA;--bone-2:#ECE7DD;--paper:#FBF9F4;
+  --grey:#8B8680;--grey-2:#6E6A64;--line:#DAD4CB;
+  --char:#2B2A27;--soft:#56524C;
+  --deep:#3B3833;--deep-soft:#B8B2A8;--deep-line:rgba(244,241,234,.16);
+  --butter:#F2E6C2;--butter-2:#E2CB92;--clay:#B0795C;--clay-2:#9A6446;
+  --blush:#E9D9D2;--star:#C2A24E;--mint:#9DB5A4;
+  --rv-serif:'Cormorant Garamond',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif;
+}
+image-slot{display:block;}
+.ph-scroll{overflow-y:auto;scrollbar-width:none;}
+.ph-scroll::-webkit-scrollbar{display:none;}
+.acc summary{list-style:none;}.acc summary::-webkit-details-marker{display:none;}
+.acc[open] .accx{transform:rotate(45deg);}
+.snap{scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.snap::-webkit-scrollbar{display:none;}
+</style>
+</helmet>
+<div style="background:#CFC9BE;min-height:100%;padding:40px 24px;font-family:var(--sans);display:flex;gap:48px;justify-content:center;flex-wrap:wrap;">
+
+  <!-- ===== PHONE 1 — TOP ===== -->
+  <div style="flex:none;">
+    <div style="font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:14px;text-align:center;">Buy box &amp; kit</div>
+    <div style="width:390px;height:820px;background:#000;border-radius:46px;padding:11px;box-shadow:0 30px 60px -20px rgba(43,42,39,.5);">
+      <div class="ph-scroll" style="width:100%;height:100%;background:var(--bone);border-radius:36px;overflow-y:auto;position:relative;">
+
+        <!-- status + nav -->
+        <div style="position:sticky;top:0;z-index:20;background:rgba(244,241,234,.94);backdrop-filter:blur(8px);">
+          <div style="background:var(--char);color:var(--bone);text-align:center;font:600 9px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:7px 10px;">FDA-cleared · 60-night trial · HSA/FSA eligible</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--line);">
+            <span style="font-size:18px;">☰</span>
+            <span style="font-family:var(--rv-serif);font-size:19px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;">Rare Velvet</span>
+            <span style="font-size:14px;letter-spacing:.05em;">⌕ &nbsp; ◌</span>
+          </div>
+        </div>
+
+        <!-- gallery swipe -->
+        <div style="position:relative;">
+          <div class="snap" style="display:flex;overflow-x:auto;">
+            <div style="flex:none;width:368px;scroll-snap-align:center;"><image-slot id="md-g1" shape="rect" placeholder="Hero device — macro" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+            <div style="flex:none;width:368px;scroll-snap-align:center;"><image-slot id="md-g2" shape="rect" placeholder="On skin — in use" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+            <div style="flex:none;width:368px;scroll-snap-align:center;"><image-slot id="md-g3" shape="rect" placeholder="In hand — scale" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+          </div>
+          <div style="position:absolute;top:14px;left:14px;display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="background:var(--mint);color:#1F2A22;font:700 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;">FDA-Cleared</span>
+            <span style="background:var(--paper);color:var(--char);font:700 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;">★ Best Seller</span>
+          </div>
+          <div style="position:absolute;bottom:12px;left:0;right:0;display:flex;gap:5px;justify-content:center;">
+            <span style="width:7px;height:7px;border-radius:999px;background:var(--char);"></span>
+            <span style="width:7px;height:7px;border-radius:999px;background:rgba(43,42,39,.3);"></span>
+            <span style="width:7px;height:7px;border-radius:999px;background:rgba(43,42,39,.3);"></span>
+          </div>
+        </div>
+
+        <!-- buy box -->
+        <div style="padding:20px 18px 120px;">
+          <div style="font:600 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:10px;">The Skincare Devices Edit</div>
+          <h1 style="font-family:var(--rv-serif);font-weight:500;font-size:34px;line-height:1.02;margin:0 0 6px;">The Velvet Glow Pro</h1>
+          <div style="font-family:var(--rv-serif);font-style:italic;font-size:17px;color:var(--soft);margin-bottom:14px;">Red-light &amp; microcurrent facial wand</div>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+            <span style="color:var(--star);letter-spacing:2px;font-size:13px;">★★★★★</span>
+            <span style="font:400 12px/1 var(--sans);color:var(--soft);">4.9</span>
+            <span style="color:var(--line);">·</span>
+            <span style="font:400 12px/1 var(--sans);color:var(--soft);border-bottom:1px solid var(--line);">2,847 reviews</span>
+          </div>
+
+          <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;">
+            <span style="font:600 26px/1 var(--sans);">$149</span>
+            <span style="font:400 15px/1 var(--sans);color:var(--grey-2);text-decoration:line-through;">$249</span>
+            <span style="background:var(--blush);color:var(--clay-2);font:700 9px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:999px;">Save $100</span>
+          </div>
+          <div style="font:400 12px/1.4 var(--sans);color:var(--clay);margin-bottom:20px;">Earn 149 Rare Velvet points with this purchase</div>
+
+          <!-- kit selector -->
+          <div style="font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--char);margin-bottom:9px;">Choose your kit</div>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:16px;">
+            <div style="border:1px solid var(--line);border-radius:3px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;"><div><div style="font:600 13px/1.2 var(--sans);">Device only</div><div style="font:400 11px/1.3 var(--sans);color:var(--soft);margin-top:3px;">The Velvet Glow Pro wand</div></div><span style="font:600 13px/1;">$149</span></div>
+            <div style="border:2px solid var(--char);border-radius:3px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--paper);"><div><div style="font:600 13px/1.2 var(--sans);">Device + Glow Serum</div><div style="font:400 11px/1.3 var(--sans);color:var(--soft);margin-top:3px;">Conductive serum (60 uses)</div></div><span style="text-align:right;flex:none;"><span style="font:600 13px/1;display:block;">$174</span><span style="font:700 8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--clay);">Most popular</span></span></div>
+            <div style="border:1px solid var(--line);border-radius:3px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;"><div><div style="font:600 13px/1.2 var(--sans);">The Full Ritual</div><div style="font:400 11px/1.3 var(--sans);color:var(--soft);margin-top:3px;">Wand, serum, case &amp; stand</div></div><span style="text-align:right;flex:none;"><span style="font:600 13px/1;display:block;">$196</span><span style="font:700 8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--clay);">Best value</span></span></div>
+          </div>
+
+          <!-- slim subscribe -->
+          <div style="display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:3px;padding:12px 14px;margin-bottom:16px;background:var(--paper);">
+            <span style="width:19px;height:19px;border-radius:4px;border:1.5px solid var(--char);background:var(--char);display:flex;align-items:center;justify-content:center;flex:none;"><span style="color:#FBF9F4;font-size:11px;">✓</span></span>
+            <div><span style="font:600 12px/1.2 var(--sans);">Auto-refill my serum &amp; save 15%</span><span style="display:block;font:400 11px/1.3 var(--sans);color:var(--soft);margin-top:2px;">Every 2 months at $32 · free shipping · cancel anytime</span></div>
+          </div>
+
+          <!-- free gift -->
+          <div style="display:flex;align-items:center;gap:12px;background:#EAEFE9;border:1px solid #D5E0D4;border-radius:4px;padding:11px 13px;margin-bottom:20px;">
+            <div style="width:48px;height:48px;border-radius:3px;overflow:hidden;flex:none;background:#DCE5DB;"><image-slot id="md-gift" shape="rect" placeholder="Gold mask" style="width:100%;height:100%;"></image-slot></div>
+            <div style="flex:1;"><div style="display:inline-block;font:700 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#3E5C45;background:#CFE0CE;border-radius:999px;padding:4px 8px;margin-bottom:5px;">Free gift · $28</div><div style="font:500 12px/1.35 var(--sans);">Gold-Infused Glow Mask, free with every device</div></div>
+          </div>
+
+          <!-- micro trust -->
+          <div style="display:flex;flex-wrap:wrap;gap:12px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+            <span style="display:flex;align-items:center;gap:6px;font:500 11px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">✓</span>Ships in 24h</span>
+            <span style="display:flex;align-items:center;gap:6px;font:500 11px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">↺</span>60-night trial</span>
+            <span style="display:flex;align-items:center;gap:6px;font:500 11px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">＋</span>HSA/FSA</span>
+          </div>
+        </div>
+
+        <!-- sticky ATC -->
+        <div style="position:sticky;bottom:0;background:rgba(251,249,244,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;">
+          <div style="flex:1;min-width:0;"><div style="font:600 13px/1.1 var(--sans);">$174 · Device + Serum</div><div style="font:400 11px/1 var(--sans);color:var(--soft);margin-top:2px;">★★★★★ 2,847</div></div>
+          <button style="background:var(--clay);color:#FBF9F4;border:none;font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:14px 24px;border-radius:2px;flex:none;">Add to bag</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PHONE 2 — RESULTS / HOW / REVIEWS ===== -->
+  <div style="flex:none;">
+    <div style="font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:14px;text-align:center;">Proof, ritual &amp; reviews</div>
+    <div style="width:390px;height:820px;background:#000;border-radius:46px;padding:11px;box-shadow:0 30px 60px -20px rgba(43,42,39,.5);">
+      <div class="ph-scroll" style="width:100%;height:100%;background:var(--bone);border-radius:36px;overflow-y:auto;">
+
+        <!-- credibility strip -->
+        <div style="background:var(--deep);padding:28px 18px;display:grid;grid-template-columns:1fr 1fr;gap:22px;">
+          <div style="text-align:center;"><div style="font-family:var(--rv-serif);font-size:32px;color:var(--butter);font-weight:500;line-height:1;">FDA</div><div style="font:400 11px/1.4 var(--sans);color:var(--deep-soft);margin-top:6px;">Cleared Class II device</div></div>
+          <div style="text-align:center;"><div style="font-family:var(--rv-serif);font-size:32px;color:var(--butter);font-weight:500;line-height:1;">93%</div><div style="font:400 11px/1.4 var(--sans);color:var(--deep-soft);margin-top:6px;">firmer skin in 8 weeks</div></div>
+          <div style="text-align:center;"><div style="font-family:var(--rv-serif);font-size:32px;color:var(--butter);font-weight:500;line-height:1;">38k+</div><div style="font:400 11px/1.4 var(--sans);color:var(--deep-soft);margin-top:6px;">devices sold</div></div>
+          <div style="text-align:center;"><div style="font-family:var(--rv-serif);font-size:32px;color:var(--butter);font-weight:500;line-height:1;">4.9★</div><div style="font:400 11px/1.4 var(--sans);color:var(--deep-soft);margin-top:6px;">2,847 reviews</div></div>
+        </div>
+
+        <!-- results before/after -->
+        <div style="padding:28px 18px;">
+          <div style="font:600 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">Proven results</div>
+          <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:26px;line-height:1.08;margin:0 0 18px;">Visible glow in 8 weeks</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;">
+            <div style="position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--bone-2);"><image-slot id="md-before" shape="rect" placeholder="Before — week 0" style="width:100%;height:100%;"></image-slot><span style="position:absolute;top:10px;left:10px;background:rgba(43,42,39,.8);color:var(--bone);font:600 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;border-radius:999px;">Before</span></div>
+            <div style="position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--bone-2);"><image-slot id="md-after" shape="rect" placeholder="Week 8" style="width:100%;height:100%;"></image-slot><span style="position:absolute;top:10px;left:10px;background:var(--clay);color:#FBF9F4;font:600 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;border-radius:999px;">Week 8</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:14px;"><div style="font-family:var(--rv-serif);font-size:36px;color:var(--clay);font-weight:500;line-height:.9;flex:none;min-width:74px;">93%</div><div style="font:400 13px/1.5 var(--sans);color:var(--soft);">saw visibly firmer, more lifted skin</div></div>
+            <div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:14px;"><div style="font-family:var(--rv-serif);font-size:36px;color:var(--clay);font-weight:500;line-height:.9;flex:none;min-width:74px;">88%</div><div style="font:400 13px/1.5 var(--sans);color:var(--soft);">reported a brighter complexion</div></div>
+          </div>
+        </div>
+
+        <!-- how to use -->
+        <div style="background:var(--bone-2);padding:28px 18px;">
+          <div style="font:600 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">Your 5-minute ritual</div>
+          <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:26px;line-height:1.08;margin:0 0 18px;">Three steps, glowing</h2>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:13px;align-items:center;"><span style="width:34px;height:34px;border-radius:999px;background:var(--paper);color:var(--char);display:flex;align-items:center;justify-content:center;font-family:var(--rv-serif);font-size:17px;font-weight:600;flex:none;">1</span><div><div style="font:600 13px/1.2 var(--sans);">Cleanse &amp; apply serum</div><div style="font:400 12px/1.4 var(--sans);color:var(--soft);">On clean, damp skin, glide on the Glow Serum.</div></div></div>
+            <div style="display:flex;gap:13px;align-items:center;"><span style="width:34px;height:34px;border-radius:999px;background:var(--paper);color:var(--char);display:flex;align-items:center;justify-content:center;font-family:var(--rv-serif);font-size:17px;font-weight:600;flex:none;">2</span><div><div style="font:600 13px/1.2 var(--sans);">Glide upward &amp; out</div><div style="font:400 12px/1.4 var(--sans);color:var(--soft);">Slow strokes along jaw, cheeks and brow.</div></div></div>
+            <div style="display:flex;gap:13px;align-items:center;"><span style="width:34px;height:34px;border-radius:999px;background:var(--paper);color:var(--char);display:flex;align-items:center;justify-content:center;font-family:var(--rv-serif);font-size:17px;font-weight:600;flex:none;">3</span><div><div style="font:600 13px/1.2 var(--sans);">Seal it in</div><div style="font:400 12px/1.4 var(--sans);color:var(--soft);">Finish with moisturiser. 5 nights a week.</div></div></div>
+          </div>
+        </div>
+
+        <!-- reviews (Loox style) -->
+        <div style="padding:28px 18px 40px;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;"><h2 style="font-family:var(--rv-serif);font-weight:500;font-size:24px;margin:0;">Loved by 38,000+</h2><span style="font:500 8px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Loox ◆</span></div>
+          <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:16px;">
+            <div style="text-align:center;flex:none;"><div style="font-family:var(--rv-serif);font-size:36px;line-height:1;font-weight:500;">4.9</div><div style="color:var(--star);letter-spacing:1px;font-size:11px;">★★★★★</div></div>
+            <div style="flex:1;"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="font:400 10px/1;color:var(--soft);width:20px;">5★</span><div style="flex:1;height:5px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:94%;height:100%;background:var(--star);"></div></div></div><div style="display:flex;align-items:center;gap:8px;"><span style="font:400 10px/1;color:var(--soft);width:20px;">4★</span><div style="flex:1;height:5px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:4%;height:100%;background:var(--star);"></div></div></div><div style="font:400 10px/1;color:var(--soft);margin-top:7px;">Based on 2,847 reviews</div></div>
+          </div>
+          <div class="snap" style="display:flex;gap:10px;overflow-x:auto;">
+            <div style="flex:none;width:230px;border:1px solid var(--line);border-radius:4px;overflow:hidden;scroll-snap-align:start;"><image-slot id="md-r1" shape="rect" placeholder="Review photo" style="width:100%;aspect-ratio:4/3;"></image-slot><div style="padding:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;"><span style="color:var(--star);letter-spacing:1px;font-size:11px;">★★★★★</span><span style="font:400 10px/1;color:var(--soft);">1 wk ago</span></div><div style="font:600 12px/1.3 var(--sans);margin-bottom:6px;">My jawline is BACK</div><p style="font:400 12px/1.55 var(--sans);color:var(--soft);margin:0 0 11px;">"Eight weeks in and the difference is unreal."</p><div style="display:flex;align-items:center;gap:7px;"><span style="font:600 11px/1;">Renee K.</span><span style="font:500 8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:3px 6px;border-radius:999px;">Verified</span></div></div></div>
+            <div style="flex:none;width:230px;border:1px solid var(--line);border-radius:4px;overflow:hidden;scroll-snap-align:start;"><image-slot id="md-r2" shape="rect" placeholder="Review photo" style="width:100%;aspect-ratio:4/3;"></image-slot><div style="padding:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;"><span style="color:var(--star);letter-spacing:1px;font-size:11px;">★★★★★</span><span style="font:400 10px/1;color:var(--soft);">3 wks ago</span></div><div style="font:600 12px/1.3 var(--sans);margin-bottom:6px;">Worth every penny</div><p style="font:400 12px/1.55 var(--sans);color:var(--soft);margin:0 0 11px;">"The warmth + glide feels genuinely spa-grade."</p><div style="display:flex;align-items:center;gap:7px;"><span style="font:600 11px/1;">Talia M.</span><span style="font:500 8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:3px 6px;border-radius:999px;">Verified</span></div></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

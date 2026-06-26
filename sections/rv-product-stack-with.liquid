@@ -1,0 +1,157 @@
+
+<section style="padding:40px 0 48px;background:var(--rv-bone);">
+  <div class="rv-container">
+    <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="rv-heading" style="margin-bottom:6px;">{{ section.settings.heading }}</h2>
+    <p style="font:400 13px/1.5 var(--rv-sans);color:var(--rv-grey-2);margin:0 0 20px;">Tap to add or remove pieces — your total updates as you build.</p>
+
+    {%- assign stack_col = collections[section.settings.collection] -%}
+    {%- if stack_col == blank or stack_col.products_count == 0 -%}
+      {%- assign stack_col = collections['stackables'] -%}
+    {%- endif -%}
+
+    {%- assign metal_tag = '' -%}
+    {%- if section.settings.match_metal -%}
+      {%- for t in product.tags -%}{%- if t contains 'stack-' -%}{%- assign metal_tag = t -%}{%- endif -%}{%- endfor -%}
+    {%- endif -%}
+
+    {%- assign shown = 0 -%}
+    <div class="rv-stack-row" data-stack data-discount-pct="{{ section.settings.discount_pct }}" data-discount-code="{{ section.settings.discount_code }}" data-auto="{% if section.settings.auto_discount %}1{% else %}0{% endif %}">
+      <!-- current product, locked in -->
+      <div class="rv-stack-item rv-stack-item--current" data-stack-piece data-locked="1" data-variant="{{ product.selected_or_first_available_variant.id }}" data-price="{{ product.price }}">
+        <div class="rv-stack-thumb rv-stack-thumb--current">
+          {%- if product.featured_image -%}
+            {{ product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', class: 'rv-stack-img', alt: product.title }}
+          {%- else -%}
+            <div class="rv-stack-img rv-placeholder-img">{{ 'product-1' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+          <span class="rv-stack-thispiece">This piece</span>
+        </div>
+        <div class="rv-stack-label">{{ product.title | truncate: 22 }}<br>{{ product.price | money }}</div>
+      </div>
+
+      {%- if stack_col != blank -%}
+        {%- for sp in stack_col.products -%}
+          {%- if shown >= section.settings.count -%}{% break %}{%- endif -%}
+          {%- unless sp.id == product.id -%}
+            {%- assign ok = true -%}
+            {%- if metal_tag != '' -%}
+              {%- unless sp.tags contains metal_tag -%}{%- assign ok = false -%}{%- endunless -%}
+            {%- endif -%}
+            {%- if ok and sp.available -%}
+              {%- assign shown = shown | plus: 1 -%}
+              <button type="button" class="rv-stack-item is-selected" data-stack-piece data-variant="{{ sp.selected_or_first_available_variant.id }}" data-price="{{ sp.price }}" aria-pressed="true">
+                <div class="rv-stack-thumb">
+                  {%- if sp.featured_image -%}
+                    {{ sp.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', class: 'rv-stack-img', alt: sp.title }}
+                  {%- else -%}
+                    <div class="rv-stack-img rv-placeholder-img">{{ 'product-1' | placeholder_svg_tag }}</div>
+                  {%- endif -%}
+                  <span class="rv-stack-check" aria-hidden="true"></span>
+                </div>
+                <div class="rv-stack-label">{{ sp.title | truncate: 22 }}<br>{{ sp.price | money }}</div>
+              </button>
+            {%- endif -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- if shown == 0 -%}
+      <p style="font:400 13px/1.5 var(--rv-sans);color:var(--rv-grey-2);">Add products to a collection named “Stackables” (or set one in this section) to populate this automatically.</p>
+    {%- elsif section.settings.show_bundle_button -%}
+      <button type="button" class="rv-btn rv-btn--outline" data-add-stack style="display:inline-flex;margin-bottom:0;">
+        <span class="rv-stack-btn-label">{{ section.settings.bundle_label }}</span>
+      </button>
+      {%- if section.settings.discount_note != blank -%}
+        <p style="font:400 11px/1.5 var(--rv-sans);color:var(--rv-grey-2);font-style:italic;margin:10px 0 0;">{{ section.settings.discount_note }}</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+.rv-stack-row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;margin-bottom:16px;}
+.rv-stack-item{text-align:center;text-decoration:none;background:none;border:none;padding:0;cursor:pointer;font:inherit;}
+.rv-stack-item--current{cursor:default;}
+.rv-stack-thumb{position:relative;width:84px;height:100px;border-radius:2px;overflow:hidden;border:1px solid var(--rv-line);margin-bottom:6px;transition:border-color .2s,opacity .2s;}
+.rv-stack-thumb--current{border:2px solid var(--rv-clay);}
+.rv-stack-img{width:100%;height:100%;object-fit:cover;display:block;}
+.rv-stack-thispiece{position:absolute;bottom:0;left:0;right:0;background:var(--rv-clay);color:#FBF9F4;font:600 8px/1 var(--rv-sans);letter-spacing:.08em;text-transform:uppercase;padding:4px 0;}
+.rv-stack-label{font:400 11px/1.35 var(--rv-sans);color:var(--rv-soft);max-width:84px;}
+.rv-stack-item--current .rv-stack-label{color:var(--rv-clay);}
+/* selectable state */
+.rv-stack-check{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:999px;border:1.5px solid #FBF9F4;background:rgba(43,42,39,.35);display:flex;align-items:center;justify-content:center;}
+.rv-stack-item.is-selected .rv-stack-thumb{border-color:var(--rv-char);}
+.rv-stack-item.is-selected .rv-stack-check{background:var(--rv-char);border-color:var(--rv-char);}
+.rv-stack-item.is-selected .rv-stack-check::after{content:"";width:9px;height:5px;border-left:1.5px solid #FBF9F4;border-bottom:1.5px solid #FBF9F4;transform:rotate(-45deg) translateY(-1px);}
+.rv-stack-item:not(.is-selected) .rv-stack-thumb{opacity:.5;}
+.rv-stack-item:not(.is-selected) .rv-stack-check{background:rgba(251,249,244,.7);border-color:var(--rv-line);}
+</style>
+
+<script>
+(function(){
+  var row = document.querySelector('[data-stack]');
+  if(!row) return;
+  var btn = document.querySelector('[data-add-stack]');
+  var label = btn ? btn.querySelector('.rv-stack-btn-label') : null;
+  var baseLabel = label ? label.textContent : 'Add the full stack';
+  var pct = parseFloat(row.getAttribute('data-discount-pct')) || 0;
+  var code = row.getAttribute('data-discount-code') || '';
+  var auto = row.getAttribute('data-auto')==='1';
+  var fmt = (window.Shopify && Shopify.formatMoney) ? function(c){ return Shopify.formatMoney(c); } : function(c){ return '$' + (c/100).toFixed(2); };
+
+  function selected(){ return [].slice.call(row.querySelectorAll('[data-stack-piece]')).filter(function(el){ return el.getAttribute('data-locked')==='1' || el.classList.contains('is-selected'); }); }
+
+  function update(){
+    var items = selected();
+    var total = items.reduce(function(s,el){ return s + (parseInt(el.getAttribute('data-price'),10)||0); }, 0);
+    var saving = Math.round(total * pct / 100);
+    var after = total - saving;
+    if(label){
+      var n = items.length;
+      label.textContent = baseLabel + ' (' + n + ') · ' + fmt(after) + (saving>0 ? ' — save ' + fmt(saving) : '');
+    }
+  }
+
+  row.querySelectorAll('[data-stack-piece]').forEach(function(el){
+    if(el.getAttribute('data-locked')==='1') return;
+    el.addEventListener('click', function(){
+      var on = el.classList.toggle('is-selected');
+      el.setAttribute('aria-pressed', on ? 'true' : 'false');
+      update();
+    });
+  });
+  update();
+
+  if(btn){
+    btn.addEventListener('click', function(){
+      var ids = selected().map(function(el){ return el.getAttribute('data-variant'); }).filter(Boolean);
+      if(!ids.length) return;
+      var orig = label ? label.textContent : '';
+      if(label) label.textContent = 'Adding…'; btn.disabled = true;
+      fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:ids.map(function(id){return {id:id,quantity:1};})})})
+        .then(function(r){
+          if(r.ok){ if(label) label.textContent='✓ Added';
+            setTimeout(function(){ window.location.href = (code && !auto) ? ('/discount/'+code+'?redirect=/cart') : '/cart'; }, 700);
+          } else { if(label) label.textContent=orig; btn.disabled=false; }
+        }).catch(function(){ if(label) label.textContent=orig; btn.disabled=false; });
+    });
+  }
+})();
+</script>
+
+{% schema %}{"name":"Stack It With","tag":"section","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Stack it with"},
+{"type":"text","id":"heading","label":"Heading","default":"Build your stack"},
+{"type":"paragraph","content":"Auto-pulls from the collection below (or a collection with the handle 'stackables' if left blank). Shoppers tap pieces to select any number; the total + discount update live. The current product is always included."},
+{"type":"collection","id":"collection","label":"Stackables collection"},
+{"type":"checkbox","id":"match_metal","label":"Match metal tone","info":"Only show pieces sharing the current product's stack-* tag (e.g. stack-gold, stack-silver).","default":true},
+{"type":"range","id":"count","label":"Pieces to suggest","min":2,"max":8,"step":1,"default":4},
+{"type":"checkbox","id":"show_bundle_button","label":"Show add button","default":true},
+{"type":"text","id":"bundle_label","label":"Add button label","default":"Add the full stack"},
+{"type":"range","id":"discount_pct","label":"Stack discount %","min":0,"max":50,"step":5,"default":15},
+{"type":"text","id":"discount_code","label":"Discount code to apply","info":"Create this as a CODE discount in Admin → Discounts. Applies only when a shopper adds the stack here — not site-wide.","default":"STACK15"},
+{"type":"checkbox","id":"auto_discount","label":"Use an automatic discount instead of a code (recommended)","info":"ON: just adds the items and lets a scoped AUTOMATIC discount in Admin → Discounts apply (no code in the URL — safer, combinable, cannot be gamed). OFF: applies the code below via the cart URL.","default":false},
+{"type":"text","id":"discount_note","label":"Discount note (optional)","default":"Your stack discount is applied automatically when you add it here."}
+],"presets":[{"name":"Stack It With"}]}{% endschema %}

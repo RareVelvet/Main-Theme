@@ -1,0 +1,12 @@
+
+<div style="max-width:440px;margin:80px auto;padding:0 24px;">
+  <h1 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:500;color:#2B2A27;margin:0 0 28px;">Create account</h1>
+  {% form 'create_customer' %}
+    {{ form.errors | default_errors }}
+    <div style="margin-bottom:14px;"><label style="font:600 11px/1 sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#2B2A27;display:block;margin-bottom:6px;">First name</label><input type="text" name="customer[first_name]" autocomplete="given-name" style="width:100%;border:1px solid #DAD4CB;border-radius:2px;padding:14px;font:400 14px/1 sans-serif;outline:none;"></div>
+    <div style="margin-bottom:14px;"><label style="font:600 11px/1 sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#2B2A27;display:block;margin-bottom:6px;">Last name</label><input type="text" name="customer[last_name]" autocomplete="family-name" style="width:100%;border:1px solid #DAD4CB;border-radius:2px;padding:14px;font:400 14px/1 sans-serif;outline:none;"></div>
+    <div style="margin-bottom:14px;"><label style="font:600 11px/1 sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#2B2A27;display:block;margin-bottom:6px;">Email</label><input type="email" name="customer[email]" autocomplete="email" style="width:100%;border:1px solid #DAD4CB;border-radius:2px;padding:14px;font:400 14px/1 sans-serif;outline:none;"></div>
+    <div style="margin-bottom:20px;"><label style="font:600 11px/1 sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#2B2A27;display:block;margin-bottom:6px;">Password</label><input type="password" name="customer[password]" autocomplete="new-password" style="width:100%;border:1px solid #DAD4CB;border-radius:2px;padding:14px;font:400 14px/1 sans-serif;outline:none;"></div>
+    <button type="submit" style="width:100%;background:#B0795C;color:#FBF9F4;border:none;cursor:pointer;font:600 13px/1 sans-serif;letter-spacing:.14em;text-transform:uppercase;height:52px;border-radius:2px;">Create account</button>
+  {% endform %}
+</div>

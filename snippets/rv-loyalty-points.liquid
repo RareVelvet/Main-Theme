@@ -1,0 +1,13 @@
+{%- comment -%}
+  Rare Velvet points (LoyaltyLion). Points = variant price × points-per-dollar.
+  LoyaltyLion awards on purchase; this shows the earn rate and is updated live by the
+  LoyaltyLion SDK if it targets [data-ll-points]. Falls back to the computed value.
+{%- endcomment -%}
+{%- assign ppd = points_per_dollar | default: settings.loyalty_points_per_dollar | default: 1 -%}
+{%- assign pts = product.selected_or_first_available_variant.price | divided_by: 100.0 | times: ppd | round -%}
+{%- if pts > 0 -%}
+<div class="rv-loyalty" data-loyaltylion-earn data-product-id="{{ product.id }}">
+  <span class="rv-loyalty__star">★</span>
+  <span class="rv-loyalty__text">Earn <strong data-ll-points>{{ pts }}</strong> {{ label | default: 'Rare Velvet points' }} with this purchase</span>
+</div>
+{%- endif -%}

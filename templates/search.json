@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "search_0": {
+      "type": "rv-search"
+    }
+  },
+  "order": [
+    "search_0"
+  ]
+}

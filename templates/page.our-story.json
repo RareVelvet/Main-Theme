@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "our_story_0": {
+      "type": "rv-our-story"
+    }
+  },
+  "order": [
+    "our_story_0"
+  ]
+}

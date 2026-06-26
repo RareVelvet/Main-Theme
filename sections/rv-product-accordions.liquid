@@ -1,0 +1,93 @@
+
+<section class="rv-pdp-section rv-accordions" style="border-top:1px solid var(--rv-line);padding-top:32px;margin-bottom:60px;">
+  <div class="rv-container" style="max-width:760px;">
+
+    {%- comment -%} ===== Material / Size / Finish (explicit metafields) ===== {%- endcomment -%}
+    {%- assign mf_material = product.metafields.custom.material -%}
+    {%- assign mf_size = product.metafields.custom.size -%}
+    {%- assign mf_finish = product.metafields.custom.finish -%}
+    {%- assign has_msf = false -%}
+    {%- if mf_material != blank or mf_size != blank or mf_finish != blank -%}{%- assign has_msf = true -%}{%- endif -%}
+
+    {%- comment -%} ===== Dimensions (metafields) ===== {%- endcomment -%}
+    {%- assign d_len   = product.metafields.custom.length -%}
+    {%- assign d_width = product.metafields.custom.width -%}
+    {%- assign d_thick = product.metafields.custom.thickness -%}
+    {%- assign d_weight= product.metafields.custom.weight -%}
+    {%- assign d_diam  = product.metafields.custom.diameter -%}
+    {%- assign has_dims = false -%}
+    {%- if d_len != blank or d_width != blank or d_thick != blank or d_weight != blank or d_diam != blank -%}
+      {%- assign has_dims = true -%}
+    {%- endif -%}
+
+    {%- comment -%} ===== Materials (metafield → type default) ===== {%- endcomment -%}
+    {%- assign mat_name = product.metafields.custom.material_name -%}
+    {%- assign mat_desc = product.metafields.custom.material_description -%}
+    {%- if mat_name == blank and mat_desc == blank -%}
+      {%- assign t = product.type | downcase -%}
+      {%- if t contains 'jewel' or t contains 'ring' or t contains 'necklace' or t contains 'earring' or t contains 'bracelet' -%}
+        {%- assign mat_desc = settings.care_default_jewelry -%}
+      {%- elsif t contains 'beauty' or t contains 'skincare' or t contains 'serum' or t contains 'cleanser' or t contains 'lip' or t contains 'makeup' or t contains 'device' -%}
+        {%- assign mat_desc = settings.care_default_beauty -%}
+      {%- else -%}
+        {%- assign mat_desc = settings.care_default_general -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    <details class="rv-acc" open>
+      <summary class="rv-acc__head">Details &amp; Materials <span class="rv-acc__icon">+</span></summary>
+      <div class="rv-acc__body">
+        {%- if has_msf -%}
+          <ul class="rv-spec-list rv-spec-list--msf">
+            {%- if mf_material != blank -%}<li><span>Material</span><span>{{ mf_material }}</span></li>{%- endif -%}
+            {%- if mf_size != blank -%}<li><span>Size</span><span>{{ mf_size }}</span></li>{%- endif -%}
+            {%- if mf_finish != blank -%}<li><span>Finish</span><span>{{ mf_finish }}</span></li>{%- endif -%}
+          </ul>
+        {%- else -%}
+        {%- if has_dims -%}
+          <div class="rv-acc__subhead">Details</div>
+          <ul class="rv-spec-list">
+            {%- if d_len != blank -%}<li><span>Length</span><span>{{ d_len }}</span></li>{%- endif -%}
+            {%- if d_width != blank -%}<li><span>Width</span><span>{{ d_width }}</span></li>{%- endif -%}
+            {%- if d_thick != blank -%}<li><span>Thickness</span><span>{{ d_thick }}</span></li>{%- endif -%}
+            {%- if d_diam != blank -%}<li><span>Diameter</span><span>{{ d_diam }}</span></li>{%- endif -%}
+            {%- if d_weight != blank -%}<li><span>Weight</span><span>{{ d_weight }}</span></li>{%- endif -%}
+          </ul>
+        {%- endif -%}
+        <div class="rv-acc__subhead">Materials</div>
+        {%- if mat_name != blank -%}<div class="rv-mat-name">{{ mat_name }}</div>{%- endif -%}
+        {%- if mat_desc != blank -%}<div class="rv-mat-desc">{{ mat_desc }}</div>{%- endif -%}
+        {%- endif -%}
+      </div>
+    </details>
+
+    {%- comment -%} ===== Shipping & Returns (global, identical everywhere) ===== {%- endcomment -%}
+    {%- if settings.shipping_returns != blank -%}
+      <details class="rv-acc">
+        <summary class="rv-acc__head">Shipping &amp; Returns <span class="rv-acc__icon">+</span></summary>
+        <div class="rv-acc__body">{{ settings.shipping_returns }}</div>
+      </details>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+.rv-acc{border-top:1px solid var(--rv-line);}
+.rv-acc:last-child{border-bottom:1px solid var(--rv-line);}
+.rv-acc__head{display:flex;align-items:center;justify-content:space-between;padding:18px 2px;cursor:pointer;font:500 14px/1 var(--rv-sans);color:var(--rv-char);list-style:none;}
+.rv-acc__head::-webkit-details-marker{display:none;}
+.rv-acc__icon{font-size:18px;font-weight:400;color:var(--rv-soft);transition:transform .2s;}
+.rv-acc[open] .rv-acc__icon{transform:rotate(45deg);}
+.rv-acc__body{padding:0 2px 22px;font:400 14px/1.65 var(--rv-sans);color:var(--rv-soft);}
+.rv-acc__body p{margin:0 0 10px;}
+.rv-acc__subhead{font:600 10px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-grey-2);margin:2px 0 10px;}
+.rv-spec-list{list-style:none;margin:0 0 20px;padding:0;}
+.rv-spec-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--rv-line);font:400 13px/1.4 var(--rv-sans);color:var(--rv-soft);}
+.rv-spec-list li span:last-child{color:var(--rv-char);font-weight:500;}
+.rv-mat-name{font:600 14px/1.4 var(--rv-sans);color:var(--rv-char);margin-bottom:8px;}
+.rv-mat-desc p{margin:0 0 10px;}
+</style>
+
+{% schema %}{"name":"Product Accordions","tag":"section","settings":[
+{"type":"paragraph","content":"Details & Materials auto-fills from product metafields (namespace 'custom'). Preferred: material, size, finish (shown as labelled rows). Legacy fallback: length, width, thickness, weight, diameter, material_name, material_description. Shipping & Returns is global — edit it in Theme settings → Product info."}
+],"presets":[{"name":"Product Accordions"}]}{% endschema %}

@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "cart_0": {
+      "type": "rv-cart"
+    }
+  },
+  "order": [
+    "cart_0"
+  ]
+}

@@ -1,0 +1,37 @@
+
+<section class="rv-pdp-band">
+  <div class="rv-pdp-band__inner">
+    <div class="rv-pdp-split">
+      <div>
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', style: 'width:100%;height:440px;object-fit:cover;border-radius:4px;display:block;', alt: section.settings.image.alt }}
+        {%- else -%}
+          <div class="rv-placeholder-img" style="height:440px;border-radius:4px;">{{ 'product-3' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      </div>
+      <div>
+        <p class="rv-eyebrow" style="color:var(--rv-butter);">{{ section.settings.eyebrow }}</p>
+        <h2 class="rv-heading rv-heading--light" style="margin-bottom:28px;">{{ section.settings.heading }}</h2>
+        {%- assign step_num = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign step_num = step_num | plus: 1 -%}
+          <div class="rv-pdp-step" {{ block.shopify_attributes }}>
+            <span class="rv-pdp-step__num">{{ step_num }}</span>
+            <div>
+              <div class="rv-pdp-step__title">{{ block.settings.title }}</div>
+              <div class="rv-pdp-step__desc">{{ block.settings.description }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"How to Use","tag":"section","max_blocks":5,"settings":[
+{"type":"image_picker","id":"image","label":"Side image"},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"How to use"},
+{"type":"text","id":"heading","label":"Heading","default":"Three steps to everyday glow"}
+],"blocks":[{"type":"step","name":"Step","settings":[
+{"type":"text","id":"title","label":"Step title","default":"Cleanse"},
+{"type":"textarea","id":"description","label":"Description","default":"Start with clean, slightly damp skin."}
+]}],"presets":[{"name":"How to Use","blocks":[{"type":"step","settings":{"title":"Cleanse"}},{"type":"step","settings":{"title":"Apply"}},{"type":"step","settings":{"title":"Seal & protect"}}]}]}{% endschema %}

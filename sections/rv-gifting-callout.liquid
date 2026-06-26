@@ -1,0 +1,43 @@
+
+<section style="background:var(--rv-caramel);padding:64px 0;">
+  <div class="rv-container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <div>
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', style: 'width:100%;height:400px;object-fit:cover;border-radius:4px;display:block;', alt: section.settings.image.alt }}
+        {%- else -%}
+          <div class="rv-placeholder-img" style="height:400px;border-radius:4px;">{{ 'image' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+      </div>
+      <div>
+        <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="rv-heading" style="margin-bottom:16px;">{{ section.settings.heading }}</h2>
+        <p style="font:400 15px/1.7 var(--rv-sans);color:var(--rv-soft);margin:0 0 28px;">{{ section.settings.body }}</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+          {%- for block in section.blocks -%}
+            <div style="display:flex;align-items:center;gap:12px;font:400 14px/1 var(--rv-sans);color:var(--rv-char);" {{ block.shopify_attributes }}>
+              <span style="width:8px;height:8px;background:var(--rv-butter-2);transform:rotate(45deg);flex:none;display:inline-block;"></span>
+              {{ block.settings.item }}
+            </div>
+          {%- endfor -%}
+        </div>
+        <a href="{{ section.settings.cta_url }}" class="rv-btn rv-btn--primary">{{ section.settings.cta_label }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Gifting Callout","tag":"section","max_blocks":5,"settings":[
+{"type":"image_picker","id":"image","label":"Image"},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Gifts she'll love"},
+{"type":"text","id":"heading","label":"Heading","default":"Giving made effortless"},
+{"type":"textarea","id":"body","label":"Body","default":"Every order arrives in our signature velvet pouch — complimentary, no extra wrapping needed."},
+{"type":"text","id":"cta_label","label":"CTA label","default":"Shop gift sets"},
+{"type":"url","id":"cta_url","label":"CTA link"}
+],"blocks":[{"type":"item","name":"Gift feature","settings":[
+{"type":"text","id":"item","label":"Feature","default":"Complimentary gift wrapping on every order"}
+]}],"presets":[{"name":"Gifting Callout","blocks":[
+{"type":"item","settings":{"item":"Complimentary gift wrapping on every order"}},
+{"type":"item","settings":{"item":"Personalised handwritten note"}},
+{"type":"item","settings":{"item":"Ships directly to the recipient"}},
+{"type":"item","settings":{"item":"Free returns if not quite right"}}
+]}]}{% endschema %}

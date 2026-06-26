@@ -1,0 +1,26 @@
+
+<section style="background:var(--rv-char);padding:44px 0;">
+  <div class="rv-container">
+    <div style="display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:28px;">
+      {%- for block in section.blocks -%}
+        <div style="text-align:center;flex:none;" {{ block.shopify_attributes }}>
+          <div style="font-family:var(--rv-serif);font-size:clamp(36px,5vw,56px);color:var(--rv-butter);font-weight:500;line-height:1;margin-bottom:6px;">{{ block.settings.stat }}</div>
+          <div style="font:600 11px/1 var(--rv-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--rv-bone);margin-bottom:5px;">{{ block.settings.label }}</div>
+          {%- if block.settings.source != blank -%}
+            <div style="font:400 11px/1 var(--rv-sans);color:rgba(244,241,234,.48);">{{ block.settings.source }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Results Strip","tag":"section","max_blocks":5,"blocks":[{"type":"stat","name":"Stat","settings":[
+{"type":"text","id":"stat","label":"Statistic","default":"12,400+"},
+{"type":"text","id":"label","label":"Label","default":"5-star reviews"},
+{"type":"text","id":"source","label":"Source note (optional)","default":"Verified customers"}
+]}],"presets":[{"name":"Results Strip","blocks":[
+{"type":"stat","settings":{"stat":"12,400+","label":"5-star reviews","source":"Verified customers"}},
+{"type":"stat","settings":{"stat":"4.8★","label":"Average rating","source":"Across all products"}},
+{"type":"stat","settings":{"stat":"93%","label":"Would recommend","source":"Post-purchase survey"}},
+{"type":"stat","settings":{"stat":"48h","label":"Average dispatch","source":"Orders placed Mon–Fri"}}
+]}]}{% endschema %}

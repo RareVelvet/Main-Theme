@@ -1,0 +1,24 @@
+
+<section style="padding:72px 0 100px;">
+  <div class="rv-container" style="max-width:800px;">
+    {%- if section.settings.show_title -%}
+      <h1 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(32px,4vw,52px);color:var(--rv-char);margin:0 0 36px;line-height:1.04;">{{ page.title }}</h1>
+    {%- endif -%}
+    <div class="rv-page-content" style="font:400 16px/1.75 var(--rv-sans);color:var(--rv-soft);">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+<style>
+.rv-page-content h2{font-family:var(--rv-serif);font-weight:500;font-size:clamp(24px,3vw,36px);color:var(--rv-char);margin:40px 0 16px;line-height:1.1;}
+.rv-page-content h3{font-family:var(--rv-serif);font-weight:500;font-size:clamp(20px,2.4vw,28px);color:var(--rv-char);margin:32px 0 12px;}
+.rv-page-content p{margin:0 0 20px;}
+.rv-page-content a{color:var(--rv-clay);border-bottom:1px solid currentColor;}
+.rv-page-content ul,.rv-page-content ol{padding-left:24px;margin:0 0 20px;}
+.rv-page-content li{margin-bottom:8px;}
+.rv-page-content img{max-width:100%;border-radius:3px;margin:24px 0;}
+.rv-page-content blockquote{border-left:3px solid var(--rv-butter-2);padding:16px 24px;margin:24px 0;background:var(--rv-bone-2);font-family:var(--rv-serif);font-size:20px;font-style:italic;color:var(--rv-char);}
+</style>
+{% schema %}{"name":"Page Content","tag":"section","settings":[
+{"type":"checkbox","id":"show_title","label":"Show page title","default":true}
+],"presets":[{"name":"Page Content"}]}{% endschema %}

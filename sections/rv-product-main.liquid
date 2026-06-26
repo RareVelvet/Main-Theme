@@ -1,0 +1,384 @@
+
+{%- assign main_variant = product.selected_or_first_available_variant -%}
+
+<script type="application/json" data-product-json>{{ product.variants | json }}</script>
+
+<nav class="rv-breadcrumb">
+  <a href="{{ routes.root_url }}">Home</a><span class="rv-breadcrumb__sep">/</span>
+  {%- if collection -%}<a href="{{ collection.url }}">{{ collection.title }}</a><span class="rv-breadcrumb__sep">/</span>{%- endif -%}
+  <span style="color:var(--rv-char);">{{ product.title }}</span>
+</nav>
+
+<div class="rv-pdp" data-gallery>
+  <!-- GALLERY — editorial stacked (Odd Muse / Bruna / Missoma) -->
+  <div class="rv-gallery rv-gallery--stacked">
+    <div class="rv-gallery__lead rv-zoom-frame">
+      {{ product.featured_image | image_url: width: 1100 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'rv-gallery__lead-img', alt: product.featured_image.alt }}
+      <div class="rv-gallery__main-badge">
+        {% render 'rv-badge', product: product, override: section.settings.badge_override %}
+      </div>
+      <span class="rv-gallery__zoom-hint">⌕ Hover to zoom</span>
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="rv-gallery__grid">
+        {%- for image in product.images offset: 1 limit: 4 -%}
+          <div class="rv-zoom-frame">
+            {{ image | image_url: width: 700 | image_tag: loading: 'lazy', class: 'rv-gallery__grid-img', alt: image.alt }}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- INFO -->
+  <div class="rv-pdp-info">
+    <p class="rv-pdp-info__eyebrow">
+      {%- if section.settings.eyebrow_override != blank -%}{{ section.settings.eyebrow_override }}{%- else -%}{{ product.type }}{%- endif -%}
+    </p>
+    <h1 class="rv-pdp-info__title">{{ product.title }}</h1>
+    <a href="#looxReviews" class="rv-pdp-info__rating">
+      {%- if product.metafields.loox.num_reviews != blank -%}
+        <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+      {%- else -%}
+        <span class="rv-stars">★★★★★</span>
+        {%- if product.metafields.reviews.rating_count != blank -%}<span class="rv-pdp-info__review-count">{{ product.metafields.reviews.rating_count }} reviews</span>{%- endif -%}
+      {%- endif -%}
+    </a>
+    <div class="rv-pdp-info__price">
+      <span class="rv-pdp-info__price-main" data-product-price>{{ main_variant.price | money }}</span>
+      {%- if main_variant.compare_at_price > main_variant.price -%}
+        <span class="rv-pdp-info__price-compare" data-product-compare-price>{{ main_variant.compare_at_price | money }}</span>
+      {%- endif -%}
+      {%- if section.settings.price_note != blank -%}
+        <span class="rv-pdp-info__price-note">{{ section.settings.price_note }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_loyalty -%}
+      {% render 'rv-loyalty-points', product: product, points_per_dollar: section.settings.points_per_dollar, label: section.settings.loyalty_label %}
+    {%- endif -%}
+
+    {%- unless product.has_only_default_variant -%}
+      {%- for option in product.options_with_values -%}
+        <div class="rv-pdp-option">
+          <div class="rv-pdp-option__row">
+            <span class="rv-pdp-option__label">{{ option.name }}</span>
+            {%- if option.name == 'Size' and section.settings.size_guide_url != blank -%}
+              <a href="{{ section.settings.size_guide_url }}" class="rv-pdp-option__aside">Size guide</a>
+            {%- elsif section.settings.aside_text != blank and forloop.first -%}
+              <span class="rv-pdp-option__aside">{{ section.settings.aside_text }}</span>
+            {%- endif -%}
+          </div>
+          <div class="rv-pdp-option__values">
+            {%- for value in option.values -%}
+              <button class="rv-variant-btn {% if option.selected_value == value %}is-selected{% endif %}"
+                data-option-btn data-option-index="{{ option.position }}" data-value="{{ value | escape }}">
+                {{ value }}
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endunless -%}
+
+    {%- comment -%} Low-stock urgency {%- endcomment -%}
+    {%- assign inv = main_variant.inventory_quantity -%}
+    {%- if section.settings.show_low_stock and main_variant.inventory_management != blank and product.available and inv > 0 and inv <= section.settings.low_stock_threshold -%}
+      <div class="rv-pdp-lowstock"><span class="rv-pdp-lowstock__dot"></span>Only {{ inv }} left{% if main_variant.title != 'Default Title' %} in {{ main_variant.title }}{% endif %}</div>
+    {%- endif -%}
+
+    {%- form 'product', product, id: 'rv-product-form' -%}
+      <input type="hidden" name="id" id="rv-variant-input" value="{{ main_variant.id }}">
+
+      {%- comment -%}
+        Subscribe & save — renders ONLY when the product has real selling plans
+        (created via the Shopify Subscriptions app or a subscription app). The
+        hidden `selling_plan` input is what actually turns the order into a
+        subscription at checkout; without it the radios do nothing.
+      {%- endcomment -%}
+      {%- if product.selling_plan_groups.size > 0 -%}
+        <fieldset class="rv-pdp-plans" data-selling-plans>
+          <legend class="rv-pdp-option__label">{{ section.settings.subscribe_heading | default: 'Purchase options' }}</legend>
+          <label class="rv-pdp-plan is-selected">
+            <input type="radio" name="rv-purchase-type" value="" data-plan="" checked>
+            <span class="rv-pdp-plan__name">One-time purchase</span>
+            <span class="rv-pdp-plan__price">{{ main_variant.price | money }}</span>
+          </label>
+          {%- for group in product.selling_plan_groups -%}
+            {%- for plan in group.selling_plans -%}
+              {%- assign alloc = main_variant.selling_plan_allocations | where: 'selling_plan_id', plan.id | first -%}
+              <label class="rv-pdp-plan">
+                <input type="radio" name="rv-purchase-type" value="{{ plan.id }}" data-plan="{{ plan.id }}">
+                <span class="rv-pdp-plan__name">{{ plan.name }}</span>
+                {%- if alloc -%}<span class="rv-pdp-plan__price">{{ alloc.price | money }}</span>{%- endif -%}
+              </label>
+            {%- endfor -%}
+          {%- endfor -%}
+        </fieldset>
+        <input type="hidden" name="selling_plan" id="rv-selling-plan" value="">
+        <script>
+        (function(){
+          var wrap = document.querySelector('[data-selling-plans]');
+          var hidden = document.getElementById('rv-selling-plan');
+          if(!wrap || !hidden) return;
+          wrap.addEventListener('change', function(e){
+            var r = e.target.closest('input[name="rv-purchase-type"]');
+            if(!r) return;
+            hidden.value = r.getAttribute('data-plan') || '';
+            wrap.querySelectorAll('.rv-pdp-plan').forEach(function(l){ l.classList.remove('is-selected'); });
+            var lab = r.closest('.rv-pdp-plan'); if(lab) lab.classList.add('is-selected');
+          });
+        })();
+        </script>
+      {%- endif -%}
+
+      <div class="rv-pdp-atc-row" data-atc-row>
+        <div class="rv-pdp-qty">
+          <button type="button" class="rv-pdp-qty__btn" data-qty-dec aria-label="Decrease">−</button>
+          <input type="number" name="quantity" value="1" min="1" class="rv-pdp-qty__input" data-qty-input aria-label="Quantity">
+          <button type="button" class="rv-pdp-qty__btn" data-qty-inc aria-label="Increase">+</button>
+        </div>
+        <button type="submit" name="add" class="rv-btn rv-btn--primary rv-pdp-atc" data-atc-btn
+          data-label-avail="Add to bag · {{ main_variant.price | money }}"
+          data-label-sold="Sold out"
+          {%- unless product.available %} disabled{%- endunless -%}>
+          {%- if product.available -%}Add to bag · {{ main_variant.price | money }}{%- else -%}Sold out{%- endif -%}
+        </button>
+        {%- if section.settings.show_wishlist -%}
+          {%- comment -%} Wishlist heart — wired to Notify Me / wishlist app. The app binds to [data-wishlist] / product id. {%- endcomment -%}
+          <button type="button" class="rv-pdp-wishlist" data-wishlist data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}" aria-label="Save to wishlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+        {%- endif -%}
+      </div>
+      {%- comment -%} Back-in-stock — shown when sold out; Notify Me app binds to [data-notify-me] {%- endcomment -%}
+      {%- if section.settings.show_back_in_stock -%}
+        <div class="rv-pdp-bis" data-bis-wrap {% if product.available %}style="display:none;"{% endif %}>
+          <button type="button" class="rv-btn rv-btn--outline rv-pdp-bis__btn" data-notify-me data-product-id="{{ product.id }}" data-variant-id="{{ main_variant.id }}" data-product-handle="{{ product.handle }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="M4 4h16v12H5.2L4 17.2z"/><path d="M8 9h8M8 12h5"/></svg>
+            {{ section.settings.back_in_stock_label }}
+          </button>
+          <p class="rv-pdp-bis__note">{{ section.settings.back_in_stock_note }}</p>
+        </div>
+      {%- endif -%}
+
+    {%- endform -%}
+
+    <div class="rv-pdp-trust">
+      {%- assign rv_trust_count = 0 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'trust_item' -%}{%- assign rv_trust_count = rv_trust_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+      {%- if rv_trust_count > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'trust_item' -%}
+            <span class="rv-pdp-trust-item" {{ block.shopify_attributes }}><span class="rv-check">✓</span> {{ block.settings.text }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <span class="rv-pdp-trust-item"><span class="rv-check">✓</span> Ships in 24h</span>
+        <span class="rv-pdp-trust-item"><span class="rv-check">✓</span> Free 30-day returns</span>
+        <span class="rv-pdp-trust-item"><span class="rv-check">✓</span> 2-year warranty</span>
+        <span class="rv-pdp-trust-item"><span class="rv-check">✓</span> Gift wrap available</span>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.show_guarantee -%}
+    <div class="rv-pdp-guarantee">
+      <span class="rv-pdp-guarantee__badge">✦</span>
+      <div>
+        <div class="rv-pdp-guarantee__title">{{ section.settings.guarantee_title }}</div>
+        <div class="rv-pdp-guarantee__desc">{{ section.settings.guarantee_desc }}</div>
+      </div>
+    </div>
+    {%- endif -%}
+
+    {%- if product.description != blank -%}
+    <div class="rv-pdp-desc">
+      <div class="rv-pdp-desc__head">Description</div>
+      <div class="rv-pdp-desc__body">{{ product.description }}</div>
+    </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<!-- Sticky ATC -->
+<div class="rv-sticky-atc" data-sticky-atc>
+  <div class="rv-sticky-atc__inner">
+    {{ product.featured_image | image_url: width: 140 | image_tag: loading: 'lazy', class: 'rv-sticky-atc__img', alt: product.title }}
+    <div class="rv-sticky-atc__info">
+      <span class="rv-sticky-atc__name">{{ product.title }}</span>
+      <div class="rv-sticky-atc__sub">
+        <span class="rv-sticky-atc__price">{{ main_variant.price | money }}</span>
+        {%- render 'rv-material', product: product -%}
+      </div>
+    </div>
+    <button class="rv-btn rv-btn--primary rv-sticky-atc__btn" data-sticky-atc-btn
+      onclick="document.getElementById('rv-product-form').querySelector('[name=add]').click();"
+      {%- unless product.available %} disabled{%- endunless -%}>
+      {%- if product.available -%}Add to bag{%- else -%}Sold out{%- endif -%}
+    </button>
+  </div>
+</div>
+
+{% schema %}{
+  "name": "Product Main",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_override",
+      "label": "Eyebrow override (uses product type if blank)"
+    },
+    {
+      "type": "text",
+      "id": "badge_override",
+      "label": "Badge override (auto-detects from tags if blank)"
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Price note (e.g. or 4 x $17 with Shop Pay)"
+    },
+    {
+      "type": "url",
+      "id": "size_guide_url",
+      "label": "Size guide URL (shows next to Size option)"
+    },
+    {
+      "type": "text",
+      "id": "aside_text",
+      "label": "Aside text next to first option (e.g. 'Subscribe & save 15%')"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_buy_now",
+      "label": "Show Buy Now / Pay button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_guarantee",
+      "label": "Show guarantee strip under Add to Bag",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "guarantee_title",
+      "label": "Guarantee title",
+      "default": "The Rare Velvet promise"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_desc",
+      "label": "Guarantee description",
+      "default": "Lifetime warranty · free 30-day returns · gift-ready packaging on every order."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_size_context",
+      "label": "Show size context note",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "size_context_text",
+      "label": "Size context text",
+      "default": "Model wears US 6 · average ring finger"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_loyalty",
+      "label": "Show loyalty points",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_low_stock",
+      "label": "Show low-stock urgency",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "low_stock_threshold",
+      "label": "Show 'Only X left' when stock at or below",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist",
+      "label": "Show wishlist heart (Notify Me app)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_back_in_stock",
+      "label": "Show back-in-stock button when sold out (Notify Me app)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "back_in_stock_label",
+      "label": "Back-in-stock button label",
+      "default": "Email me when available"
+    },
+    {
+      "type": "text",
+      "id": "back_in_stock_note",
+      "label": "Back-in-stock note",
+      "default": "We’ll notify you the moment it’s restocked."
+    },
+    {
+      "type": "text",
+      "id": "loyalty_label",
+      "label": "Loyalty label",
+      "default": "Earn Rare Velvet points with this purchase",
+      "info": "Points are calculated at checkout"
+    },
+    {
+      "type": "number",
+      "id": "points_per_dollar",
+      "label": "Points per dollar",
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Ships in 24h"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Main",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "text": "Ships in 24h"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "text": "Secure checkout"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "text": "Easy 30-day returns"
+          }
+        }
+      ]
+    }
+  ]
+}{% endschema %}

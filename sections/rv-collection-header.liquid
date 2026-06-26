@@ -1,0 +1,16 @@
+
+<section style="background:var(--rv-deep);padding:64px 0;">
+  <div class="rv-container" style="display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;flex-wrap:wrap;">
+    <div>
+      <p class="rv-eyebrow" style="color:var(--rv-butter);">{{ section.settings.eyebrow | default: 'Collection' }}</p>
+      <h1 class="rv-heading rv-heading--light" style="font-size:clamp(32px,4vw,60px);">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <p style="font:400 15px/1.6 var(--rv-sans);color:var(--rv-deep-soft);max-width:560px;margin:16px 0 0;">{{ collection.description }}</p>
+      {%- endif -%}
+    </div>
+    {%- if collection.image -%}
+      {{ collection.image | image_url: width: 400 | image_tag: loading: 'eager', style: 'width:200px;height:200px;object-fit:cover;border-radius:3px;', alt: collection.title }}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}{"name":"Collection Header","tag":"section","settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Collection"}],"presets":[{"name":"Collection Header"}]}{% endschema %}

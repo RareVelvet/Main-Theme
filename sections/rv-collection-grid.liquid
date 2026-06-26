@@ -1,0 +1,330 @@
+
+{%- paginate collection.products by section.settings.products_per_page -%}
+<section style="padding:56px 0 88px;">
+  <div class="rv-container">
+    <form data-rv-filter-form method="get">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:14px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        {%- if section.settings.show_filters and collection.filters.size > 0 -%}
+          <button type="button" data-rv-filter-toggle style="display:flex;align-items:center;gap:8px;font:600 11px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-char);background:none;border:1px solid var(--rv-char);border-radius:2px;padding:11px 16px;cursor:pointer;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+            Filter
+          </button>
+        {%- endif -%}
+        <p style="font:400 13px/1 var(--rv-sans);color:var(--rv-soft);">{{ collection.products_count }} products</p>
+      </div>
+      {%- if section.settings.show_sort -%}
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font:400 12px/1 var(--rv-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rv-grey-2);">Sort by</span>
+          <select name="sort_by" data-rv-autosubmit style="font:400 12px/1 var(--rv-sans);border:1px solid var(--rv-line);border-radius:2px;padding:8px 12px;background:var(--rv-paper);color:var(--rv-char);cursor:pointer;">
+            <option value="best-selling"{%- if collection.sort_by == 'best-selling' %} selected{%- endif -%}>Best selling</option>
+            <option value="price-ascending"{%- if collection.sort_by == 'price-ascending' %} selected{%- endif -%}>Price: low to high</option>
+            <option value="price-descending"{%- if collection.sort_by == 'price-descending' %} selected{%- endif -%}>Price: high to low</option>
+            <option value="created-descending"{%- if collection.sort_by == 'created-descending' %} selected{%- endif -%}>Newest</option>
+          </select>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_filters and collection.filters.size > 0 -%}
+      <div data-rv-filter-panel style="display:none;border:1px solid var(--rv-line);border-radius:3px;padding:22px 24px;margin-bottom:28px;background:var(--rv-paper);">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px;">
+          {%- for filter in collection.filters -%}
+            <div>
+              <div style="font:600 11px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-char);margin-bottom:14px;">{{ filter.label }}</div>
+              {%- case filter.type -%}
+                {%- when 'list', 'boolean' -%}
+                  <div style="display:flex;flex-direction:column;gap:9px;max-height:200px;overflow:auto;">
+                    {%- for value in filter.values -%}
+                      <label style="display:flex;align-items:center;gap:9px;font:400 13px/1.2 var(--rv-sans);color:var(--rv-soft);cursor:pointer;{% if value.count == 0 and value.active == false %}opacity:.4;{% endif %}">
+                        <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" data-rv-autosubmit {% if value.active %}checked{% endif %} style="accent-color:var(--rv-char);width:15px;height:15px;">
+                        <span>{{ value.label }} <span style="color:var(--rv-grey-2);">({{ value.count }})</span></span>
+                      </label>
+                    {%- endfor -%}
+                  </div>
+                {%- when 'price_range' -%}
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" placeholder="{{ 0 | money_without_currency }}" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}" style="width:90px;font:400 13px/1 var(--rv-sans);border:1px solid var(--rv-line);border-radius:2px;padding:9px 10px;background:var(--rv-bone);color:var(--rv-char);">
+                    <span style="color:var(--rv-grey-2);">–</span>
+                    <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" placeholder="{{ filter.range_max | money_without_currency }}" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}" style="width:90px;font:400 13px/1 var(--rv-sans);border:1px solid var(--rv-line);border-radius:2px;padding:9px 10px;background:var(--rv-bone);color:var(--rv-char);">
+                  </div>
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;margin-top:22px;padding-top:18px;border-top:1px solid var(--rv-line);">
+          <button type="submit" style="font:600 11px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-bone);background:var(--rv-char);border:none;border-radius:2px;padding:12px 22px;cursor:pointer;">Apply</button>
+          <a href="{{ collection.url }}" style="font:500 12px/1 var(--rv-sans);letter-spacing:.06em;color:var(--rv-soft);text-decoration:underline;">Clear all</a>
+        </div>
+      </div>
+    {%- endif -%}
+    </form>
+    <div class="rv-coll-grid" style="--cols:{{ section.settings.columns | default: 5 }};">
+      {%- for product in collection.products -%}
+        <div class="rv-card" data-card>
+          <div class="rv-card__img">
+            <a href="{{ product.url }}">
+              {%- if product.featured_image -%}
+                {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.featured_image.alt, class: 'rv-card__img-primary' }}
+              {%- else -%}
+                <div class="rv-placeholder-img" style="aspect-ratio:4/5;">{{ 'product-1' | placeholder_svg_tag }}</div>
+              {%- endif -%}
+              {%- if product.images[1] != blank -%}
+                {{ product.images[1] | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title, class: 'rv-card__img-hover' }}
+              {%- endif -%}
+            </a>
+            {% render 'rv-badge', product: product, extra_class: 'rv-card__badge' %}
+
+            {%- if section.settings.show_quickview -%}
+              <button type="button" class="rv-card__qv" data-quickview data-handle="{{ product.handle }}" aria-label="Quick view {{ product.title | escape }}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            {%- endif -%}
+
+            {%- if product.available -%}
+              {%- assign first_v = product.first_available_variant -%}
+              {%- if product.has_only_default_variant -%}
+                {%- comment -%} Single variant — add directly {%- endcomment -%}
+                <button class="rv-card__qa-trigger" data-qa-add data-variant-id="{{ first_v.id }}" type="button">
+                  <span class="rv-card__qa-label">Quick Add</span>
+                  <span class="rv-card__qa-plus">+</span>
+                </button>
+              {%- else -%}
+                {%- comment -%} Multi-variant — reveal options {%- endcomment -%}
+                <button class="rv-card__qa-trigger" data-qa-toggle type="button">
+                  <span class="rv-card__qa-label">Quick Add</span>
+                  <span class="rv-card__qa-plus">+</span>
+                </button>
+                <div class="rv-card__qa-panel" data-qa-panel>
+                  <div class="rv-card__qa-panel-head">
+                    <span>{{ product.options.first | default: 'Select' }}</span>
+                    <button class="rv-card__qa-close" data-qa-close type="button" aria-label="Close">×</button>
+                  </div>
+                  <div class="rv-card__qa-options">
+                    {%- for variant in product.variants -%}
+                      <button type="button"
+                        class="rv-card__qa-opt{% unless variant.available %} is-soldout{% endunless %}"
+                        data-qa-add
+                        data-variant-id="{{ variant.id }}"
+                        {% unless variant.available %}disabled aria-disabled="true"{% endunless %}>
+                        {{ variant.title }}
+                      </button>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- else -%}
+              <button class="rv-card__qa-trigger is-soldout" disabled type="button">
+                <span class="rv-card__qa-label">Sold out</span>
+              </button>
+            {%- endif -%}
+          </div>
+          <div class="rv-card__body">
+            <div class="rv-card__meta"><span class="rv-stars" style="font-size:12px;">★★★★★</span></div>
+            <a href="{{ product.url }}" class="rv-card__name">{{ product.title }}</a>
+            {% render 'rv-material', product: product %}
+            <p class="rv-card__price">
+              {{ product.price | money }}
+              {%- if product.compare_at_price > product.price -%}
+                <span style="text-decoration:line-through;color:var(--rv-grey-2);margin-left:6px;">{{ product.compare_at_price | money }}</span>
+              {%- endif -%}
+            </p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <div style="text-align:center;margin-top:48px;display:flex;align-items:center;justify-content:center;gap:8px;">
+        {%- if paginate.previous.is_link -%}
+          <a href="{{ paginate.previous.url }}" class="rv-btn rv-btn--outline" style="padding:12px 22px;">← Previous</a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" style="font:400 13px/1 var(--rv-sans);padding:10px 16px;border:1px solid var(--rv-line);border-radius:2px;color:var(--rv-char);">{{ part.title }}</a>
+          {%- else -%}
+            <span style="font:600 13px/1 var(--rv-sans);padding:10px 16px;border:1px solid var(--rv-char);border-radius:2px;background:var(--rv-char);color:var(--rv-bone);">{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next.is_link -%}
+          <a href="{{ paginate.next.url }}" class="rv-btn rv-btn--outline" style="padding:12px 22px;">Next →</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endpaginate -%}
+
+<style>
+/* ── Daintier collection grid (Mejuri/Missoma feel) ── */
+.rv-coll-grid{display:grid;grid-template-columns:repeat(var(--cols,5),1fr);gap:18px 16px;}
+.rv-coll-grid .rv-card{background:transparent;border:none;border-radius:0;}
+.rv-coll-grid .rv-card:hover{border:none;}
+.rv-coll-grid .rv-card__img{border-radius:3px;background:var(--rv-bone-2);}
+.rv-coll-grid .rv-card__body{padding:14px 2px 4px;}
+.rv-coll-grid .rv-card__name{font-size:14px;}
+.rv-coll-grid .rv-card__price{font-size:12px;}
+@media(max-width:1024px){.rv-coll-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.rv-coll-grid{grid-template-columns:repeat(2,1fr);gap:14px 12px;}}
+/* ── Odd Muse-style Quick Add ───────────────────────────── */
+.rv-card{position:relative;}
+.rv-card__qv{position:absolute;top:12px;right:12px;z-index:2;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--rv-paper);border:1px solid var(--rv-line);border-radius:999px;color:var(--rv-char);cursor:pointer;opacity:0;transform:translateY(-4px);transition:opacity .25s ease,transform .25s ease,background .15s,color .15s;}
+.rv-card:hover .rv-card__qv{opacity:1;transform:none;}
+.rv-card__qv:hover{background:var(--rv-char);color:var(--rv-bone);border-color:var(--rv-char);}
+@media(hover:none){.rv-card__qv{opacity:1;transform:none;}}
+.rv-card__img{position:relative;overflow:hidden;}
+.rv-card__img-primary,.rv-card__img-hover{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:opacity .5s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
+.rv-card__img-hover{position:absolute;inset:0;opacity:0;}
+.rv-card:hover .rv-card__img-hover{opacity:1;}
+.rv-card:hover .rv-card__img-primary{transform:scale(1.03);}
+
+/* Quick add trigger — slides up from bottom of image */
+.rv-card__qa-trigger{
+  position:absolute;left:12px;right:12px;bottom:12px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--rv-paper);color:var(--rv-char);
+  border:1px solid var(--rv-char);border-radius:2px;cursor:pointer;
+  font:600 11px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;
+  padding:13px;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .28s ease,transform .28s cubic-bezier(.2,.7,.2,1),background .2s,color .2s;
+  pointer-events:none;
+}
+.rv-card:hover .rv-card__qa-trigger,.rv-card__qa-trigger:focus-visible{opacity:1;transform:none;pointer-events:auto;}
+.rv-card__qa-trigger:hover{background:var(--rv-char);color:var(--rv-bone);}
+.rv-card__qa-trigger.is-soldout{background:rgba(251,249,244,.85);color:var(--rv-grey-2);border-color:var(--rv-line);cursor:not-allowed;opacity:1;transform:none;pointer-events:auto;}
+.rv-card__qa-plus{font-size:14px;line-height:1;font-weight:400;}
+
+/* Options panel — slides up, replaces trigger */
+.rv-card__qa-panel{
+  position:absolute;left:12px;right:12px;bottom:12px;
+  background:var(--rv-paper);border:1px solid var(--rv-char);border-radius:2px;
+  padding:10px;
+  opacity:0;transform:translateY(12px);pointer-events:none;
+  transition:opacity .28s ease,transform .28s cubic-bezier(.2,.7,.2,1);
+  z-index:3;
+}
+.rv-card__qa-panel.is-open{opacity:1;transform:none;pointer-events:auto;}
+.rv-card__qa-panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 2px;}
+.rv-card__qa-panel-head span{font:600 10px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-grey-2);}
+.rv-card__qa-close{background:none;border:none;cursor:pointer;font-size:18px;line-height:1;color:var(--rv-char);padding:0 2px;}
+.rv-card__qa-options{display:flex;flex-wrap:wrap;gap:6px;}
+.rv-card__qa-opt{
+  flex:1 1 auto;min-width:44px;
+  background:var(--rv-bone);color:var(--rv-char);
+  border:1px solid var(--rv-line);border-radius:2px;cursor:pointer;
+  font:500 12px/1 var(--rv-sans);padding:11px 8px;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.rv-card__qa-opt:hover{background:var(--rv-char);color:var(--rv-bone);border-color:var(--rv-char);}
+.rv-card__qa-opt.is-soldout{color:var(--rv-grey-2);text-decoration:line-through;cursor:not-allowed;opacity:.5;background:var(--rv-bone);}
+.rv-card__qa-opt.is-soldout:hover{background:var(--rv-bone);color:var(--rv-grey-2);border-color:var(--rv-line);}
+
+/* On touch devices, always show the trigger (no hover) */
+@media(hover:none){
+  .rv-card__qa-trigger{opacity:1;transform:none;pointer-events:auto;}
+}
+</style>
+
+<script>
+(function(){
+  var form=document.querySelector('[data-rv-filter-form]');
+  if(form){
+    var toggle=document.querySelector('[data-rv-filter-toggle]');
+    var panel=document.querySelector('[data-rv-filter-panel]');
+    if(toggle&&panel){
+      toggle.addEventListener('click',function(){
+        var open=panel.style.display!=='none';
+        panel.style.display=open?'none':'block';
+        toggle.setAttribute('aria-expanded',!open);
+      });
+    }
+    form.querySelectorAll('[data-rv-autosubmit]').forEach(function(el){
+      el.addEventListener('change',function(){ form.submit(); });
+    });
+  }
+})();
+</script>
+
+<script>
+if(!window.__rvQuickAdd){
+  window.__rvQuickAdd = true;
+(function(){
+  function closeAllPanels(except){
+    document.querySelectorAll('.rv-card__qa-panel.is-open').forEach(function(p){
+      if(p!==except) p.classList.remove('is-open');
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    // Toggle panel open
+    var toggle = e.target.closest('[data-qa-toggle]');
+    if(toggle){
+      e.preventDefault();
+      var panel = toggle.parentElement.querySelector('[data-qa-panel]');
+      if(panel){ closeAllPanels(panel); panel.classList.toggle('is-open'); }
+      return;
+    }
+    // Close panel
+    var closeBtn = e.target.closest('[data-qa-close]');
+    if(closeBtn){
+      e.preventDefault();
+      var p = closeBtn.closest('[data-qa-panel]');
+      if(p) p.classList.remove('is-open');
+      return;
+    }
+    // Add to cart
+    var addBtn = e.target.closest('[data-qa-add]');
+    if(addBtn && !addBtn.disabled){
+      e.preventDefault();
+      var id = addBtn.getAttribute('data-variant-id');
+      if(!id) return;
+      var label = addBtn.querySelector('.rv-card__qa-label');
+      var original = addBtn.innerHTML;
+      addBtn.innerHTML = '<span class="rv-card__qa-label">Adding…</span>';
+      addBtn.disabled = true;
+      fetch('/cart/add.js', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ id: id, quantity: 1 })
+      }).then(function(r){
+        if(r.ok){
+          addBtn.innerHTML = '<span class="rv-card__qa-label">✓ Added</span>';
+          // refresh cart count if a bubble exists
+          fetch('/cart.js').then(function(c){return c.json();}).then(function(cart){
+            var bubble = document.querySelector('[data-cart-count]');
+            if(bubble) bubble.textContent = cart.item_count;
+            // open cart drawer if theme has one
+            document.dispatchEvent(new CustomEvent('rv:cart:updated',{detail:cart}));
+          });
+          setTimeout(function(){
+            addBtn.innerHTML = original;
+            addBtn.disabled = false;
+            var panel = addBtn.closest('[data-qa-panel]');
+            if(panel) panel.classList.remove('is-open');
+          }, 1400);
+        } else {
+          addBtn.innerHTML = original;
+          addBtn.disabled = false;
+        }
+      }).catch(function(){
+        addBtn.innerHTML = original;
+        addBtn.disabled = false;
+      });
+      return;
+    }
+    // Click outside any panel closes them
+    if(!e.target.closest('[data-qa-panel]')) closeAllPanels(null);
+  });
+
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAllPanels(null); });
+})();
+}
+</script>
+
+{% schema %}{"name":"Collection Grid","tag":"section","settings":[
+{"type":"range","id":"products_per_page","label":"Products per page","min":8,"max":48,"step":4,"default":16},
+{"type":"select","id":"columns","label":"Products per row (desktop)","options":[{"value":"4","label":"4 (larger)"},{"value":"5","label":"5 (daintier)"}],"default":"5"},
+{"type":"checkbox","id":"show_filters","label":"Show filters","info":"Filters come from the Search & Discovery app / collection settings.","default":true},
+{"type":"checkbox","id":"show_quickview","label":"Show quick-view button","default":true},
+{"type":"checkbox","id":"show_sort","label":"Show sort dropdown","default":true}
+],"presets":[{"name":"Collection Grid"}]}{% endschema %}

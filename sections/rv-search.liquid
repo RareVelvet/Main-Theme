@@ -1,0 +1,64 @@
+
+{%- paginate search.results by 16 -%}
+<section style="padding:56px 0 88px;">
+  <div class="rv-container">
+    <div style="max-width:600px;margin:0 auto 48px;text-align:center;">
+      <h1 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,4vw,46px);color:var(--rv-char);margin:0 0 24px;">
+        {%- if search.performed -%}Results for "{{ search.terms }}"{%- else -%}Search{%- endif -%}
+      </h1>
+      <form action="{{ routes.search_url }}" method="get" role="search">
+        <input type="hidden" name="type" value="product">
+        <div style="display:flex;gap:10px;">
+          <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products…" autocomplete="off"
+            style="flex:1;padding:16px 18px;border:1px solid var(--rv-line);border-radius:2px;font:400 14px/1 var(--rv-sans);color:var(--rv-char);outline:none;">
+          <button type="submit" class="rv-btn rv-btn--primary" style="padding:16px 24px;">Search</button>
+        </div>
+      </form>
+    </div>
+    {%- if search.performed -%}
+      {%- if search.results_count == 0 -%}
+        <div style="text-align:center;padding:48px 24px;">
+          <p style="font:400 15px/1.6 var(--rv-sans);color:var(--rv-soft);">No products found for "{{ search.terms }}". Try a different search.</p>
+          <a href="{{ routes.root_url }}" class="rv-btn rv-btn--outline" style="margin-top:20px;display:inline-flex;">Back to home</a>
+        </div>
+      {%- else -%}
+        <p style="font:400 13px/1 var(--rv-sans);color:var(--rv-soft);margin:0 0 28px;">{{ search.results_count }} results</p>
+        <div class="rv-grid-4">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              <div class="rv-card" data-card>
+                <div class="rv-card__img">
+                  <a href="{{ item.url }}">
+                    {%- if item.featured_image -%}
+                      {{ item.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'rv-card__img-primary', alt: item.featured_image.alt }}
+                    {%- else -%}
+                      <div class="rv-placeholder-img" style="aspect-ratio:4/5;">{{ 'product-1' | placeholder_svg_tag }}</div>
+                    {%- endif -%}
+                  </a>
+                  {% render 'rv-badge', product: item, extra_class: 'rv-card__badge' %}
+                  {%- if item.available -%}
+                    {%- assign sr_v = item.first_available_variant -%}
+                    {%- if item.has_only_default_variant -%}
+                      <button class="rv-card__qa-trigger" data-qa-add data-variant-id="{{ sr_v.id }}" type="button"><span class="rv-card__qa-label">Quick Add</span><span class="rv-card__qa-plus">+</span></button>
+                    {%- else -%}
+                      <a href="{{ item.url }}" class="rv-card__qa-trigger" style="text-decoration:none;"><span class="rv-card__qa-label">View options</span><span class="rv-card__qa-plus">+</span></a>
+                    {%- endif -%}
+                  {%- else -%}
+                    <button class="rv-card__qa-trigger is-soldout" disabled type="button"><span class="rv-card__qa-label">Sold out</span></button>
+                  {%- endif -%}
+                </div>
+                <div class="rv-card__body">
+                  <a href="{{ item.url }}" class="rv-card__name">{{ item.title }}</a>
+                  {% render 'rv-material', product: item %}
+                  <p class="rv-card__price">{{ item.price | money }}</p>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+{%- endpaginate -%}
+{% schema %}{"name":"Search Results","tag":"section","settings":[],"presets":[{"name":"Search Results"}]}{% endschema %}

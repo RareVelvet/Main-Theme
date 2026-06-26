@@ -1,0 +1,95 @@
+
+<header class="rv-header" role="banner" data-header>
+  <div class="rv-header__inner">
+
+    <!-- Hamburger (mobile left) -->
+    <button class="rv-header__hamburger" data-menu-toggle aria-label="Open menu" aria-expanded="false">
+      <span class="rv-ham-line rv-ham-line--1"></span>
+      <span class="rv-ham-line rv-ham-line--2"></span>
+      <span class="rv-ham-line rv-ham-line--3"></span>
+    </button>
+
+    <!-- Logo — left aligned, links to home -->
+    <a href="{{ routes.root_url }}" class="rv-header__logo">{{ shop.name }}</a>
+
+    <!-- Desktop nav (hidden on mobile) -->
+    <nav class="rv-header__nav" role="navigation" aria-label="Main">
+      {%- for link in linklists[section.settings.nav_menu].links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <!-- Actions -->
+    <div class="rv-header__actions">
+      <a href="{{ routes.search_url }}" class="rv-header__action-link" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span class="rv-header__action-text">Search</span>
+      </a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="rv-header__action-link rv-header__action--desktop" aria-label="Account">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="rv-header__action-text">Account</span>
+        </a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="rv-header__action-link rv-header__cart" aria-label="Cart ({{ cart.item_count }} items)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="rv-header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+
+  {%- if section.settings.show_pills -%}
+  <div class="rv-header__pills-wrap rv-header__pills--mobile">
+    <div class="rv-header__pills">
+      {%- for link in linklists[section.settings.pill_menu].links limit: 8 -%}
+        <a href="{{ link.url }}" class="rv-header__pill">{{ link.title }}</a>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+</header>
+
+<!-- ── FULL-SCREEN MOBILE OVERLAY (Odd Muse style) ── -->
+<div class="rv-overlay" data-menu-overlay aria-hidden="true">
+  <!-- Close button -->
+  <button class="rv-overlay__close" data-menu-close aria-label="Close menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+
+  <!-- Brand name top-left -->
+  <div class="rv-overlay__logo">{{ shop.name }}</div>
+
+  <!-- Main nav links -->
+  <nav class="rv-overlay__nav" role="navigation">
+    {%- assign nav_links = linklists[section.settings.nav_menu].links -%}
+    {%- for link in nav_links -%}
+      <a href="{{ link.url }}" class="rv-overlay__link" style="--i:{{ forloop.index }}">
+        <span class="rv-overlay__link-num">0{{ forloop.index }}</span>
+        {{ link.title }}
+      </a>
+    {%- endfor -%}
+  </nav>
+
+  <!-- Bottom utility strip -->
+  <div class="rv-overlay__footer">
+    {%- if shop.customer_accounts_enabled -%}
+      <a href="{{ routes.account_url }}" class="rv-overlay__util">Account</a>
+    {%- endif -%}
+    <a href="{{ routes.search_url }}" class="rv-overlay__util">Search</a>
+    {%- if settings.social_instagram != blank -%}
+      <a href="https://instagram.com/{{ settings.social_instagram }}" class="rv-overlay__util" target="_blank" rel="noopener">Instagram</a>
+    {%- endif -%}
+    {%- if settings.social_tiktok != blank -%}
+      <a href="https://tiktok.com/@{{ settings.social_tiktok }}" class="rv-overlay__util" target="_blank" rel="noopener">TikTok</a>
+    {%- endif -%}
+  </div>
+</div>
+<!-- scrim -->
+<div class="rv-overlay__scrim" data-menu-scrim></div>
+
+{% schema %}{"name":"Header","tag":"section","settings":[
+{"type":"link_list","id":"nav_menu","label":"Navigation menu","default":"main-menu"},
+{"type":"checkbox","id":"show_pills","label":"Show category pills (mobile)","default":true},
+{"type":"link_list","id":"pill_menu","label":"Category pill menu","default":"main-menu"},
+{"type":"checkbox","id":"show_social","label":"Show social in mobile menu","default":true}
+]}{% endschema %}

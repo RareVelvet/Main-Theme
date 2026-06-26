@@ -1,0 +1,59 @@
+
+<section class="rv-pdp-section">
+  <div style="max-width:760px;margin:0 auto;">
+    <p class="rv-eyebrow" style="text-align:center;">{{ section.settings.eyebrow }}</p>
+    <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(26px,2.8vw,38px);color:var(--rv-char);text-align:center;margin:0 0 36px;">{{ section.settings.heading }}</h2>
+    <div id="rv-faq-{{ section.id }}">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <div style="border-top:1px solid var(--rv-line);" {{ block.shopify_attributes }}>
+            <button onclick="rvFaqToggle(this)" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;background:none;border:none;cursor:pointer;text-align:left;">
+              <span style="font:500 15px/1.3 var(--rv-sans);color:var(--rv-char);">{{ block.settings.question }}</span>
+              <span style="font-size:20px;color:var(--rv-grey-2);flex:none;transition:transform .25s;line-height:1;" class="rv-faq-icon">+</span>
+            </button>
+            <div style="display:none;padding-bottom:20px;" class="rv-faq-body"><div style="font:400 14px/1.65 var(--rv-sans);color:var(--rv-soft);">{{ block.settings.answer }}</div></div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Brand-wide fallback — identical across every PDP {%- endcomment -%}
+        {%- assign rv_faq_q = 'What materials are used?|How do I care for my piece?|What is your shipping & delivery time?|What is your returns policy?|Do you offer gift wrapping?|Is it covered by a warranty?' | split: '|' -%}
+        {%- assign rv_faq_a = 'Each piece is crafted from premium, considered materials — detailed in the Details & Materials section above. Jewelry is 925 sterling silver or 18k gold vermeil; boxes are velvet-lined with solid hardware.|Store in the velvet pouch or box provided, keep away from water, perfume and lotion, and wipe gently with a soft cloth. Full care notes are on every product page.|Complimentary shipping on orders over $50. Orders are dispatched within 24 hours and you will receive a tracking link by email as soon as it ships.|We offer free, no-questions returns within 30 days. Contact our team and we will arrange a prepaid return label.|Yes — every order can arrive in our signature gift-ready packaging. Add gift wrap at cart and include a personal note.|Yes. Jewelry and jewelry boxes are covered by our lifetime craftsmanship warranty against manufacturing defects.' | split: '|' -%}
+        {%- for q in rv_faq_q -%}
+          <div style="border-top:1px solid var(--rv-line);">
+            <button onclick="rvFaqToggle(this)" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;background:none;border:none;cursor:pointer;text-align:left;">
+              <span style="font:500 15px/1.3 var(--rv-sans);color:var(--rv-char);">{{ q }}</span>
+              <span style="font-size:20px;color:var(--rv-grey-2);flex:none;transition:transform .25s;line-height:1;" class="rv-faq-icon">+</span>
+            </button>
+            <div style="display:none;padding-bottom:20px;" class="rv-faq-body"><div style="font:400 14px/1.65 var(--rv-sans);color:var(--rv-soft);">{{ rv_faq_a[forloop.index0] }}</div></div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+      <div style="border-top:1px solid var(--rv-line);"></div>
+    </div>
+  </div>
+</section>
+<script>
+function rvFaqToggle(btn){
+  var body=btn.nextElementSibling;
+  var icon=btn.querySelector('.rv-faq-icon');
+  var open=body.style.display!=='none'&&body.style.display!=='';
+  // Close all in same section
+  var wrap=btn.closest('[id^="rv-faq-"]');
+  wrap.querySelectorAll('.rv-faq-body').forEach(function(b){b.style.display='none';});
+  wrap.querySelectorAll('.rv-faq-icon').forEach(function(i){i.textContent='+';i.style.transform='';});
+  if(!open){body.style.display='block';icon.textContent='−';icon.style.transform='rotate(0deg)';}
+}
+</script>
+{% schema %}{"name":"FAQ","tag":"section","max_blocks":12,"settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Good to know"},
+{"type":"text","id":"heading","label":"Heading","default":"Frequently asked questions"}
+],"blocks":[{"type":"faq_item","name":"FAQ item","settings":[
+{"type":"text","id":"question","label":"Question","default":"Is this suitable for sensitive skin?"},
+{"type":"textarea","id":"answer","label":"Answer","default":"Yes — our formulations are dermatologist-tested, fragrance-free and suitable for all skin types including sensitive and reactive skin."}
+]}],"presets":[{"name":"FAQ","blocks":[
+{"type":"faq_item","settings":{"question":"How long until I see results?","answer":"Most customers notice brighter, more hydrated skin within 2 weeks of consistent use. Firming and tone-evening results typically appear by week 4–6."}},
+{"type":"faq_item","settings":{"question":"Is this suitable for sensitive skin?","answer":"Yes — our formulations are dermatologist-tested, fragrance-free and suitable for all skin types including sensitive and reactive skin."}},
+{"type":"faq_item","settings":{"question":"What is your return policy?","answer":"We offer free, no-questions returns within 30 days of purchase. Simply contact our team and we'll arrange a prepaid return label."}},
+{"type":"faq_item","settings":{"question":"Do you offer gift wrapping?","answer":"Yes — all orders can be gift-wrapped in our signature velvet packaging with a handwritten note. Select 'Add gift wrap' at checkout."}},
+{"type":"faq_item","settings":{"question":"How do I track my order?","answer":"You'll receive a tracking link by email as soon as your order is dispatched — usually within 24 hours of placing your order."}}
+]}]}{% endschema %}

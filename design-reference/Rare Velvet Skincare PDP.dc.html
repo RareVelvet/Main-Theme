@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+:root{
+  --bone:#F4F1EA;--bone-2:#ECE7DD;--paper:#FBF9F4;
+  --grey:#8B8680;--grey-2:#6E6A64;--line:#DAD4CB;
+  --char:#2B2A27;--soft:#56524C;
+  --deep:#3B3833;--deep-soft:#B8B2A8;--deep-line:rgba(244,241,234,.16);
+  --butter:#F2E6C2;--butter-2:#E2CB92;--clay:#B0795C;--clay-2:#9A6446;
+  --blush:#E9D9D2;--star:#C2A24E;--sage:#9DB5A4;
+  --rv-serif:'Cormorant Garamond',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif;
+}
+image-slot{display:block;}
+.zoomf{overflow:hidden;border-radius:4px;}
+.zoomf image-slot{transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-origin:center;}
+.zoomf:hover image-slot{transform:scale(1.6);}
+.acc summary{list-style:none;}.acc summary::-webkit-details-marker{display:none;}
+.acc[open] .accx{transform:rotate(45deg);}
+</style>
+</helmet>
+<div data-screen-label="Skincare PDP" style="background:var(--bone);font-family:var(--sans);color:var(--char);width:100%;overflow-x:hidden;">
+
+  <!-- ANNOUNCEMENT -->
+  <div style="background:var(--char);color:var(--bone);text-align:center;font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:9px 16px;">Clean · Dermatologist-tested · Cruelty-free · Free shipping over $50</div>
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:90;background:rgba(244,241,234,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 40px;">
+      <nav style="display:flex;gap:34px;font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--char);"><span style="cursor:pointer;">Skincare</span><span style="cursor:pointer;">Beauty</span><span style="cursor:pointer;">Sets</span></nav>
+      <div style="text-align:center;font-family:var(--rv-serif);font-size:30px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;line-height:1;">Rare Velvet</div>
+      <div style="display:flex;gap:28px;justify-content:flex-end;align-items:center;font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--char);"><span style="cursor:pointer;">Search</span><span style="cursor:pointer;">Account</span><span style="cursor:pointer;">Bag&nbsp;(0)</span></div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div style="max-width:1320px;margin:0 auto;padding:18px 32px 0;font:400 12px/1 var(--sans);color:var(--grey);">Home / Skincare / <span style="color:var(--char);">The Quiet Glow Serum</span></div>
+
+  <!-- ===== MAIN: GALLERY + BUY BOX ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:24px 32px 64px;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;">
+
+    <!-- GALLERY -->
+    <div style="position:sticky;top:84px;">
+      <div class="zoomf" style="position:relative;cursor:zoom-in;margin-bottom:10px;background:var(--bone-2);">
+        <image-slot id="sk-g1" shape="rect" placeholder="Hero — serum bottle, soft daylight on bone" style="width:100%;aspect-ratio:1/1;"></image-slot>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+        <div class="zoomf" style="background:var(--bone-2);"><image-slot id="sk-g2" shape="rect" placeholder="Texture — dropper &amp; drop" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+        <div class="zoomf" style="background:var(--bone-2);"><image-slot id="sk-g3" shape="rect" placeholder="On skin — application" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+        <div class="zoomf" style="background:var(--bone-2);"><image-slot id="sk-g4" shape="rect" placeholder="On vanity — lifestyle" style="width:100%;aspect-ratio:1/1;"></image-slot></div>
+      </div>
+    </div>
+
+    <!-- BUY BOX -->
+    <div>
+      <div style="font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">The Skincare Edit</div>
+      <h1 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(34px,4vw,52px);line-height:1.02;letter-spacing:-.01em;margin:0 0 8px;">The Quiet Glow Serum</h1>
+      <div style="font-family:var(--rv-serif);font-style:italic;font-size:19px;color:var(--soft);margin-bottom:16px;">Niacinamide + hyaluronic barrier serum</div>
+
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+        <span style="color:var(--star);letter-spacing:2px;font-size:14px;">★★★★★</span>
+        <span style="font:400 13px/1 var(--sans);color:var(--soft);">4.9</span>
+        <span style="color:var(--line);">·</span>
+        <span style="font:400 13px/1 var(--sans);color:var(--soft);border-bottom:1px solid var(--line);cursor:pointer;">1,932 reviews</span>
+      </div>
+
+      <div style="font:600 24px/1 var(--sans);margin-bottom:8px;">$54 <span style="font:400 14px/1 var(--sans);color:var(--grey-2);">· 30ml</span></div>
+      <div style="font:400 13px/1.4 var(--sans);color:var(--clay);margin-bottom:22px;">Earn 54 Rare Velvet points with this purchase</div>
+
+      <!-- benefit chips -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
+          <span style="background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font:500 12px/1 var(--sans);color:var(--char);">{{ c }}</span>
+        </sc-for>
+      </div>
+
+      <!-- purchase options -->
+      <div style="margin-bottom:18px;">
+        <div style="font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--char);margin-bottom:10px;">Purchase options</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div onClick="{{ setOnce }}" style="border:{{ onceBd }};border-radius:3px;padding:13px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;background:{{ onceBg }};">
+            <span style="font:600 13px/1.2 var(--sans);color:var(--char);">One-time purchase</span>
+            <span style="font:600 13px/1 var(--sans);color:var(--char);">$54</span>
+          </div>
+          <div onClick="{{ setSub }}" style="border:{{ subBd }};border-radius:3px;padding:13px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;background:{{ subBg }};">
+            <span><span style="font:600 13px/1.2 var(--sans);color:var(--char);">Subscribe &amp; save 15%</span><span style="display:block;font:400 12px/1.3 var(--sans);color:var(--soft);margin-top:3px;">Delivered every month · cancel anytime</span></span>
+            <span style="text-align:right;flex:none;"><span style="font:600 13px/1 var(--sans);color:var(--char);">$46</span><span style="display:block;font:700 9px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--clay);margin-top:5px;">Best value</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATC -->
+      <button style="width:100%;background:var(--clay);color:#FBF9F4;border:none;cursor:pointer;font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:18px;border-radius:2px;margin-bottom:10px;">Add to bag · {{ atcPrice }}</button>
+      <button style="width:100%;background:transparent;color:var(--char);border:1px solid var(--char);cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px;border-radius:2px;margin-bottom:20px;">♡ Save for later</button>
+
+      <!-- micro trust -->
+      <div style="display:flex;gap:18px;flex-wrap:wrap;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:22px;">
+        <span style="display:flex;align-items:center;gap:7px;font:500 12px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">✓</span>Ships in 24h</span>
+        <span style="display:flex;align-items:center;gap:7px;font:500 12px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">↺</span>Free 30-day returns</span>
+        <span style="display:flex;align-items:center;gap:7px;font:500 12px/1.2 var(--sans);color:var(--soft);"><span style="color:var(--clay);">🌿</span>Clean formula</span>
+      </div>
+
+      <!-- why love -->
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:22px;">
+        <sc-for list="{{ love }}" as="l" hint-placeholder-count="3">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="width:30px;height:30px;border-radius:999px;background:var(--blush);color:var(--clay-2);display:flex;align-items:center;justify-content:center;flex:none;font-size:14px;">{{ l.icon }}</span>
+            <div><div style="font:600 14px/1.3 var(--sans);color:var(--char);">{{ l.title }}</div><div style="font:400 13px/1.5 var(--sans);color:var(--soft);">{{ l.desc }}</div></div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- accordions -->
+      <sc-for list="{{ accordions }}" as="a" hint-placeholder-count="3">
+        <details class="acc" style="border-top:1px solid var(--line);">
+          <summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;cursor:pointer;font:500 14px/1.3 var(--sans);color:var(--char);">{{ a.title }}<span class="accx" style="font-size:20px;color:var(--grey-2);transition:transform .2s;flex:none;">+</span></summary>
+          <div style="padding:0 0 18px;font:400 13px/1.7 var(--sans);color:var(--soft);">{{ a.body }}</div>
+        </details>
+      </sc-for>
+      <div style="border-top:1px solid var(--line);"></div>
+    </div>
+  </section>
+
+  <!-- ===== KEY INGREDIENTS (Rhode) ===== -->
+  <section style="background:var(--bone-2);">
+    <div style="max-width:1320px;margin:0 auto;padding:96px 32px;">
+      <div style="text-align:center;margin-bottom:54px;">
+        <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">What's inside</div>
+        <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.8vw,50px);line-height:1.04;margin:0;">Three hero ingredients, nothing it doesn't need</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+        <sc-for list="{{ ingredients }}" as="i" hint-placeholder-count="3">
+          <div style="background:var(--paper);border-radius:6px;overflow:hidden;">
+            <image-slot id="{{ i.id }}" shape="rect" placeholder="{{ i.ph }}" style="width:100%;aspect-ratio:3/2;"></image-slot>
+            <div style="padding:24px;">
+              <div style="font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--clay);margin-bottom:10px;">{{ i.pct }}</div>
+              <div style="font-family:var(--rv-serif);font-size:24px;color:var(--char);font-weight:500;margin-bottom:8px;">{{ i.name }}</div>
+              <p style="font:400 14px/1.6 var(--sans);color:var(--soft);margin:0;">{{ i.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <!-- free-from row -->
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:40px;">
+        <sc-for list="{{ freeFrom }}" as="f" hint-placeholder-count="5">
+          <span style="display:flex;align-items:center;gap:8px;font:600 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--soft);"><span style="color:var(--sage);">✓</span>{{ f }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESULTS (Qure) ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:96px 32px 72px;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;">Proven in use</div>
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.8vw,50px);line-height:1.04;margin:0;">Visible results, gently</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+      <sc-for list="{{ results }}" as="r" hint-placeholder-count="3">
+        <div style="text-align:center;border:1px solid var(--line);border-radius:6px;padding:36px 24px;">
+          <div style="font-family:var(--rv-serif);font-size:58px;color:var(--clay);font-weight:500;line-height:.9;margin-bottom:14px;">{{ r.pct }}</div>
+          <p style="font:400 15px/1.5 var(--sans);color:var(--soft);margin:0;">{{ r.claim }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font:400 11px/1.5 var(--sans);color:var(--grey-2);text-align:center;margin-top:20px;">Based on a 4-week consumer study of 102 participants using the serum twice daily.</div>
+  </section>
+
+  <!-- ===== HOW TO USE (Rhode routine) ===== -->
+  <section style="background:var(--blush);">
+    <div style="max-width:1320px;margin:0 auto;padding:88px 32px;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay-2);margin-bottom:14px;">The ritual</div>
+        <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(30px,3.8vw,50px);line-height:1.04;margin:0;">Where it fits in your routine</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+          <div style="text-align:center;">
+            <div style="width:56px;height:56px;border-radius:999px;background:var(--paper);color:var(--char);display:flex;align-items:center;justify-content:center;font-family:var(--rv-serif);font-size:24px;font-weight:600;margin:0 auto 18px;">{{ s.n }}</div>
+            <div style="font-family:var(--rv-serif);font-size:23px;color:var(--char);font-weight:500;margin-bottom:8px;">{{ s.title }}</div>
+            <p style="font:400 14px/1.6 var(--sans);color:var(--soft);margin:0 auto;max-width:260px;">{{ s.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHOP THE ROUTINE (cross-sell) ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:88px 32px 40px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;">
+      <div>
+        <div style="font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin-bottom:12px;">Complete the routine</div>
+        <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(26px,3vw,40px);margin:0;">Pairs beautifully with</h2>
+      </div>
+      <span style="font:500 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--soft);padding-bottom:4px;cursor:pointer;">Shop all skincare →</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <sc-for list="{{ routine }}" as="p" hint-placeholder-count="4">
+        <div>
+          <div style="border-radius:3px;overflow:hidden;background:var(--bone-2);margin-bottom:14px;position:relative;">
+            <image-slot id="{{ p.id }}" shape="rect" placeholder="{{ p.ph }}" style="width:100%;aspect-ratio:4/5;"></image-slot>
+            <button style="position:absolute;left:12px;right:12px;bottom:12px;background:var(--paper);color:var(--char);border:1px solid var(--char);cursor:pointer;font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:11px;border-radius:2px;">Quick add</button>
+          </div>
+          <div style="font:500 14px/1.3 var(--sans);color:var(--char);">{{ p.name }}</div>
+          <div style="font-family:var(--rv-serif);font-style:italic;font-size:14px;color:var(--grey-2);">{{ p.cat }}</div>
+          <div style="font:600 13px/1 var(--sans);color:var(--char);margin-top:4px;">{{ p.price }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS (Loox) ===== -->
+  <section id="reviews" style="max-width:1320px;margin:0 auto;padding:64px 32px 72px;border-top:1px solid var(--line);">
+    <div style="font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Reviews</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin:0 0 28px;flex-wrap:wrap;gap:12px;">
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,3vw,40px);margin:0;">What customers say</h2>
+      <span style="font:500 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Powered by Loox ◆</span>
+    </div>
+    <div style="display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:center;padding:24px 0 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:32px;">
+      <div style="text-align:center;">
+        <div style="font-family:var(--rv-serif);font-size:52px;line-height:1;font-weight:500;margin-bottom:6px;">4.9</div>
+        <div style="color:var(--star);letter-spacing:2px;font-size:15px;margin-bottom:6px;">★★★★★</div>
+        <div style="font:400 12px/1 var(--sans);color:var(--soft);">Based on 1,932 reviews</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <sc-for list="{{ dist }}" as="d" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font:400 11px/1 var(--sans);color:var(--soft);width:48px;">{{ d.s }}</span><div style="flex:1;height:6px;background:var(--bone-2);border-radius:999px;overflow:hidden;"><div style="width:{{ d.w }};height:100%;background:var(--star);"></div></div><span style="font:400 11px/1 var(--sans);color:var(--soft);width:40px;text-align:right;">{{ d.n }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+      <sc-for list="{{ reviews }}" as="rv" hint-placeholder-count="3">
+        <div style="border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;">
+          <image-slot id="{{ rv.photo }}" shape="rect" placeholder="Review photo" style="width:100%;aspect-ratio:4/3;"></image-slot>
+          <div style="padding:18px 20px;display:flex;flex-direction:column;flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="color:var(--star);letter-spacing:1px;font-size:12px;">★★★★★</span><span style="font:400 11px/1 var(--sans);color:var(--soft);">{{ rv.when }}</span></div>
+            <div style="font:600 13px/1.3 var(--sans);color:var(--char);margin-bottom:8px;">{{ rv.headline }}</div>
+            <p style="font:400 14px/1.6 var(--sans);color:var(--soft);margin:0 0 16px;">{{ rv.body }}</p>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:auto;"><span style="font:600 12px/1 var(--sans);color:var(--char);">{{ rv.name }}</span><span style="font:500 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#FBF9F4;background:var(--clay);padding:4px 7px;border-radius:999px;">Verified</span></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== YOU MAY ALSO LIKE ===== -->
+  <section style="max-width:1320px;margin:0 auto;padding:0 32px 88px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;">
+      <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(26px,3vw,40px);margin:0;">You may also like</h2>
+      <span style="font:500 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--soft);padding-bottom:4px;cursor:pointer;">All skincare →</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <sc-for list="{{ also }}" as="a" hint-placeholder-count="4">
+        <div>
+          <div style="border-radius:3px;overflow:hidden;background:var(--bone-2);margin-bottom:14px;"><image-slot id="{{ a.id }}" shape="rect" placeholder="{{ a.ph }}" style="width:100%;aspect-ratio:4/5;"></image-slot></div>
+          <div style="font:500 14px/1.3 var(--sans);color:var(--char);">{{ a.name }}</div>
+          <div style="font-family:var(--rv-serif);font-style:italic;font-size:14px;color:var(--grey-2);">{{ a.cat }}</div>
+          <div style="font:600 13px/1 var(--sans);color:var(--char);margin-top:4px;">{{ a.price }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:var(--deep);color:var(--bone);">
+    <div style="max-width:1320px;margin:0 auto;padding:64px 32px 48px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;">
+      <div>
+        <div style="font-family:var(--rv-serif);font-weight:500;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:#FBF9F4;margin-bottom:16px;">Rare Velvet</div>
+        <p style="font:400 14px/1.7 var(--sans);color:var(--deep-soft);max-width:300px;margin:0 0 22px;">Beauty. Organization. Everyday Luxury. Curated essentials for your daily rituals.</p>
+        <div style="display:flex;gap:12px;">
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3a5.4 5.4 0 0 0 4.5 4.5v3a8.3 8.3 0 0 1-4.5-1.4v6.6a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v3.2a3 3 0 1 0 2.1 2.9V3h3.2z"/></svg></a>
+          <a style="width:38px;height:38px;border:1px solid var(--deep-line);border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBF9F4;cursor:pointer;" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.5 2 4 5.66 4 8.74c0 1.86.7 3.52 2.22 4.14.25.1.47 0 .54-.27l.22-.86c.07-.27.04-.37-.16-.6-.43-.5-.7-1.16-.7-2.08 0-2.68 2-5.08 5.22-5.08 2.85 0 4.41 1.74 4.41 4.06 0 3.06-1.35 5.64-3.36 5.64-1.11 0-1.94-.92-1.67-2.04.32-1.35.93-2.8.93-3.77 0-.87-.47-1.6-1.43-1.6-1.13 0-2.05 1.18-2.05 2.75 0 1 .34 1.68.34 1.68l-1.36 5.76c-.27 1.15-.09 2.57.02 3.32.05.32.4.4.6.14 1.07-1.5 1.5-3.05 1.84-4.38.12-.46.66-2.6.66-2.6.35.67 1.38 1.26 2.47 1.26 3.25 0 5.46-2.97 5.46-6.94C20.08 4.93 17.4 2 12.04 2z"/></svg></a>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+        <div>
+          <div style="font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--butter);margin-bottom:18px;">{{ col.head }}</div>
+          <sc-for list="{{ col.links }}" as="lk" hint-placeholder-count="4">
+            <div style="font:400 13px/1 var(--sans);color:var(--deep-soft);margin-bottom:13px;cursor:pointer;">{{ lk }}</div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border-top:1px solid var(--deep-line);">
+      <div style="max-width:1320px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+        <span style="font:400 12px/1 var(--sans);color:rgba(244,241,234,.5);letter-spacing:.04em;">© 2026 Rare Velvet. All rights reserved.</span>
+        <div style="display:flex;gap:8px;">
+          <sc-for list="{{ pays }}" as="pay" hint-placeholder-count="4">
+            <span style="font:600 9px/1 var(--sans);letter-spacing:.08em;color:rgba(244,241,234,.8);border:1px solid rgba(244,241,234,.24);border-radius:3px;padding:5px 8px;">{{ pay }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="overflow:hidden;padding:0 24px;max-height:.74em;display:flex;justify-content:center;border-top:1px solid var(--deep-line);">
+      <div style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(72px,15vw,240px);line-height:1;letter-spacing:.01em;color:#FBF9F4;text-transform:uppercase;white-space:nowrap;transform:translateY(-.04em);">Rare Velvet</div>
+    </div>
+  </footer>
+
+  <!-- STICKY ATC -->
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(251,249,244,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <div style="display:flex;align-items:center;gap:14px;min-width:0;">
+      <div style="width:44px;height:44px;border-radius:3px;overflow:hidden;flex:none;background:var(--bone-2);"><image-slot id="sk-sticky" shape="rect" placeholder="thumb" style="width:100%;height:100%;"></image-slot></div>
+      <div style="min-width:0;"><div style="font:600 13px/1.2 var(--sans);color:var(--char);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">The Quiet Glow Serum</div><div style="font:400 12px/1 var(--sans);color:var(--soft);">{{ atcPrice }} · ★★★★★ 1,932</div></div>
+    </div>
+    <button style="background:var(--clay);color:#FBF9F4;border:none;cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:15px 30px;border-radius:2px;white-space:nowrap;flex:none;">Add to bag</button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sub: false };
+
+  componentDidMount() { this._initZoom(); }
+  _initZoom() {
+    const isTouch = window.matchMedia('(hover:none)').matches;
+    const frames = document.querySelectorAll('.zoomf');
+    if (!frames.length) { setTimeout(() => this._initZoom(), 200); return; }
+    let lb = document.querySelector('.rv-lb');
+    if (!lb) {
+      lb = document.createElement('div');
+      lb.className = 'rv-lb';
+      lb.style.cssText = 'position:fixed;inset:0;z-index:300;background:rgba(43,42,39,.92);display:none;align-items:center;justify-content:center;';
+      const close = document.createElement('button');
+      close.textContent = '\u00d7';
+      close.style.cssText = 'position:absolute;top:18px;right:18px;z-index:2;background:rgba(251,249,244,.92);border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer;';
+      const inner = document.createElement('div');
+      inner.className = 'rv-lb-inner';
+      inner.style.cssText = 'width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch;display:flex;align-items:center;justify-content:center;';
+      lb.appendChild(close); lb.appendChild(inner);
+      document.body.appendChild(lb);
+      const hide = () => { lb.style.display = 'none'; document.body.style.overflow = ''; };
+      close.addEventListener('click', hide);
+      inner.addEventListener('click', (e) => { if (e.target === inner) hide(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+    }
+    const inner = lb.querySelector('.rv-lb-inner');
+    const open = (img) => {
+      inner.innerHTML = '';
+      const c = img.cloneNode(true);
+      c.style.cssText = 'min-width:100%;min-height:100%;object-fit:contain;';
+      inner.appendChild(c);
+      lb.style.display = 'flex'; document.body.style.overflow = 'hidden';
+    };
+    frames.forEach((f) => {
+      const img = f.querySelector('image-slot');
+      if (!img) return;
+      if (!isTouch) {
+        f.addEventListener('mouseenter', () => { img.style.transition = 'none'; img.style.transform = 'scale(2.2)'; });
+        f.addEventListener('mousemove', (e) => {
+          const r = f.getBoundingClientRect();
+          img.style.transformOrigin = ((e.clientX - r.left) / r.width * 100) + '% ' + ((e.clientY - r.top) / r.height * 100) + '%';
+        });
+        f.addEventListener('mouseleave', () => { img.style.transition = ''; img.style.transform = ''; img.style.transformOrigin = 'center'; });
+      }
+      f.addEventListener('click', () => open(img));
+    });
+  }
+
+  renderVals() {
+    const sub = this.state.sub;
+    return {
+      setOnce: () => this.setState({ sub: false }),
+      setSub: () => this.setState({ sub: true }),
+      onceBd: !sub ? '2px solid var(--char)' : '1px solid var(--line)',
+      onceBg: !sub ? 'var(--paper)' : 'transparent',
+      subBd: sub ? '2px solid var(--char)' : '1px solid var(--line)',
+      subBg: sub ? 'var(--paper)' : 'transparent',
+      atcPrice: sub ? '$46' : '$54',
+      chips: ['Hydrating', 'Barrier-supporting', 'Fragrance-free'],
+      love: [
+        { icon: '💧', title: 'All-day hydration', desc: 'Multi-weight hyaluronic acid plumps and holds moisture for a dewy finish.' },
+        { icon: '✦', title: 'Calms &amp; evens', desc: '5% niacinamide visibly reduces redness and smooths uneven tone.' },
+        { icon: '🌿', title: 'Barrier-first', desc: 'Ceramides and panthenol strengthen your skin barrier over time.' },
+      ],
+      accordions: [
+        { title: 'Full ingredients', body: 'Aqua, Niacinamide, Glycerin, Sodium Hyaluronate, Panthenol, Ceramide NP, Allantoin, Pentylene Glycol, Sodium PCA, Tocopherol. Fragrance-free, non-comedogenic.' },
+        { title: 'Who it\u2019s for', body: 'All skin types, including sensitive. Especially loved by anyone with dryness, redness or a compromised barrier. Suitable morning and night.' },
+        { title: 'Shipping &amp; returns', body: 'Ships within 24h. Free shipping over $50. Easy 30-day returns on unopened items.' },
+      ],
+      ingredients: [
+        { id: 'sk-ing1', ph: 'Niacinamide', pct: '5% concentration', name: 'Niacinamide', desc: 'Visibly reduces redness, refines pores and evens out tone for a calmer complexion.' },
+        { id: 'sk-ing2', ph: 'Hyaluronic acid', pct: 'Triple-weight', name: 'Hyaluronic Acid', desc: 'Three molecular weights hydrate at different depths for plump, bouncy skin.' },
+        { id: 'sk-ing3', ph: 'Ceramides', pct: 'Barrier complex', name: 'Ceramides + Panthenol', desc: 'Reinforce the moisture barrier so skin stays resilient and comfortable.' },
+      ],
+      freeFrom: ['Fragrance-free', 'Paraben-free', 'Sulfate-free', 'Cruelty-free', 'Vegan'],
+      results: [
+        { pct: '94%', claim: 'said skin felt more hydrated immediately' },
+        { pct: '89%', claim: 'saw a calmer, more even tone in 4 weeks' },
+        { pct: '92%', claim: 'would repurchase' },
+      ],
+      steps: [
+        { n: '1', title: 'Cleanse', desc: 'Start with clean, slightly damp skin to lock in extra moisture.' },
+        { n: '2', title: 'Apply serum', desc: 'Press 3\u20134 drops over face and neck, morning and night.' },
+        { n: '3', title: 'Moisturise &amp; SPF', desc: 'Seal with moisturiser; finish with SPF in the morning.' },
+      ],
+      routine: [
+        { id: 'rt-1', ph: 'Cleanser', name: 'Gentle Gel Cleanser', cat: 'Cleanse', price: '$32' },
+        { id: 'rt-2', ph: 'Moisturiser', name: 'Barrier Cream', cat: 'Moisturise', price: '$44' },
+        { id: 'rt-3', ph: 'SPF', name: 'Daily Glow SPF 50', cat: 'Protect', price: '$38' },
+        { id: 'rt-4', ph: 'Eye', name: 'Bright Eye Serum', cat: 'Targeted', price: '$42' },
+      ],
+      dist: [
+        { s: '5 stars', w: '93%', n: '1,797' },
+        { s: '4 stars', w: '5%', n: '97' },
+        { s: '3 stars', w: '2%', n: '38' },
+      ],
+      reviews: [
+        { photo: 'sk-r1', when: '4 days ago', headline: 'My skin drinks it up', body: '"Two weeks in and my dry patches are gone. Sinks in fast, no pilling under makeup."', name: 'Maya T.' },
+        { photo: 'sk-r2', when: '2 weeks ago', headline: 'Redness gone', body: '"The niacinamide really works \u2014 my cheeks are so much calmer and even. Holy grail."', name: 'Chloe W.' },
+        { photo: 'sk-r3', when: '1 month ago', headline: 'Gentle but effective', body: '"Sensitive skin approved. No sting, no fragrance, just glowy hydrated skin every morning."', name: 'Imani O.' },
+      ],
+      also: [
+        { id: 'al-1', ph: 'Vitamin C', name: 'Bright Vitamin C Serum', cat: 'Serum', price: '$58' },
+        { id: 'al-2', ph: 'Retinal', name: 'Overnight Retinal', cat: 'Serum', price: '$64' },
+        { id: 'al-3', ph: 'Toner', name: 'Hydrating Essence', cat: 'Prep', price: '$36' },
+        { id: 'al-4', ph: 'Mask', name: 'Overnight Glow Mask', cat: 'Treatment', price: '$48' },
+      ],
+      footerCols: [
+        { head: 'Customer Care', links: ['Contact', 'Shipping', 'Returns', 'FAQ'] },
+        { head: 'Company', links: ['Our Story', 'Journal', 'Affiliates'] },
+        { head: 'Policies', links: ['Privacy Policy', 'Refund Policy', 'Terms of Service', 'Shipping Policy'] },
+      ],
+      pays: ['VISA', 'AMEX', 'PAYPAL', 'SHOP PAY'],
+    };
+  }
+}
+</script>
+</body>
+</html>

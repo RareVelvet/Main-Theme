@@ -1,0 +1,19 @@
+{%- comment -%}
+  rv-material — product material subtitle (e.g. "18k Gold Vermeil" / "925 Sterling Silver").
+  Source: metafield custom.material_name, else inferred from a Metal/Material option value.
+{%- endcomment -%}
+{%- assign m = product.metafields.custom.material_name -%}
+{%- if m == blank -%}
+  {%- assign metal = '' -%}
+  {%- for opt in product.options_with_values -%}
+    {%- if opt.name == 'Metal' or opt.name == 'Material' or opt.name == 'Colour' or opt.name == 'Color' -%}
+      {%- assign metal = opt.selected_value | default: opt.values.first -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign ml = metal | downcase -%}
+  {%- if ml contains 'rose' -%}{%- assign m = '18k Rose Gold Vermeil' -%}
+  {%- elsif ml contains 'gold' -%}{%- assign m = '18k Gold Vermeil' -%}
+  {%- elsif ml contains 'silver' -%}{%- assign m = '925 Sterling Silver' -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if m != blank -%}<div class="rv-card__material">{{ m }}</div>{%- endif -%}

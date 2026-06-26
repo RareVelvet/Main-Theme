@@ -1,0 +1,40 @@
+
+<section class="rv-pdp-band--bone" style="padding:70px 0;">
+  <div class="rv-container">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="rv-heading">{{ section.settings.heading }}</h2>
+    </div>
+    {%- comment -%} Per-product override: metafield custom.benefits (list.single_line_text), each entry "Title | Description" {%- endcomment -%}
+    {%- assign pb = product.metafields.custom.benefits.value -%}
+    <div class="rv-grid-3">
+      {%- if pb != blank and pb.size > 0 -%}
+        {%- for entry in pb -%}
+          {%- assign parts = entry | split: '|' -%}
+          <div class="rv-pdp-benefit-card">
+            <div class="rv-pdp-benefit-icon"><span style="border-radius:999px;"></span></div>
+            <div class="rv-pdp-benefit-title">{{ parts[0] | strip }}</div>
+            <p class="rv-pdp-benefit-desc">{{ parts[1] | strip }}</p>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          <div class="rv-pdp-benefit-card" {{ block.shopify_attributes }}>
+            <div class="rv-pdp-benefit-icon"><span style="border-radius:{{ block.settings.icon_shape }};"></span></div>
+            <div class="rv-pdp-benefit-title">{{ block.settings.title }}</div>
+            <p class="rv-pdp-benefit-desc">{{ block.settings.description }}</p>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Product Benefits","tag":"section","max_blocks":3,"settings":[
+{"type":"paragraph","content":"Per-product override: add a product metafield custom.benefits (type: list of single-line text), each line formatted \"Title | Description\". If set, it replaces the blocks below for that product."},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Why you'll love it"},
+{"type":"text","id":"heading","label":"Heading","default":"Made to elevate your ritual"}
+],"blocks":[{"type":"benefit","name":"Benefit","settings":[
+{"type":"text","id":"title","label":"Title","default":"Deep Hydration"},
+{"type":"textarea","id":"description","label":"Description","default":"Hyaluronic acid holds 1000× its weight in water."},
+{"type":"select","id":"icon_shape","label":"Icon shape","options":[{"value":"999px","label":"Circle"},{"value":"3px","label":"Square"},{"value":"50% 50% 50% 0","label":"Teardrop"}],"default":"999px"}
+]}],"presets":[{"name":"Product Benefits","blocks":[{"type":"benefit","settings":{"title":"Benefit 1"}},{"type":"benefit","settings":{"title":"Benefit 2"}},{"type":"benefit","settings":{"title":"Benefit 3"}}]}]}{% endschema %}

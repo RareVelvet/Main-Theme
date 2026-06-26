@@ -1,0 +1,252 @@
+
+<style>
+.rv-cart-shipbar{background:var(--rv-deep);border-radius:4px;padding:18px 24px;margin-bottom:28px;}
+.rv-cart-shipbar__row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:11px;flex-wrap:wrap;}
+.rv-cart-shipbar__text{font:500 13px/1.4 var(--rv-sans);color:#FBF9F4;}
+.rv-cart-shipbar__text strong{color:var(--rv-butter);}
+.rv-cart-shipbar__count{font:600 10px/1 var(--rv-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rv-deep-soft);}
+.rv-cart-shipbar__track{height:5px;background:rgba(244,241,234,.15);border-radius:999px;overflow:hidden;}
+.rv-cart-shipbar__fill{height:100%;background:var(--rv-butter);border-radius:999px;transition:width .4s;}
+.rv-cart-layout{display:grid;grid-template-columns:1fr 350px;gap:44px;align-items:start;}
+.rv-cart-summary{position:sticky;top:24px;background:var(--rv-paper);border:1px solid var(--rv-line);border-radius:4px;padding:26px;}
+.rv-cart-item{display:flex;gap:18px;padding:22px 0;border-top:1px solid var(--rv-line);}
+.rv-cart-item__img{width:96px;height:116px;object-fit:cover;border-radius:3px;border:1px solid var(--rv-line);display:block;flex:none;}
+.rv-cart-item__info{flex:1;min-width:0;}
+.rv-cart-qty{display:flex;align-items:center;border:1px solid var(--rv-line);border-radius:2px;height:36px;width:fit-content;}
+.rv-cart-qty button{padding:0 13px;cursor:pointer;font-size:15px;color:var(--rv-soft);background:none;border:none;line-height:1;}
+.rv-cart-qty span{font:400 13px/1 var(--rv-sans);min-width:26px;text-align:center;}
+.rv-upsell-strip{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;padding-bottom:4px;}
+.rv-upsell-strip::-webkit-scrollbar{display:none}
+.rv-upsell-card{flex:none;width:150px;scroll-snap-align:start;background:var(--rv-paper);border:1px solid var(--rv-line);border-radius:3px;overflow:hidden;}
+.rv-cart-reassure{display:flex;flex-direction:column;gap:11px;padding-top:16px;border-top:1px solid var(--rv-line);}
+.rv-cart-reassure__item{display:flex;align-items:center;gap:10px;font:400 12px/1.4 var(--rv-sans);color:var(--rv-soft);}
+.rv-cart-reassure__ico{width:24px;height:24px;border-radius:999px;background:var(--rv-butter);display:flex;align-items:center;justify-content:center;color:var(--rv-char);font-size:12px;flex:none;}
+.rv-cart-sticky-mobile{display:none;position:fixed;bottom:0;left:0;right:0;z-index:80;background:var(--rv-paper);border-top:1px solid var(--rv-line);padding:14px 18px;box-shadow:0 -4px 24px -8px rgba(43,42,39,.18);}
+@media(max-width:768px){
+  .rv-cart-layout{grid-template-columns:1fr;gap:0;}
+  .rv-cart-summary{position:static;border-radius:0;border-left:none;border-right:none;margin-top:8px;}
+  .rv-cart-item__img{width:84px;height:100px;}
+  .rv-upsell-card{width:140px;}
+  .rv-cart-sticky-mobile{display:block;}
+  section.rv-cart-section{padding-bottom:90px!important;}
+}
+@media(max-width:480px){.rv-cart-item{gap:14px;}.rv-cart-item__img{width:74px;height:88px;}}
+</style>
+
+<section class="rv-cart-section" style="padding:40px 0 80px;">
+  <div class="rv-container" style="max-width:1100px;">
+
+    {%- if cart.item_count > 0 -%}
+      {%- assign free_ship_threshold = settings.free_ship_threshold | default: 50 | times: 100 -%}
+      {%- assign remaining = free_ship_threshold | minus: cart.total_price -%}
+      {%- assign pct = cart.total_price | times: 100 | divided_by: free_ship_threshold -%}
+      {%- if pct > 100 -%}{%- assign pct = 100 -%}{%- endif -%}
+
+      <!-- Free shipping bar -->
+      {%- if section.settings.show_shipbar -%}
+      <div class="rv-cart-shipbar">
+        <div class="rv-cart-shipbar__row">
+          {%- if remaining > 0 -%}
+            <span class="rv-cart-shipbar__text">You're <strong>{{ remaining | money }}</strong> away from <strong>free shipping</strong></span>
+          {%- else -%}
+            <span class="rv-cart-shipbar__text">✓ You've unlocked <strong>free shipping</strong></span>
+          {%- endif -%}
+          <span class="rv-cart-shipbar__count">{{ cart.total_price | money }} / {{ free_ship_threshold | money }}</span>
+        </div>
+        <div class="rv-cart-shipbar__track"><div class="rv-cart-shipbar__fill" style="width:{{ pct }}%;"></div></div>
+      </div>
+      {%- endif -%}
+
+      <h1 style="font-family:var(--rv-serif);font-weight:500;font-size:clamp(28px,4vw,46px);color:var(--rv-char);margin:0 0 4px;">Your bag</h1>
+      <p style="font:400 13px/1 var(--rv-sans);color:var(--rv-soft);margin:0 0 24px;">{{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %}</p>
+
+      <div class="rv-cart-layout">
+        <!-- Items + upsell -->
+        <div>
+          {%- for item in cart.items -%}
+            <div class="rv-cart-item">
+              <a href="{{ item.url }}" style="flex:none;">
+                {{ item.image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'rv-cart-item__img', alt: item.title }}
+              </a>
+              <div class="rv-cart-item__info">
+                <div style="display:flex;justify-content:space-between;gap:12px;">
+                  <div>
+                    <a href="{{ item.url }}" style="font:500 15px/1.3 var(--rv-sans);color:var(--rv-char);display:block;margin-bottom:4px;">{{ item.product_title }}</a>
+                    {%- unless item.variant.title == 'Default Title' -%}
+                      <p style="font:400 12px/1 var(--rv-sans);color:var(--rv-grey-2);margin:0 0 12px;">{{ item.variant.title }}</p>
+                    {%- else -%}<div style="height:12px;"></div>{%- endunless -%}
+                  </div>
+                  <span style="font:600 15px/1 var(--rv-sans);color:var(--rv-char);white-space:nowrap;">{{ item.final_line_price | money }}</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+                  <div class="rv-cart-qty">
+                    <button type="button" onclick="rvCartQty('{{ item.key }}',{{ item.quantity | minus: 1 }})" aria-label="Decrease">−</button>
+                    <span>{{ item.quantity }}</span>
+                    <button type="button" onclick="rvCartQty('{{ item.key }}',{{ item.quantity | plus: 1 }})" aria-label="Increase">+</button>
+                  </div>
+                  <button onclick="rvCartQty('{{ item.key }}',0)" style="font:400 12px/1 var(--rv-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rv-grey-2);background:none;border:none;cursor:pointer;border-bottom:1px solid var(--rv-line);padding:0 0 2px;">Remove</button>
+                  {%- if item.line_level_discount_allocations.size > 0 -%}
+                    {%- for discount in item.line_level_discount_allocations -%}
+                      <span style="font:600 10px/1 var(--rv-sans);letter-spacing:.1em;text-transform:uppercase;background:var(--rv-butter);color:var(--rv-char);padding:4px 8px;border-radius:999px;">{{ discount.discount_application.title }}</span>
+                    {%- endfor -%}
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+          <div style="border-top:1px solid var(--rv-line);"></div>
+
+          <a href="{{ routes.root_url }}" style="display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--rv-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rv-soft);border-bottom:1px solid var(--rv-line);padding-bottom:2px;margin-top:18px;">← Continue shopping</a>
+
+          <!-- Complete your order — live recommendations -->
+          {%- if section.settings.show_upsell -%}
+          <div id="rv-cart-upsell" style="margin-top:34px;display:none;">
+            <div style="font:600 11px/1 var(--rv-sans);letter-spacing:.2em;text-transform:uppercase;color:var(--rv-grey-2);margin-bottom:5px;">{{ section.settings.upsell_eyebrow }}</div>
+            <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:24px;color:var(--rv-char);margin:0 0 18px;">{{ section.settings.upsell_heading }}</h2>
+            <div class="rv-upsell-strip" id="rv-cart-upsell-items"></div>
+          </div>
+          {%- endif -%}
+        </div>
+
+        <!-- Summary -->
+        <div class="rv-cart-summary">
+          <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:21px;color:var(--rv-char);margin:0 0 18px;">Order summary</h2>
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px;"><span style="font:400 13px/1 var(--rv-sans);color:var(--rv-soft);">Subtotal</span><span style="font:500 13px/1 var(--rv-sans);color:var(--rv-char);">{{ cart.total_price | money }}</span></div>
+          {%- if cart.cart_level_discount_applications.size > 0 -%}
+            {%- for discount in cart.cart_level_discount_applications -%}
+              <div style="display:flex;justify-content:space-between;margin-bottom:10px;color:var(--rv-clay);"><span style="font:500 13px/1 var(--rv-sans);">{{ discount.title }}</span><span style="font:500 13px/1 var(--rv-sans);">−{{ discount.total_allocated_amount | money }}</span></div>
+            {%- endfor -%}
+          {%- endif -%}
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px;"><span style="font:400 13px/1 var(--rv-sans);color:var(--rv-clay);">Shipping</span><span style="font:500 13px/1 var(--rv-sans);color:var(--rv-clay);">Calculated at checkout</span></div>
+          <div style="border-top:1px solid var(--rv-line);margin:16px 0;padding-top:16px;display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font:600 14px/1 var(--rv-sans);color:var(--rv-char);">Total</span>
+            <span style="font-family:var(--rv-serif);font-size:26px;color:var(--rv-char);font-weight:500;">{{ cart.total_price | money }}</span>
+          </div>
+
+          <a href="/checkout" class="rv-btn rv-btn--primary rv-btn--full" style="margin-bottom:14px;font-size:14px;">Checkout →</a>
+
+          {%- if section.settings.show_trust -%}
+          <div class="rv-cart-reassure">
+            <div class="rv-cart-reassure__item"><span class="rv-cart-reassure__ico">✓</span> Free shipping over {{ free_ship_threshold | money_without_trailing_zeros }}</div>
+            <div class="rv-cart-reassure__item"><span class="rv-cart-reassure__ico">↺</span> Easy 30-day returns</div>
+            <div class="rv-cart-reassure__item"><span class="rv-cart-reassure__ico">🔒</span> Secure, encrypted checkout</div>
+          </div>
+          {%- endif -%}
+
+          <div style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:16px;">
+            {%- for type in shop.enabled_payment_types -%}
+              {{ type | payment_type_svg_tag: style: 'height:24px;width:auto;opacity:.6;' }}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+
+    {%- else -%}
+      <div style="text-align:center;padding:80px 24px;">
+        <h2 style="font-family:var(--rv-serif);font-weight:500;font-size:32px;color:var(--rv-char);margin:0 0 14px;">Your bag is empty</h2>
+        <p style="font:400 15px/1.6 var(--rv-sans);color:var(--rv-soft);margin:0 0 28px;">Add some pieces you'll love.</p>
+        <a href="{{ routes.root_url }}" class="rv-btn rv-btn--primary">Shop now →</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- if cart.item_count > 0 -%}
+<div class="rv-cart-sticky-mobile">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+    <span style="font:400 13px/1 var(--rv-sans);color:var(--rv-soft);">{{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %}</span>
+    <span style="font-family:var(--rv-serif);font-size:20px;color:var(--rv-char);font-weight:500;">{{ cart.total_price | money }}</span>
+  </div>
+  <a href="/checkout" class="rv-btn rv-btn--primary rv-btn--full">Checkout →</a>
+</div>
+{%- endif -%}
+
+<script>
+async function rvCartQty(key, qty){
+  const r = await fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:key,quantity:qty})});
+  if(r.ok) window.location.reload();
+}
+// ── "Complete your order" upsell ───────────────────────────────
+// Cascade: 1) manual curated picks  2) Shopify complementary recs
+//          3) Shopify related recs  — merged, de-duped, capped at LIMIT.
+// Complementary recs are defined per-product in the free Search &
+// Discovery app; related is Shopify's automatic fallback.
+(function(){
+  var wrap = document.getElementById('rv-cart-upsell');
+  if(!wrap) return;
+  var items = {{ cart.items | json }};
+  if(!items || !items.length) return;
+  var LIMIT = 4;
+  var cur = '{{ shop.currency }}';
+  var seed = items.slice().sort(function(a,b){return b.price-a.price;})[0];
+  var inCart = items.map(function(i){return i.product_id; });
+
+  // Manual curated picks (merchant-chosen, always prioritised)
+  var manual = [
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'pick' and block.settings.product != blank -%}
+        {%- assign mp = block.settings.product -%}
+        { id: {{ mp.id }}, title: {{ mp.title | json }}, price: {{ mp.price | json }}, img: {{ mp.featured_image | image_url: width: 200, crop: 'center' | json }}, vid: {{ mp.selected_or_first_available_variant.id }}, available: {{ mp.available }} },
+      {%- endif -%}
+    {%- endfor -%}
+  ];
+
+  function card(o){
+    var img = o.img ? '<img src="'+o.img+'" alt="'+o.title+'" style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block;">' : '<div style="width:100%;aspect-ratio:1/1;background:var(--rv-bone-2);"></div>';
+    var price = typeof o.price === 'number' ? (o.price/100).toLocaleString('en-US',{style:'currency',currency:cur}) : o.price;
+    return '<div class="rv-upsell-card">'+img+'<div style="padding:12px;"><div style="font:500 12px/1.3 var(--rv-sans);color:var(--rv-char);margin-bottom:4px;">'+o.title+'</div><div style="font:400 12px/1 var(--rv-sans);color:var(--rv-grey-2);margin-bottom:10px;">'+price+'</div><button onclick="rvCartAdd(this,'+o.vid+')" style="width:100%;background:var(--rv-char);color:var(--rv-bone);border:none;cursor:pointer;font:600 10px/1 var(--rv-sans);letter-spacing:.1em;text-transform:uppercase;padding:10px;border-radius:2px;">Add +</button></div></div>';
+  }
+
+  function normalize(p){ return { id:p.id, title:p.title, price:p.price_min, img: p.featured_image ? p.featured_image.replace(/(\.[a-z]+)(\?|$)/i,'_200x200_crop_center$1$2') : null, vid:p.variants[0].id }; }
+
+  function fetchRecs(intent){
+    return fetch('/recommendations/products.json?product_id='+seed.product_id+'&limit=10&intent='+intent)
+      .then(function(r){ return r.ok ? r.json() : {products:[]}; })
+      .then(function(d){ return (d.products||[]).filter(function(p){return p.available;}).map(normalize); })
+      .catch(function(){ return []; });
+  }
+
+  var picked = [];
+  var seen = {};
+  function take(list){
+    for(var i=0;i<list.length && picked.length<LIMIT;i++){
+      var o = list[i];
+      if(!o || !o.id || seen[o.id]) continue;
+      if(inCart.indexOf(o.id) !== -1) continue;       // not already in cart
+      if(o.available === false) continue;
+      seen[o.id] = true; picked.push(o);
+    }
+  }
+
+  // 1) manual picks first
+  take(manual);
+
+  // 2) complementary, then 3) related — fill remaining slots
+  fetchRecs('complementary').then(function(comp){
+    take(comp);
+    if(picked.length >= LIMIT) return null;
+    return fetchRecs('related');
+  }).then(function(rel){
+    if(rel) take(rel);
+    if(!picked.length) return;
+    wrap.style.display='block';
+    document.getElementById('rv-cart-upsell-items').innerHTML = picked.map(card).join('');
+  });
+})();
+function rvCartAdd(btn,id){
+  btn.textContent='Adding…';btn.disabled=true;
+  fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,quantity:1})}).then(function(r){
+    if(r.ok){btn.textContent='✓ Added';setTimeout(function(){window.location.reload();},600);}else{btn.textContent='Add +';btn.disabled=false;}
+  });
+}
+</script>
+
+{% schema %}{"name":"Cart","tag":"section","settings":[
+{"type":"checkbox","id":"show_shipbar","label":"Show free shipping progress bar","default":true},
+{"type":"checkbox","id":"show_upsell","label":"Show 'Complete your order' upsell","default":true},
+{"type":"text","id":"upsell_eyebrow","label":"Upsell eyebrow","default":"You might also like"},
+{"type":"text","id":"upsell_heading","label":"Upsell heading","default":"Complete your order"},
+{"type":"checkbox","id":"show_trust","label":"Show reassurance icons","default":true},
+{"type":"header","content":"Complete your order"},
+{"type":"paragraph","content":"Curated picks below always show first. Remaining slots auto-fill with complementary products (set up in the free Search & Discovery app), then related products as a fallback."}
+],"blocks":[{"type":"pick","name":"Curated pick","settings":[{"type":"product","id":"product","label":"Product"}]}],"max_blocks":4,"presets":[{"name":"Cart"}]}{% endschema %}

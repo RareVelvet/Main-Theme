@@ -1,0 +1,28 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search"
+    },
+    "cart": {
+      "title": "Your bag",
+      "empty": "Your bag is empty",
+      "checkout": "Checkout"
+    },
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to bag",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": {
+        "label": "Quantity",
+        "increase": "Increase quantity",
+        "decrease": "Decrease quantity"
+      }
+    }
+  }
+}

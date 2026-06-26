@@ -1,0 +1,61 @@
+
+{%- comment -%} Key ingredients — hero trio + free-from row (skincare) {%- endcomment -%}
+<section class="rv-pdp-band--bone" style="padding:96px 0;">
+  <div class="rv-container">
+    <div style="text-align:center;margin-bottom:54px;">
+      <p class="rv-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="rv-heading">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="rv-ingredient-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'ingredient' -%}
+          <div class="rv-ingredient-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'rv-ingredient-img', alt: block.settings.name }}
+            {%- else -%}
+              <div class="rv-ingredient-img rv-placeholder-img">{{ 'image' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+            <div class="rv-ingredient-body">
+              <div class="rv-ingredient-pct">{{ block.settings.concentration }}</div>
+              <div class="rv-ingredient-name">{{ block.settings.name }}</div>
+              <p class="rv-ingredient-desc">{{ block.settings.description }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- assign ff = section.settings.free_from | split: ',' -%}
+    {%- if ff.size > 0 -%}
+      <div class="rv-free-from">
+        {%- for f in ff -%}<span class="rv-free-from__item"><span class="rv-ff-check">✓</span>{{ f | strip }}</span>{%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+<style>
+.rv-ingredient-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.rv-ingredient-card{background:var(--rv-paper);border-radius:6px;overflow:hidden;}
+.rv-ingredient-img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;}
+.rv-ingredient-body{padding:24px;}
+.rv-ingredient-pct{font:600 11px/1 var(--rv-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rv-clay);margin-bottom:10px;}
+.rv-ingredient-name{font-family:var(--rv-serif);font-size:24px;color:var(--rv-char);font-weight:500;margin-bottom:8px;}
+.rv-ingredient-desc{font:400 14px/1.6 var(--rv-sans);color:var(--rv-soft);margin:0;}
+.rv-free-from{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:40px;}
+.rv-free-from__item{display:flex;align-items:center;gap:8px;font:600 11px/1 var(--rv-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--rv-soft);}
+.rv-ff-check{color:var(--rv-sage,#9DB5A4);}
+@media(max-width:768px){.rv-ingredient-grid{grid-template-columns:1fr;}}
+</style>
+{% schema %}{"name":"Key Ingredients","tag":"section","max_blocks":4,"settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"What's inside"},
+{"type":"text","id":"heading","label":"Heading","default":"Hero ingredients, nothing it doesn't need"},
+{"type":"text","id":"free_from","label":"Free-from chips (comma-separated)","default":"Fragrance-free, Paraben-free, Sulfate-free, Cruelty-free, Vegan"}
+],"blocks":[{"type":"ingredient","name":"Ingredient","settings":[
+{"type":"image_picker","id":"image","label":"Image"},
+{"type":"text","id":"concentration","label":"Concentration","default":"5% concentration"},
+{"type":"text","id":"name","label":"Name","default":"Niacinamide"},
+{"type":"textarea","id":"description","label":"Description","default":"Visibly reduces redness, refines pores and evens out tone."}
+]}],"presets":[{"name":"Key Ingredients","blocks":[
+{"type":"ingredient","settings":{"concentration":"5% concentration","name":"Niacinamide","description":"Visibly reduces redness, refines pores and evens out tone for a calmer complexion."}},
+{"type":"ingredient","settings":{"concentration":"Triple-weight","name":"Hyaluronic Acid","description":"Three molecular weights hydrate at different depths for plump, bouncy skin."}},
+{"type":"ingredient","settings":{"concentration":"Barrier complex","name":"Ceramides + Panthenol","description":"Reinforce the moisture barrier so skin stays resilient and comfortable."}}
+]}]}{% endschema %}

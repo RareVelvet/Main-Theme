@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "blog_0": {
+      "type": "rv-blog"
+    }
+  },
+  "order": [
+    "blog_0"
+  ]
+}
