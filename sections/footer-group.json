@@ -7,18 +7,14 @@
       "blocks": {
         "column_0": {
           "type": "column",
-          "settings": { "heading": "Shop" }
+          "settings": { "heading": "Customer Care", "menu": "customer-care" }
         },
         "column_1": {
           "type": "column",
-          "settings": { "heading": "Customer Care" }
-        },
-        "column_2": {
-          "type": "column",
-          "settings": { "heading": "Company" }
+          "settings": { "heading": "Company", "menu": "company" }
         }
       },
-      "block_order": ["column_0", "column_1", "column_2"]
+      "block_order": ["column_0", "column_1"]
     },
     "search_drawer": {
       "type": "rv-search-drawer",
