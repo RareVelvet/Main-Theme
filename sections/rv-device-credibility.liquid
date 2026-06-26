@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'device' or rvt contains 'tool' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 {%- comment -%} Device credibility strip — 4 stats on deep band {%- endcomment -%}
 <section style="background:var(--rv-deep);">
@@ -11,6 +16,8 @@
   </div>
 </section>
 <style>@media(max-width:640px){section .rv-container[style*="repeat(4"]{grid-template-columns:1fr 1fr!important;}}</style>
+
+{%- endif -%}
 {% schema %}{"name":"Device Credibility","tag":"section","max_blocks":4,"blocks":[{"type":"stat","name":"Stat","settings":[
 {"type":"text","id":"stat","label":"Stat","default":"FDA"},
 {"type":"text","id":"label","label":"Label","default":"Cleared Class II device"}

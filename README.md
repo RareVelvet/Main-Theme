@@ -26,25 +26,30 @@ design-reference/   HTML prototypes from Claude Design (NOT shipped — visual t
 docs/        SETUP + AUDIT-AND-RECOMMENDATIONS
 ```
 
-## PDP routing — IMPORTANT (this changed)
+## PDP routing — IMPORTANT (auto‑adapts by Product Type)
 
-The old build used a single `product.liquid` that branched on Product Type. That works,
-but it is **not editable in the theme editor**. This revision replaces it with proper
-**JSON product templates**, one per layout:
+There is **one** product template, `templates/product.json`, used by every product —
+**nothing to assign**. It contains every PDP module, and each type‑specific module
+renders **only for matching products** (it self‑hides otherwise). So the layout adapts
+automatically from each product's **Product Type**:
 
-| Template file              | Use it for                                   |
-|----------------------------|----------------------------------------------|
-| `product.json` (default)   | Jewelry boxes / interior / accessories       |
-| `product.jewelry.json`     | Jewelry, rings, necklaces (incl. ring guide) |
-| `product.skincare.json`    | Skincare / serums / beauty                   |
-| `product.device.json`      | Skincare & beauty devices (richest layout)   |
-| `product.bundle.json`      | Bundles / sets / kits                        |
-| `product.lounge.json`      | Loungewear / apparel                         |
+| Product Type contains…                                   | Modules that appear |
+|----------------------------------------------------------|---------------------|
+| `jewelry` / `ring` / `necklace` / `earring` / `bracelet` | Jewelry hero, hallmarks, stack‑with + style‑with upsells, layering, shop‑the‑look, ring‑size guide (rings/`ring` tag) |
+| `skincare` / `serum` / `beauty` / `cleanser` / `lip` / `makeup` | Ingredients, results strip, how‑to‑use, concern tiles |
+| `device` / `tool`                                        | Credibility, derm, device results, spec row, comparison, how‑to‑use, guarantee |
+| `bundle` / `set` / `kit`                                 | What's included |
+| `lounge` / `fashion` / `apparel` / `loungewear`          | Complete‑the‑set, style‑with |
+| anything / blank                                         | Shared base only (gallery+buy box, benefits, gifting, FBT, UGC, accordions, reviews, recently‑viewed, cross‑sell) |
 
-**You assign the template per product**: Admin → Products → *(product)* → right column
-**Theme template** → pick one. Products with nothing selected use `product.json`.
-Every section inside each template can then be reordered, hidden, duplicated or edited
-in **Online Store → Customize**.
+**So the one setup step is: set each product's _Product Type_ correctly** (Admin →
+Products → *(product)* → **Product type**). e.g. the huggie earrings need a type like
+`Jewelry` or `Earring` to get the jewelry layout + upsells. Bulk‑edit the *Product type*
+column to do a whole catalog fast.
+
+Everything is still **fully editable in Online Store → Customize**: reorder, hide,
+duplicate or restyle any module. (Modules that don't apply to the product you're editing
+simply render nothing on the storefront.)
 
 ## Deploying via GitHub (recommended)
 

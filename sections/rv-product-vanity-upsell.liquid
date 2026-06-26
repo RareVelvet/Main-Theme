@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'jewel' or rvt contains 'ring' or rvt contains 'necklace' or rvt contains 'earring' or rvt contains 'bracelet' or rvt contains 'jewellery' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 <section style="padding:0 0 36px;background:var(--rv-bone);">
   <div class="rv-container">
@@ -116,6 +121,8 @@
 })();
 </script>
 
+
+{%- endif -%}
 {% schema %}{"name":"Complete Your Vanity","tag":"section","settings":[
 {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Store it beautifully"},
 {"type":"text","id":"heading","label":"Heading","default":"Complete your vanity"},

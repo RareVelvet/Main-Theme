@@ -20,11 +20,14 @@ Create these (single‑line text unless noted):
 - plus your category collections (Skincare, Beauty, Jewelry, Interior, Gifts…)
 - Enable **Search & Discovery** app for filters.
 
-## 4. Assign PDP templates (per product)
-Admin → Products → *(product)* → **Theme template** → choose:
-`product` (default/box), `product.jewelry`, `product.skincare`, `product.device`,
-`product.bundle`, or `product.lounge`. Use the **bulk editor** (add the "Theme template"
-column) to do many at once.
+## 4. Set each product's Product Type (drives the PDP layout)
+There is one `product.json` template that **auto‑adapts by Product Type** — no template
+assignment. Just set Admin → Products → *(product)* → **Product type** to one of:
+`Jewelry`/`Ring`/`Necklace`/`Earring`/`Bracelet`, `Skincare`/`Serum`/`Beauty`,
+`Device`/`Tool`, `Bundle`/`Set`/`Kit`, or `Lounge`/`Apparel`. The matching modules
+(hero, hallmarks, upsells, ingredients, device specs, etc.) then appear automatically.
+Use the **bulk editor** (Product type column) to do the whole catalog fast. Products with
+no recognized type show the shared base layout.
 
 ## 5. Discounts (Discounts) — read docs/AUDIT §2 first
 **Recommended:** in each bundle section turn ON *"Use an automatic discount (recommended)"*,

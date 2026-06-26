@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'jewel' or rvt contains 'ring' or rvt contains 'necklace' or rvt contains 'earring' or rvt contains 'bracelet' or rvt contains 'jewellery' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 <section class="rv-pdp-section">
   <div class="rv-pdp-look">
@@ -28,6 +33,8 @@
     </div>
   </div>
 </section>
+
+{%- endif -%}
 {% schema %}{"name":"Shop the Look","tag":"section","max_blocks":4,"settings":[
 {"type":"image_picker","id":"image","label":"Editorial image"},
 {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Shop the look"},

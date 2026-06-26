@@ -1,3 +1,8 @@
+{%- comment -%} RV-TYPE-GUARD: renders only for matching product types {%- endcomment -%}
+{%- assign rvt = product.type | downcase -%}
+{%- assign rv_render = false -%}
+{%- if rvt contains 'device' or rvt contains 'tool' or rvt contains 'beauty' or rvt contains 'skincare' or rvt contains 'serum' or rvt contains 'cleanser' or rvt contains 'lip' or rvt contains 'makeup' or rvt contains 'cosmetic' -%}{%- assign rv_render = true -%}{%- endif -%}
+{%- if rv_render -%}
 
 <section class="rv-section">
   <div class="rv-container">
@@ -23,6 +28,8 @@
     </div>
   </div>
 </section>
+
+{%- endif -%}
 {% schema %}{"name":"Shop by Concern","tag":"section","settings":[
 {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Find your edit"},
 {"type":"text","id":"heading","label":"Heading","default":"What's your skin concern?"},
