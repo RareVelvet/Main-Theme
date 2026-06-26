@@ -64,6 +64,7 @@
 (function(){
   var root=document.querySelector('[data-rv-search]');
   if(!root)return;
+  var SEARCH_URL={{ routes.search_url | json }};
   var input=root.querySelector('[data-rv-search-input]');
   var results=root.querySelector('[data-rv-search-results]');
   var empty=root.querySelector('[data-rv-search-empty]');
@@ -100,7 +101,7 @@
     if(queries.length){
       html+='<div class="rv-search__section-label">Suggestions</div><div class="rv-search__suggestions">';
       queries.slice(0,4).forEach(function(s){
-        html+='<a class="rv-search__suggestion" href="/search?q='+encodeURIComponent(s.text)+'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>'+s.styled_text.replace(/<\/?[^>]+>/g,function(m){return m.indexOf('strong')>-1?m:'';})+'</a>';
+        html+='<a class="rv-search__suggestion" href="'+SEARCH_URL+'?q='+encodeURIComponent(s.text)+'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>'+s.styled_text.replace(/<\/?[^>]+>/g,function(m){return m.indexOf('strong')>-1?m:'';})+'</a>';
       });
       html+='</div>';
     }
@@ -114,7 +115,7 @@
           +'<div class="rv-search__product-price">'+(p.price?money(p.price):'')+'</div></a>';
       });
       html+='</div>';
-      html+='<a class="rv-search__viewall" href="/search?q='+encodeURIComponent(q)+'">View all results for “'+q+'” →</a>';
+      html+='<a class="rv-search__viewall" href="'+SEARCH_URL+'?q='+encodeURIComponent(q)+'">View all results for “'+q+'” →</a>';
     }
     results.innerHTML=html;
   }
@@ -137,7 +138,7 @@
     clearTimeout(timer);timer=setTimeout(function(){doSearch(q);},220);
   });
   input.addEventListener('keydown',function(e){
-    if(e.key==='Enter'){var q=input.value.trim();if(q)window.location='/search?q='+encodeURIComponent(q);}
+    if(e.key==='Enter'){var q=input.value.trim();if(q)window.location=SEARCH_URL+'?q='+encodeURIComponent(q);}
   });
 })();
 </script>
