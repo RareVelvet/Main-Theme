@@ -36,9 +36,6 @@
     "product_stack_with_11": {
       "type": "rv-product-stack-with"
     },
-    "gifting_callout_12": {
-      "type": "rv-gifting-callout"
-    },
     "product_vanity_upsell_13": {
       "type": "rv-product-vanity-upsell"
     },
@@ -98,7 +95,6 @@
     "product_device_results_9",
     "product_spec_row_10",
     "product_stack_with_11",
-    "gifting_callout_12",
     "product_vanity_upsell_13",
     "product_complete_set_14",
     "product_style_with_15",
