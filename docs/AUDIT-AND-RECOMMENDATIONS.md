@@ -132,13 +132,18 @@ selling plan attached, the subscribe UI correctly hides itself.
 - **Policies** (Settings → Policies) — the footer auto‑pulls them.
 - **Menus**: main nav + footer (the header/footer read your linklists).
 
-**Content placeholders that read as real claims — replace before launch:**
-Several sections ship with hard‑coded stats/quotes as defaults: `rv-results-strip`
-("12,400+ 5‑star reviews", "93% would recommend"), `rv-device-credibility`
-("FDA Cleared", "93% saw firmer skin", "38k+ sold"), `rv-product-reviews` default counts,
-`rv-testimonial-band` quotes, `rv-press-bar` (VOGUE/ALLURE/…). These are editable in the
-theme editor — **but shipping fabricated FDA/percentage/review claims is a legal/ad‑standards
-risk.** Blank or correct them. (Ideally move the review numbers to Loox/metafields.)
+**Content placeholders that read as real claims — now neutralized (fill in before launch):**
+The fabricated stats/claims that previously shipped as defaults have been replaced with
+clearly‑labelled placeholders ("Add a stat", "Add a label", "Publication", empty review
+counts) plus `info` notes reminding you to use only real, verifiable figures. Affected
+sections: `rv-results-strip`, `rv-device-credibility`, `rv-product-device-results`,
+`rv-device-derm` (the invented dermatologist quote/name is gone), `rv-product-reviews`
+(manual fallback counts/review now blank — Loox is the default source), `rv-testimonial-band`
+(the "12,400+ reviews" anchor is removed), and `rv-press-bar` (VOGUE/ALLURE/ELLE/BAZAAR →
+"Publication"). The homepage (`templates/index.json`) was also scrubbed of the baked‑in
+press logos and review count. **You still must enter your own real stats/press/reviews
+before launch** — shipping fabricated FDA/percentage/review/endorsement claims is a
+legal/ad‑standards risk. (Ideally drive review numbers from Loox/metafields.)
 
 **Functional gaps worth knowing:**
 - **No `customers/*` or `gift_card` JSON templates** — these stay `.liquid` (form pages).

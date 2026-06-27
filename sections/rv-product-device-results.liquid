@@ -47,13 +47,13 @@
 
 {%- endif -%}
 {% schema %}{"name":"Device Results","tag":"section","max_blocks":4,"settings":[
-{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Clinically tested results"},
-{"type":"text","id":"heading","label":"Heading","default":"Visible results in 4 weeks"},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"Tested results"},
+{"type":"text","id":"heading","label":"Heading","default":"Add your results headline"},
 {"type":"image_picker","id":"before_image","label":"Before image"},
 {"type":"image_picker","id":"after_image","label":"After image"},
-{"type":"textarea","id":"disclaimer","label":"Clinical disclaimer"}
+{"type":"textarea","id":"disclaimer","label":"Clinical disclaimer","info":"If you show clinical stats, cite the real study, sample size and timeframe here."}
 ],"blocks":[{"type":"stat","name":"Clinical stat","settings":[
-{"type":"text","id":"stat","label":"Statistic","default":"93%"},
-{"type":"text","id":"label","label":"Label","default":"reported firmer skin"},
-{"type":"textarea","id":"description","label":"Description","default":"In an 8-week independent clinical study."}
-]}],"presets":[{"name":"Device Results","blocks":[{"type":"stat","settings":{"stat":"93%","label":"reported firmer skin"}},{"type":"stat","settings":{"stat":"87%","label":"noticed reduced lines"}},{"type":"stat","settings":{"stat":"4 weeks","label":"average for visible results"}}]}]}{% endschema %}
+{"type":"text","id":"stat","label":"Statistic","default":"Add a stat","info":"Only use figures from a real study you can cite. Add the source in the Clinical disclaimer field."},
+{"type":"text","id":"label","label":"Label","default":"Add a label"},
+{"type":"textarea","id":"description","label":"Description","default":""}
+]}],"presets":[{"name":"Device Results","blocks":[{"type":"stat","settings":{"stat":"Add a stat","label":"Add a label"}},{"type":"stat","settings":{"stat":"Add a stat","label":"Add a label"}},{"type":"stat","settings":{"stat":"Add a stat","label":"Add a label"}}]}]}{% endschema %}
