@@ -26,7 +26,26 @@ design-reference/   HTML prototypes from Claude Design (NOT shipped — visual t
 docs/        SETUP + AUDIT-AND-RECOMMENDATIONS
 ```
 
-## PDP routing — IMPORTANT (auto‑adapts by Product Type)
+## PDP routing — named templates (assign per product)
+
+This build uses **named product templates** you pick from the **Theme template**
+dropdown (Admin → Products → *(product)* → **Theme template**):
+
+| Template (dropdown label) | Use it for |
+|---|---|
+| `Default product`         | Jewelry boxes / interior / accessories |
+| `jewelry`                 | Jewelry / rings / necklaces / earrings (ring‑size guide auto‑shows for rings) |
+| `skincare`                | Skincare / serums / beauty |
+| `device`                  | Skincare & beauty devices |
+| `bundle`                  | Bundles / sets / kits |
+| `lounge`                  | Loungewear / apparel |
+
+Each is independently **editable in Online Store → Customize**. Use the bulk editor's
+**Theme template** column to assign many products at once. (An alternative single
+auto‑adapting template driven by *Product Type* also exists in history — ask to switch.)
+
+<!-- legacy auto-adapt notes below -->
+## (Alt) Auto‑adapt by Product Type
 
 There is **one** product template, `templates/product.json`, used by every product —
 **nothing to assign**. It contains every PDP module, and each type‑specific module
