@@ -308,25 +308,25 @@
         "outlet_0": {
           "type": "outlet",
           "settings": {
-            "name": "VOGUE"
+            "name": "Publication"
           }
         },
         "outlet_1": {
           "type": "outlet",
           "settings": {
-            "name": "ALLURE"
+            "name": "Publication"
           }
         },
         "outlet_2": {
           "type": "outlet",
           "settings": {
-            "name": "ELLE"
+            "name": "Publication"
           }
         },
         "outlet_3": {
           "type": "outlet",
           "settings": {
-            "name": "BAZAAR"
+            "name": "Publication"
           }
         }
       },
@@ -343,7 +343,7 @@
     "testimonial_band_45": {
       "type": "rv-testimonial-band",
       "settings": {
-        "anchor": "12,400+ reviews",
+        "anchor": "",
         "rotate_seconds": 4,
         "bg": "#FBF9F4"
       },

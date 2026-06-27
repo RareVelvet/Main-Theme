@@ -22,12 +22,11 @@
 
 {%- endif -%}
 {% schema %}{"name":"Results Strip","tag":"section","max_blocks":5,"blocks":[{"type":"stat","name":"Stat","settings":[
-{"type":"text","id":"stat","label":"Statistic","default":"12,400+"},
-{"type":"text","id":"label","label":"Label","default":"5-star reviews"},
-{"type":"text","id":"source","label":"Source note (optional)","default":"Verified customers"}
+{"type":"text","id":"stat","label":"Statistic","default":"Add a stat","info":"Use a real, verifiable figure (e.g. your live review count or rating). Do not ship invented numbers."},
+{"type":"text","id":"label","label":"Label","default":"Add a label"},
+{"type":"text","id":"source","label":"Source note (optional)","default":""}
 ]}],"presets":[{"name":"Results Strip","blocks":[
-{"type":"stat","settings":{"stat":"12,400+","label":"5-star reviews","source":"Verified customers"}},
-{"type":"stat","settings":{"stat":"4.8★","label":"Average rating","source":"Across all products"}},
-{"type":"stat","settings":{"stat":"93%","label":"Would recommend","source":"Post-purchase survey"}},
-{"type":"stat","settings":{"stat":"48h","label":"Average dispatch","source":"Orders placed Mon–Fri"}}
+{"type":"stat","settings":{"stat":"Add a stat","label":"Add a label","source":""}},
+{"type":"stat","settings":{"stat":"Add a stat","label":"Add a label","source":""}},
+{"type":"stat","settings":{"stat":"Add a stat","label":"Add a label","source":""}}
 ]}]}{% endschema %}
