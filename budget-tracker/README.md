@@ -10,8 +10,16 @@ timeline, debt payoff — recalculates live via native Excel formulas. No macros
 ```bash
 pip install openpyxl
 python build_tracker.py
-# -> "Intentional Budget Tracker.xlsx"
+# -> "Intentional Budget Tracker.xlsx"          (USD, flagship)
+# -> variants/Intentional Budget Tracker — GBP.xlsx, … EUR, JPY, INR, BRL, SEK, CHF
 ```
+
+## Currency variants
+
+One workbook is generated per currency (symbol baked into every number format and
+the Start Here default): **USD $, GBP £, EUR €, JPY ¥, INR ₹, BRL R$, SEK kr, CHF**.
+USD lives at the top level; the rest are in `variants/`. To add a currency, append a
+`(code, symbol, format)` row to the `CURRENCIES` list in `build_tracker.py` and re-run.
 
 ## Tabs
 

@@ -36,9 +36,25 @@ RED_NEG   = "C0392B"   # over-budget / over-allocated text
 HONEY_LT  = "F2E6C9"   # honey input-cell tint
 WHITE     = "FFFFFF"
 
-CURRENCY_FMT = '"$"#,##0'
+# Currency is parameterized so we can emit one workbook per currency.
+# CURRENCY_SYMBOL / CURRENCY_FMT are reassigned per-variant in main().
+CURRENCY_SYMBOL = "$"
+CURRENCY_FMT    = '"$"#,##0'
 PCT_FMT      = '0.0%'
 YEAR_FMT     = '0'
+
+# (code, symbol, number format) — symbol drives the Start Here dropdown default,
+# the format drives every currency cell. Scandinavian/Swiss put the symbol after.
+CURRENCIES = [
+    ("USD", "$",   '"$"#,##0'),
+    ("GBP", "£",   '"£"#,##0'),
+    ("EUR", "€",   '"€"#,##0'),
+    ("JPY", "¥",   '"¥"#,##0'),
+    ("INR", "₹",   '"₹"#,##0'),
+    ("BRL", "R$",  '"R$"#,##0'),
+    ("SEK", "kr",  '#,##0" kr"'),
+    ("CHF", "CHF", '"CHF "#,##0'),
+]
 
 # --------------------------------------------------------------------------- #
 # Reusable style helpers
@@ -208,7 +224,7 @@ def build_start_here(wb):
     inputs = [
         # (row, label, value, named_range, number_format)
         (5,  "Your name",                     "Friend", "Name",          None),
-        (6,  "Currency symbol",               "$",      "Currency",      None),
+        (6,  "Currency symbol",        CURRENCY_SYMBOL, "Currency",      None),
         (7,  "Planning year",                 2026,     "Year",          YEAR_FMT),
         (8,  "Your age",                       38,      "Age",           '0'),
         (9,  "Monthly gross income",           9500,    "IncomeGross",   CURRENCY_FMT),
@@ -543,7 +559,7 @@ def build_net_worth_log(wb, nw_ref):
     cats = Reference(ws, min_col=1, min_row=4, max_row=last)
     chart.add_data(data, titles_from_data=True)
     chart.set_categories(cats)
-    chart.y_axis.numFmt = '"$"#,##0'
+    chart.y_axis.numFmt = CURRENCY_FMT
     chart.y_axis.majorGridlines = None
     ws.add_chart(chart, "D4")
 
@@ -673,7 +689,7 @@ def build_freedom_timeline(wb):
     ref_data = Reference(ws, min_col=8, min_row=3, max_row=last)
     chart.add_data(ref_data, titles_from_data=True)
     chart.set_categories(cats)
-    chart.y_axis.numFmt = '"$"#,##0'
+    chart.y_axis.numFmt = CURRENCY_FMT
     ws.add_chart(chart, "A36")
 
     # ---- What-if panel --------------------------------------------------- #
@@ -809,7 +825,8 @@ def build_freetext(wb, name, subtitle, prompts):
 # =========================================================================== #
 #  Build it
 # =========================================================================== #
-def main():
+def build_workbook(out_path):
+    """Build one workbook using the currently-set CURRENCY_SYMBOL / CURRENCY_FMT."""
     wb = Workbook()
     wb.remove(wb.active)  # drop default sheet
 
@@ -866,9 +883,26 @@ def main():
     for name, ref in named.items():
         wb.defined_names.add(DefinedName(name, attr_text=ref))
 
-    out = "Intentional Budget Tracker.xlsx"
-    wb.save(out)
-    print(f"Wrote {out} with {len(wb.sheetnames)} sheets: {', '.join(wb.sheetnames)}")
+    wb.save(out_path)
+    return len(wb.sheetnames)
+
+
+def main():
+    import os
+    global CURRENCY_SYMBOL, CURRENCY_FMT
+
+    # USD is the flagship file at the top level; the rest go in variants/.
+    variants_dir = "variants"
+    os.makedirs(variants_dir, exist_ok=True)
+
+    for code, symbol, fmt in CURRENCIES:
+        CURRENCY_SYMBOL, CURRENCY_FMT = symbol, fmt
+        if code == "USD":
+            out = "Intentional Budget Tracker.xlsx"
+        else:
+            out = os.path.join(variants_dir, f"Intentional Budget Tracker — {code}.xlsx")
+        n = build_workbook(out)
+        print(f"Wrote {out}  ({code} {symbol}, {n} sheets)")
 
 
 if __name__ == "__main__":
